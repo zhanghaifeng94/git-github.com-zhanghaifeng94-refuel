@@ -29,6 +29,10 @@ export default new Router({
       path: '/store',
       name: 'store',
       component: store
+    },
+    {
+      path: '/',
+      redirect: '/index'
     }
   ]
 })
