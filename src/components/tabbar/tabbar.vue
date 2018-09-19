@@ -46,7 +46,6 @@ export default {
   },
   watch: {
     selected: function (val, oldVal) {
-      console.log(val)
       this.change(val)
       switch (val) {
         case 'index':
@@ -76,7 +75,6 @@ export default {
   },
   created() {
     this.change(this.selected)
-    console.log(this.selected)
   }
 }
 </script>
