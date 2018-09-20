@@ -1,24 +1,30 @@
 <template>
     <div class="sign_up">
       <div class="header">
-        <div class="iconfont icon-close go_back"></div>
+        <div class="iconfont icon-close go_back" @click="go_back()"></div>
         <div class="name">M50e站</div>
-        <div class="sign_in">登录</div>
+        <router-link class="sign_in" to="sign_in">登录</router-link>
       </div>
       <div class="form">
         <div class="phone">
-          <input type="text" placeholder="请输入手机号" v-model="account.phone" @change="verify(account.phone)">
+          <input type="text" placeholder="请输入手机号" v-model="account.phone" @blur="verify(account.phone)">
         </div>
         <div class="code">
-          <input type="text" placeholder="输入验证码" v-model="account.code">
-          <span class="true" v-if="code">{{countDownText}}</span>
+          <input type="text" placeholder="输入验证码" v-model="account.code" @blur="all()">
+          <span class="true" v-if="code" @click="countDown">{{countDownText}}</span>
           <span class="false" v-if="!code">获取验证码</span>
         </div>
         <div class="password">
-          <input type="password" v-model="account.password" placeholder="请设置密码">
+          <input type="password" v-model="account.password" placeholder="请设置密码" @blur="all()">
         </div>
         <button class="button"  v-if="!button">注册</button>
         <button class="button1" v-if="button">注册</button>
+      </div>
+      <div class="weixin">
+        <router-link class="weixin_sign_in" to="#">
+          <div class="iconfont icon-weixin"></div>
+          微信快捷登入
+        </router-link>
       </div>
     </div>
 </template>
@@ -46,10 +52,39 @@ export default {
       } else {
         Toast('手机号格式错误')
       }
+      this.all()
     },
     countDown() {
-
+      if (this.countDownText == '获取验证码' || this.countDownText == '再次发送') {
+        let count = 60
+        let vm = this
+        function settime () {
+          if (count === 0) {
+            vm.countDownText = '再次发送'
+            count = 60
+          } else {
+            vm.countDownText = count + 's'
+            count--
+            setTimeout(function() {
+              settime()
+            }, 1000)
+          }
+        }
+        settime()
+      }
+    },
+    all() {
+      if (this.account.phone !== '' && this.account.code !== '' && this.account.password !== '') {
+        this.button = true
+      }
+    },
+    go_back(){
+      this.$router.go(-1)
     }
+  },
+  mounted() {
+
+    this.all()
   }
 }
 </script>
@@ -124,5 +159,13 @@ export default {
       .button1
         background $color-header-background
         color: $color-text
+    .weixin
+      margin-top 90px
+      text-align center
+      font-size $font-size-small
+      .iconfont
+        font-size 34px
+        color #71C253
+        margin-bottom 10px
 
 </style>
