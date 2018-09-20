@@ -74,17 +74,21 @@ export default {
       }
     },
     all() {
-      if (this.account.phone !== '' && this.account.code !== '' && this.account.password !== '') {
+      if ((this.account.phone !== '' && this.account.code !== '') || (this.account.phone !== '' && this.account.password !== '')) {
         this.button = true
+      } else {
+        this.button = false
       }
     },
-    go_back(){
+    go_back() {
       this.$router.go(-1)
     }
   },
   mounted() {
-
     this.all()
+    this.account.phone = ''
+    this.account.code = ''
+    this.account.password = ''
   }
 }
 </script>
@@ -98,7 +102,7 @@ export default {
     bottom: 0
     z-index: 100
     width: 100%
-    background: $color-background
+    background: $color-background-t
     padding 0 16px
     box-sizing border-box
     .header
@@ -117,7 +121,7 @@ export default {
     .form
       width: 100%
       .phone,.code,.password
-        height: 50px
+        height: 40px
         background #e8e8e8
         margin-bottom 10px
         font-size $font-size-medium

@@ -124,9 +124,8 @@ export default {
       box-sizing border-box
       .classify-box
         width 50%
-        height: 113px
+        height: 114px
         float: left
-        margin-bottom 8px
         img
           width: 100%
           height: 100%
