@@ -71,6 +71,9 @@ export default {
         id: '4'
       } ]
     }
+  },
+  created() {
+
   }
 }
 </script>
@@ -82,6 +85,7 @@ export default {
     overflow: auto;
     height: 100%;
     padding-bottom: 70px;
+    background #fff
     .header
       background $color-header-background
       width 100%

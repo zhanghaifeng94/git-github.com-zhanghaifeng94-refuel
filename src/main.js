@@ -4,10 +4,15 @@ import MintUI from 'mint-ui'
 import 'mint-ui/lib/style.css'
 import App from './App'
 import router from './router'
+import Vant from 'vant'
+import 'vant/lib/vant-css/index.css'
+
+
 
 import 'common/stylus/index.styl'
 
 Vue.use(MintUI)
+Vue.use(Vant)
 
 Vue.config.productionTip = false
 
