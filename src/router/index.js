@@ -7,6 +7,8 @@ import store from 'components/store/store'
 import refuel from 'components/refuel/refuel'
 import sign_in from 'components/sign_in/sign_in'
 import sign_up from 'components/sign_up/sign_up'
+import recharge from 'components/recharge/recharge'
+import queryVIP from 'components/queryVIP/queryVIP'
 
 Vue.use(Router)
 
@@ -19,7 +21,8 @@ export default new Router({
     {
       path: '/index',
       name: 'index',
-      component: index
+      component: index,
+      children: []
     },
     {
       path: '/user',
@@ -45,6 +48,16 @@ export default new Router({
       path: '/sign_up',
       name: 'sign_up',
       component: sign_up
+    },
+    {
+      path: '/index/recharge',
+      name: 'recharge',
+      component: recharge,
+    },
+    {
+      path: '/index/queryVIP',
+      name: 'queryVIP',
+      component: queryVIP,
     }
 
   ]

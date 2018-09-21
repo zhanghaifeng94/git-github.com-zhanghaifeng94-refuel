@@ -1,5 +1,5 @@
 <template>
-  <div class="tabbar">
+  <div class="tabbar" v-if="tabbar">
     <mt-tabbar v-model="selected" fixed>
       <mt-tab-item v-for="(item,index) in tabs" :key="index" :id="item.id">
         <div class="iconfont icon" :class="item.icon ? item.icon : item.icon2"></div>
@@ -41,7 +41,8 @@ export default {
         icon2: 'icon-peoplefill',
         icon3: 'icon-people'
       }
-      ]
+      ],
+      tabbar: true
     }
   },
   watch: {
@@ -61,6 +62,13 @@ export default {
           this.$router.push('/user')
           break
       }
+    },
+    '$route' (to) {
+      if (to.path == '/index' || to.path == '/refuel' || to.path == '/store' || to.path == '/user') {
+        this.tabbar = true
+      } else {
+        this.tabbar = false
+      }
     }
   },
   methods: {
@@ -71,10 +79,15 @@ export default {
           item.icon = false
         }
       })
-}
+    }
   },
   created() {
     this.change(this.selected)
+    if (this.$route.path == '/index' || this.$route.path == '/refuel' || this.$route.path == '/store' || this.$route.path == '/user') {
+      this.tabbar = true
+    } else {
+      this.tabbar = false
+    }
   }
 }
 </script>

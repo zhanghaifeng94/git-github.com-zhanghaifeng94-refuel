@@ -74,7 +74,7 @@ export default {
       }
     },
     all() {
-      if ((this.account.phone !== '' && this.account.code !== '') || (this.account.phone !== '' && this.account.password !== '')) {
+      if (this.account.phone !== '' && this.account.code !== '' && this.account.password !== '') {
         this.button = true
       } else {
         this.button = false
@@ -86,9 +86,13 @@ export default {
   },
   mounted() {
     this.all()
-    this.account.phone = ''
-    this.account.code = ''
-    this.account.password = ''
+  },
+  watch: {
+    '$route' (to){
+      this.account.phone = ''
+      this.account.code = ''
+      this.account.password = ''
+    }
   }
 }
 </script>

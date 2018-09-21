@@ -6,6 +6,7 @@ import App from './App'
 import router from './router'
 import Vant from 'vant'
 import 'vant/lib/vant-css/index.css'
+import API from 'api/api'
 
 
 

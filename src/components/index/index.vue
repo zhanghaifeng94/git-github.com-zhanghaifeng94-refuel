@@ -12,8 +12,11 @@
       <div class="nav">
         <ul class="list">
           <li class="item" v-for="item in nav" :key="item.id">
-            <img :src="item.img" alt="">
-            <div>{{item.name}}</div>
+            <router-link :to="item.path">
+              <img :src="item.img" alt="">
+              <div>{{item.name}}</div>
+            </router-link>
+
           </li>
         </ul>
       </div>
@@ -27,6 +30,7 @@
 </template>
 
 <script>
+  import API from 'api/api'
 export default {
   data () {
     return {
@@ -43,19 +47,23 @@ export default {
       nav: [{
         img: require('common/image/cz.png'),
         name: '会员充值',
-        id: '1'
+        id: '1',
+        path:'/index/recharge'
       }, {
         img: require('common/image/cx.png'),
         name: '会员查询',
-        id: '2'
+        id: '2',
+        path:'/index/queryVIP'
       }, {
         img: require('common/image/yh.png'),
         name: '优惠券',
-        id: '3'
+        id: '3',
+        path:'/index/recharge'
       }, {
         img: require('common/image/dh.png'),
         name: '油站导航',
-        id: '4'
+        id: '4',
+        path:'/index/recharge'
       }],
       classify: [{
         img: require('common/image/01.png'),
@@ -73,7 +81,9 @@ export default {
     }
   },
   created() {
-
+    // API.banner(1).then( result => {
+    //   console.log(result)
+    // })
   }
 }
 </script>
