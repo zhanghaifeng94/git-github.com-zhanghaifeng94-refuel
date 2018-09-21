@@ -1,12 +1,6 @@
 <template>
     <div class="queryVIP">
-      <mt-header title="会员查询" class="header">
-        <router-link to="/" slot="left">
-          <mt-button>
-            <i class="iconfont icon-back"></i>
-          </mt-button>
-        </router-link>
-      </mt-header>
+      <headers></headers>
       <div class="center">
         <card></card>
         <div class="btn_true base" v-if="card" @click="query()">查询</div>
@@ -22,21 +16,28 @@
 </template>
 
 <script>
+import Headers from 'base/header/header'
 import Card from 'base/card/card'
+
 export default {
   components: {
-    Card
+    Card,
+    Headers
   },
   data() {
     return {
       card: true,
-      info: false
+      info: false,
+      title:'会员查询'
     }
   },
   methods: {
     query() {
       this.info = true
     }
+  },
+  created() {
+    Headers.props.title.default = this.title
   }
 }
 </script>
@@ -44,16 +45,6 @@ export default {
 <style scoped lang="stylus" rel="stylesheet/stylus">
   @import "~common/stylus/variable"
   .queryVIP
-    .header
-      height: 48px
-      background #fff
-      color: #666666
-      font-size 20px
-      padding 0 16px
-      box-sizing border-box
-      margin-bottom 10px
-      .icon-back
-        font-size 20px
     .center
       width: 100%
       padding 0 16px

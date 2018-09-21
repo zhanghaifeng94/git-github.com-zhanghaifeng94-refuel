@@ -5,16 +5,22 @@
         <div class="serialNumber">编号：123 4565</div>
       </div>
       <div class="card_false" v-if="!card">
-        <div><i class="iconfont icon-AK-LYhuiyuanqia"></i>办理会员</div>
+        <div><i class="iconfont icon-AK-LYhuiyuanqia"></i>{{title}}</div>
       </div>
     </div>
 </template>
 
 <script>
 export default {
+  props: {
+    title: {
+      type: String,
+      default: '办理会员'
+    }
+  },
   data() {
     return {
-      card: true
+      card: false
     }
   }
 }
