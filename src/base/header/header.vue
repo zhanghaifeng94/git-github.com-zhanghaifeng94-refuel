@@ -6,7 +6,7 @@
             <i class="iconfont" :class="leftIcon"></i>
           </mt-button>
         </router-link>
-        <router-link to="/recharge_record" slot="right">
+        <router-link :to="rightPath" slot="right">
           <mt-button class="right" :icon="rightIcon">{{rightText}}</mt-button>
         </router-link>
       </mt-header>
@@ -28,7 +28,11 @@ export default {
       type: String,
       default: ''
     },
-    rightText:{
+    rightText: {
+      type: String,
+      default: ''
+    },
+    rightPath: {
       type: String,
       default: ''
     }
