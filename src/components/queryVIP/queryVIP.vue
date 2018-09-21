@@ -8,13 +8,7 @@
         </router-link>
       </mt-header>
       <div class="center">
-        <div class="card_true" v-if="card">
-          <div class="iconfont icon-huiyuan"></div>
-          <div class="serialNumber">编号：123 4565</div>
-        </div>
-        <div class="card_false" v-if="!card">
-          <div><i class="iconfont icon-AK-LYhuiyuanqia"></i>办理会员</div>
-        </div>
+        <card></card>
         <div class="btn_true base" v-if="card" @click="query()">查询</div>
         <div class="btn_false base" v-if="!card">查询</div>
       </div>
@@ -28,7 +22,11 @@
 </template>
 
 <script>
+import Card from 'base/card/card'
 export default {
+  components: {
+    Card
+  },
   data() {
     return {
       card: true,
