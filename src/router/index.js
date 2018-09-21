@@ -9,6 +9,8 @@ import sign_in from 'components/sign_in/sign_in'
 import sign_up from 'components/sign_up/sign_up'
 import recharge from 'components/recharge/recharge'
 import queryVIP from 'components/queryVIP/queryVIP'
+import msg from 'components/msg/msg'
+import coupon from 'components/coupon/coupon'
 
 Vue.use(Router)
 
@@ -58,7 +60,16 @@ export default new Router({
       path: '/index/queryVIP',
       name: 'queryVIP',
       component: queryVIP,
+    },
+    {
+      path: '/index/msg',
+      name: 'msg',
+      component: msg,
+    },
+    {
+      path: '/index/coupon',
+      name: 'coupon',
+      component: coupon,
     }
-
   ]
 })

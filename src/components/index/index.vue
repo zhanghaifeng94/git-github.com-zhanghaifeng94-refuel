@@ -2,7 +2,7 @@
     <div class="index">
       <div class="header">
         <i class="iconfont icon-saoma"></i>
-        <i class="iconfont icon-xiaoxi"></i>
+        <router-link to="/index/msg"><i class="iconfont icon-xiaoxi"></i></router-link>
       </div>
       <mt-swipe :auto="0" class="swipe">
         <mt-swipe-item class="swipe-item" v-for="item in swipe" :key="item.id">
@@ -58,7 +58,7 @@ export default {
         img: require('common/image/yh.png'),
         name: '优惠券',
         id: '3',
-        path:'/index/recharge'
+        path:'/index/coupon'
       }, {
         img: require('common/image/dh.png'),
         name: '油站导航',
