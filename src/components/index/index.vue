@@ -94,7 +94,7 @@ export default {
   .index
     overflow: auto;
     height: 100%;
-    padding-bottom: 70px;
+    padding-bottom: 100px;
     background #fff
     .header
       background $color-header-background
