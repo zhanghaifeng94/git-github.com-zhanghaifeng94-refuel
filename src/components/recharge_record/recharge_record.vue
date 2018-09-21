@@ -1,6 +1,8 @@
 <template>
-    <div class="recharge">
+    <div class="recharge_record">
       <headers></headers>
+      会员充值
+
     </div>
 </template>
 
@@ -8,18 +10,15 @@
 import Headers from 'base/header/header'
 export default {
   components: {
-    Headers,
+    Headers
   },
   data() {
     return {
-      title: '会员充值',
-      rightText: '充值记录'
-
+      title: '会员充值账单',
     }
   },
   created() {
     Headers.props.title.default = this.title
-    Headers.props.rightText.default = this.rightText
   }
 }
 </script>

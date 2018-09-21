@@ -6,7 +6,7 @@
             <i class="iconfont" :class="leftIcon"></i>
           </mt-button>
         </router-link>
-        <router-link to="#" slot="right">
+        <router-link to="/recharge_record" slot="right">
           <mt-button class="right" :icon="rightIcon">{{rightText}}</mt-button>
         </router-link>
       </mt-header>

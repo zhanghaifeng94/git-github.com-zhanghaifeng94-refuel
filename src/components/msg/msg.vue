@@ -1,11 +1,6 @@
 <template>
 	<div>
-		<mt-header title="消息中心" class="mint-header is-fixed msg_header">
-		  <router-link to="/" slot="left">
-		    <mt-button icon="back"></mt-button>
-		  </router-link>
-		  <mt-button slot="right" class="icon icon-service"></mt-button>
-		</mt-header>
+ 		<headers></headers>
 
 		<div class="nav_box">
 			<mt-navbar v-model="selected" class="nav flex_between">
@@ -15,7 +10,7 @@
 		</div>
 		<mt-tab-container v-model="selected" class="con">
 			  <mt-tab-container-item id="1" class="nav_list">
-			  		<router-link to="" v-for="(item,index) in system_list">
+			  		<router-link to="" v-for="(item,index) in system_list" :key="index">
 					  	<div class="flex_between tip">
 					  		<p>{{item.title}}</p>
 					  		<p>{{item.time}}</p>
@@ -26,7 +21,7 @@
 				  	</router-link>
 			  </mt-tab-container-item>
 			  <mt-tab-container-item id="2"  class="nav_list">
-			  		<router-link to="" v-for="(item,index) in order_list">
+			  		<router-link to="" v-for="(item,index) in order_list" :key="index">
 					  	<div class="flex_between tip">
 					  		<p>{{item.title}}</p>
 					  		<p>{{item.time}}</p>
@@ -44,11 +39,17 @@
 </template>
 
 <script>
+  import Headers from 'base/header/header'
   export default {
   	name:"msg",
+  	components: {
+    	Headers
+  	},
 	data () {
       return {
       	selected: '1',
+      	title: '消息中心',
+      	rightIcon:'icon-back',
       	order_list:[
       		{title:"商城通知",time:"2018-09-15",con:"您购买的神器已在路上，点击查看"},
       		{title:"会员通知",time:"2018-09-15",con:"您充值的会员卡已到账，点击查看"}
@@ -64,20 +65,21 @@
         console.log(val)
         // click后打印出当前mt-tab-item的id
       }
-    }
+    },
+	  created() {
+	    Headers.props.title.default = this.title
+	    Headers.props.rightIcon.default = this.rightIcon
+	  }
   }
 </script>
 
 <style scoped lang="stylus" rel="stylesheet/stylus">
-	body{
-		background:#ececec;
-	}
 	.con{
 		width:92%;
 		margin:0 auto;
 	}
 	.msg_header{
-		height:60px;
+		height:48px;
 		background:#fff;
 		color:#666;
 		border-bottom:1px solid #dfdfdf;
@@ -85,7 +87,7 @@
 	}
 	.nav_box{
 		background:#fff;
-		margin-top:60px;
+		margin-top: -8px;
 	}
 	.nav{
 		height:36px;
