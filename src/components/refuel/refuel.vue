@@ -3,7 +3,7 @@
       <div class="header">
         <i class="iconfont icon-saoma"></i>
         <h1>输入加油枪号</h1>
-        <router-link to="/msg"><i class="iconfont icon-xiaoxi"></i></router-link>
+        <router-link to="/index/msg"><i class="iconfont icon-xiaoxi"></i></router-link>
       </div>
 
 	  <div class="nav">
@@ -13,7 +13,7 @@
 		  		<h1>您当前在</h1>
 		  		<p>光谷鲁巷加油站</p>
 		  	</div>
-		  	<router-link to="/change_station" class="change">更改加油站</router-link>	  		
+		  	<router-link to="/refuel/change_station" class="change">更改加油站</router-link>	  		
 	  	</div>
 	  </div>
 
@@ -26,7 +26,7 @@
 			<li v-for="(item,index) in list" :key="item.id" :class="Isindex==index?'active':''" @click="chice(item.con)">{{item.con}}#</li>
 		</ul>
 		
-        <router-link to="/pay">
+        <router-link to="/refuel/pay">
         	<input type="submit" name="" value="确认" class="submit">
         </router-link>		
 	  </div>

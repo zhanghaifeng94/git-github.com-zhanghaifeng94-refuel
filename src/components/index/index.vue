@@ -2,7 +2,7 @@
     <div class="index">
       <div class="header">
         <i class="iconfont icon-saoma"></i>
-        <router-link to="/msg"><i class="iconfont icon-xiaoxi"></i></router-link>
+        <router-link to="/index/msg"><i class="iconfont icon-xiaoxi"></i></router-link>
       </div>
       <mt-swipe :auto="0" class="swipe">
         <mt-swipe-item class="swipe-item" v-for="item in swipe" :key="item.id">

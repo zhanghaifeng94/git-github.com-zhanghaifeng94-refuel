@@ -1,6 +1,5 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-
 import index from 'components/index/index'
 import user from 'components/user/user'
 import store from 'components/store/store'
@@ -11,13 +10,12 @@ import recharge from 'components/recharge/recharge'
 import queryVIP from 'components/queryVIP/queryVIP'
 import msg from 'components/msg/msg'
 import coupon from 'components/coupon/coupon'
-
 import recharge_record from 'components/recharge_record/recharge_record'
 import change_station from 'components/change_station/change_station'
 import pay from 'components/pay/pay'
-
 import transactVIP from 'components/transactVIP/transactVIP'
 import help from 'components/help/help'
+import service from 'components/service/service'
 
 
 Vue.use(Router)
@@ -70,7 +68,7 @@ export default new Router({
       component: queryVIP,
     },
     {
-      path: '/msg',
+      path: '/index/msg',
       name: 'msg',
       component: msg,
     },
@@ -81,17 +79,17 @@ export default new Router({
     },
     {
 
-      path: '/recharge_record',
+      path: '/index/recharge_record',
       name: 'recharge_record',
       component: recharge_record,
     },
     {
-      path: '/change_station',
+      path: '/refuel/change_station',
       name: 'change_station',
       component: change_station,
     },
     {
-      path: '/pay',
+      path: '/refuel/pay',
       name: 'pay',
       component: pay,
     },
@@ -104,6 +102,11 @@ export default new Router({
       path: '/index/help',
       name: 'help',
       component: help,
+    },
+    {
+      path: '/index/service',
+      name: 'service',
+      component: service,
     }
   ]
 })

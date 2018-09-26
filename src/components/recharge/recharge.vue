@@ -92,7 +92,7 @@ export default {
       coupons: [coupon],
       disabledCoupons: [],
       showList: false,
-      rightPath: '/recharge_record',
+      rightPath: '/index/recharge_record',
       list: [{
         id: '1',
         name: '500元',

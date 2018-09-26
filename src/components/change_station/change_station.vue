@@ -1,7 +1,7 @@
 <template>
 	<div class="change_station">
  		<headers></headers>
-		<mt-search v-model="value" id="list_box">
+		<mt-search v-model="value" class="list_box">
 		  <div v-for="item in result" class="list">
 		  	<h1>{{item.title}}</h1>
 				<p>地址：{{item.value}}</p>
@@ -40,18 +40,20 @@
 </script>
 
 <style scoped lang="stylus" rel="stylesheet/stylus">
-	#list_box .mint-search-list{
-		top:50px;
+	.list_box >>> .mint-search-list{
+		top:75px;
 	}
-	#list_box .mint-searchbar-inner{
+	.list_box >>> .mint-searchbar-inner{
 		height:40px;
 	}
-	#list_box .mint-searchbar{
-		background:#ececec;
-		width:90%;
-		margin:0 auto;
+	.list_box >>> .mint-searchbar{
+		background: #fff;
+	    width: 90%;
+	    margin: 0 auto;
+	    padding: 0 10px;
+	    border-radius: 5px;
 	}
-	#list_box .mint-searchbar-inner .mintui-search{
+	.list_box >>> .mint-searchbar-inner .mintui-search{
 		font-size:25px
 	}
 	.list{

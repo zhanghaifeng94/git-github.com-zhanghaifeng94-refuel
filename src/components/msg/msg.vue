@@ -50,6 +50,7 @@
       	selected: '1',
       	title: '消息中心',
       	rightIcon:'iconfont icon-service',
+      	rightPath:"/index/service",
       	rightText: '',
       	order_list:[
       		{title:"商城通知",time:"2018-09-15",con:"您购买的神器已在路上，点击查看"},
@@ -71,6 +72,7 @@
 	    Headers.props.title.default = this.title
 	    Headers.props.rightIcon.default = this.rightIcon
 	    Headers.props.rightText.default = this.rightText
+	    Headers.props.rightPath.default = this.rightPath
 	  }
   }
 </script>

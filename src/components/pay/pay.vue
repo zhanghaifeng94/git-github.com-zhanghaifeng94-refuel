@@ -3,7 +3,7 @@
    		<headers></headers>
 		<div class="box">
 			<h1>M50e会员</h1>
-			<img src="../../common/image/code.png" alt="">
+			<img :src="result.img" alt="">
 		</div>
 		<p>{{result.name}}</p>
 
@@ -59,7 +59,7 @@
       	title: '支付',
       	rightIcon:'',
       	rightText: '',
-      	result:{img:"../../common/image/code.png",name:"123 4556"},
+      	result:{img:require('common/image/code.png'),name:"123 4556"},
       	pay:{shop:"光谷鲁巷加油站",price:200},
       	value: '',
       	showKeyboard: false,
