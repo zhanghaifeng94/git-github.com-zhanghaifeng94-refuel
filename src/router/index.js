@@ -78,7 +78,6 @@ export default new Router({
       component: coupon,
     },
     {
-
       path: '/index/recharge_record',
       name: 'recharge_record',
       component: recharge_record,
