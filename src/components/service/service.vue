@@ -1,7 +1,13 @@
 <template>
     <div class="service">
- 		<headers></headers>
+      <headers></headers>
+      <div class="box">
+        </div>
 
+
+
+
+      </div>
     </div>
 </template>
 
@@ -12,21 +18,20 @@
   	  	components: {
     	Headers
   	},
-	data () {
-      return {
-      	title: '客服',
-      	rightIcon:'i',
-      	rightPath:"",
-      	rightText: '',
-      	
-      }
-    },
-	created() {
-		Headers.props.title.default = this.title
-		Headers.props.rightIcon.default = this.rightIcon
-		Headers.props.rightText.default = this.rightText
-		Headers.props.rightPath.default = this.rightPath
-	}
+  	data () {
+        return {
+        	title: '客服',
+        	rightIcon:'',
+        	rightPath:"",
+        	rightText: '',
+        }
+      },
+  	created() {
+  		Headers.props.title.default = this.title
+  		Headers.props.rightIcon.default = this.rightIcon
+  		Headers.props.rightText.default = this.rightText
+  		Headers.props.rightPath.default = this.rightPath
+  	}
   }
 </script>
 
