@@ -30,7 +30,7 @@
 </template>
 
 <script>
-  import API from 'api/api'
+import API from 'api/api'
 export default {
   data () {
     return {
@@ -48,22 +48,22 @@ export default {
         img: require('common/image/cz.png'),
         name: '会员充值',
         id: '1',
-        path:'/index/recharge'
+        path: '/index/recharge'
       }, {
         img: require('common/image/cx.png'),
         name: '会员查询',
         id: '2',
-        path:'/index/queryVIP'
+        path: '/index/queryVIP'
       }, {
         img: require('common/image/yh.png'),
         name: '优惠券',
         id: '3',
-        path:'/index/coupon'
+        path: '/index/coupon'
       }, {
         img: require('common/image/dh.png'),
         name: '油站导航',
         id: '4',
-        path:'/index/recharge'
+        path: '/index/recharge'
       }],
       classify: [{
         img: require('common/image/01.png'),
@@ -81,13 +81,38 @@ export default {
     }
   },
   created() {
-    API.index(1).then( result => {
-      console.log(result)
-    })
+
+  },
+  methods: {
+    dispose() {
+      let vm = this
+      API.index(1).then(result => {
+        if (result.status == 200){
+          let arr = result.data
+          console.log(result)
+          arr.IndexSlideList.forEach(item => {
+            console.log(item)
+            vm.swipe.push(item)
+          })
+        }
+
+      })
+    }
+  },
+  mounted() {
+    // this.dispose()
   }
 }
 </script>
-
+<style scoped>
+  .index >>> .mint-swipe-indicators{
+    left: 85%;
+  }
+  .index >>> .is-active{
+    background: #980000;
+    opacity: 1;
+  }
+</style>
 <style scoped lang="stylus" rel="stylesheet/stylus">
   @import "~common/stylus/variable"
 

@@ -5,7 +5,8 @@
             <i class="iconfont" :class="leftIcon"></i>
           </mt-button>
         <router-link :to="rightPath" slot="right">
-          <mt-button class="right" :icon="rightIcon">{{rightText}}</mt-button>
+          <mt-button v-if="rightText" class="right">{{rightText}}</mt-button>
+          <i v-if="rightIcon" class="iconfont" :class="rightIcon"></i>
         </router-link>
       </mt-header>
     </div>
