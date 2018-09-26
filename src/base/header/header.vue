@@ -1,11 +1,9 @@
 <template>
     <div class="header">
       <mt-header :title="title" class="title">
-        <router-link to="/" slot="left">
-          <mt-button>
+          <mt-button @click="go_back()" slot="left">
             <i class="iconfont" :class="leftIcon"></i>
           </mt-button>
-        </router-link>
         <router-link :to="rightPath" slot="right">
           <mt-button class="right" :icon="rightIcon">{{rightText}}</mt-button>
         </router-link>
@@ -36,7 +34,13 @@ export default {
       type: String,
       default: ''
     }
+  },
+  methods: {
+    go_back() {
+      this.$router.back(-1)
+    }
   }
+
 }
 </script>
 

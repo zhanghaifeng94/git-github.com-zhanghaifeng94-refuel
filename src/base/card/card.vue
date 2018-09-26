@@ -5,7 +5,9 @@
         <div class="serialNumber">编号：123 4565</div>
       </div>
       <div class="card_false" v-if="!card">
-        <div><i class="iconfont icon-AK-LYhuiyuanqia"></i>{{title}}</div>
+        <router-link to="/index/transactVIP">
+          <div style="color: #fff"><i class="iconfont icon-AK-LYhuiyuanqia"></i>{{title}}</div>
+        </router-link>
       </div>
     </div>
 </template>

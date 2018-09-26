@@ -26,7 +26,7 @@ export default {
   },
   data() {
     return {
-      card: true,
+      card: false,
       info: false,
       title:'会员查询'
     }
@@ -38,6 +38,7 @@ export default {
   },
   created() {
     Headers.props.title.default = this.title
+    Headers.props.rightText.default = ''
   }
 }
 </script>
