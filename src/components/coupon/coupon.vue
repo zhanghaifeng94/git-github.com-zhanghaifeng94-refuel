@@ -3,6 +3,10 @@
       <headers></headers>
 
     <div class="nav_box">
+      <div class="search">
+        <input type="text" placeholder="请输入优惠券码">
+        <button type="button">兑换</button>
+      </div>
       <mt-navbar v-model="selected" class="nav flex_between">
           <mt-tab-item id="1">未领取</mt-tab-item>
           <mt-tab-item id="2">已领取</mt-tab-item>
@@ -106,6 +110,28 @@ export default {
 </script>
 
 <style scoped lang="stylus" rel="stylesheet/stylus">
+  .search{
+    border-bottom:2px solid #ececec;
+    padding:6px 16px;
+  }
+  .search input{
+    height:24px;
+    font-size:7px;
+    color:#BEBEBE;
+    border:1px solid #BEBEBE;
+    border-radius:3px;
+    padding-left:8px;
+    width:70%;
+  }
+  .search button{
+    float:right;
+    background:#c9c9c9;
+    font-size:7px;
+    padding:7px 13px;
+    border:0;
+    color:#fff;
+    border-radius:3px;
+  }
   .con{
     margin:20px auto;
   }
@@ -161,6 +187,7 @@ export default {
     -webkit-box-sizing:border-box;
     display:flex;
     color:#fff;
+    box-shadow: 0 1px 5px rgba(88,0,0,0.16);
   }
   .nav_list.blue{
     background:#C7B0C7;

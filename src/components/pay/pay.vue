@@ -65,7 +65,7 @@
       	showKeyboard: false,
       	show:true,
       	pay_status:true,
-        tip_status:false
+        tip_status:true
       }
     },
      methods: {
@@ -91,19 +91,20 @@
 	      this.value = this.value.slice(0, this.value.length - 1);
 	    },
 	    onSubmit(){
+
+	    },
+	    onCancle(){
 	    	this.$dialog.confirm({
 			  title: '加油订单',
 			  message: 'M50e会员您确定要放弃支付么？'
 			}).then(() => {
 			  // on confirm
 			  this.$router.go('/refuel');
+			  this.tip_status=false
+			  //console.log("000")
 			}).catch(() => {
 			  // on cancel
-			  this.$router.go('/refuel');
 			});
-	    },
-	    onCancle(){
-	    	this.tip_status=false
 	    }
 	  },
 	  created() {

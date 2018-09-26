@@ -27,7 +27,7 @@ export default {
       title: '帮助',
       activeName: '1',
       list: [{
-        id: '1',
+        id: '1', 
         title: '问题1',
         info: '阿斯顿阿斯顿'
       }, {

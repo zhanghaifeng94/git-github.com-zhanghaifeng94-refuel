@@ -46,7 +46,7 @@
           v-model="radio"
           :options="['微信', '支付宝']">
         </mt-radio>
-        <div class="btns">立即支付</div>
+        <router-link to="/index/recharge_progress"><div class="btns">立即支付</div></router-link>
       </div>
     </van-popup>
 

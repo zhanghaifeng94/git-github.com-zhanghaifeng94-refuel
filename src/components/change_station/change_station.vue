@@ -63,6 +63,7 @@
 		width:90%;
 		margin:0 auto 10px auto;
 		box-sizing:border-box;
+	    box-shadow: 0 1px 5px rgba(88,0,0,0.16);
 	}
 	.list h1{
 		font-size:14px;

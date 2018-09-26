@@ -16,6 +16,7 @@ import pay from 'components/pay/pay'
 import transactVIP from 'components/transactVIP/transactVIP'
 import help from 'components/help/help'
 import service from 'components/service/service'
+import recharge_progress  from 'components/recharge_progress/recharge_progress'
 
 
 Vue.use(Router)
@@ -91,6 +92,11 @@ export default new Router({
       path: '/refuel/pay',
       name: 'pay',
       component: pay,
+    },
+    {
+      path: '/index/recharge_progress',
+      name: 'recharge_progress',
+      component: recharge_progress,
     },
     {
       path: '/index/transactVIP',

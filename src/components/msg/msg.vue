@@ -128,6 +128,7 @@
 		text-align:left;
 		border-radius:4px;
 		line-height:20px;
+    	box-shadow: 0 1px 5px rgba(88,0,0,0.16);
 	}
 	.none_msg{
 		width:130px;

@@ -5,7 +5,9 @@
         <h1 class="title">{{semptember[0].month}}</h1>
         <p class="nav_title">支出 ￥{{semptember[0].use}}  收入 ￥{{semptember[0].shouru}}</p>
         <div v-for="(item,index) in semptember" :key="index" class="con">
-          <span class="icon photo"></span>
+          <span class="photo">
+            <i class="iconfont icon-AK-LYhuiyuanqia"></i>
+          </span>
           <div class="con_box">
             <div class="top flex_between">
               <p>{{item.type}}</p>
@@ -13,7 +15,7 @@
             </div>
             <div class="bottom flex_between">
               <p>{{item.time}}</p>
-              <p>-{{item.erea}}</p>
+              <p>{{item.erea}}</p>
             </div>
           </div>
         </div>
@@ -23,7 +25,9 @@
         <h1 class="title">{{oct[0].month}}</h1>
         <p class="nav_title">支出 ￥{{oct[0].use}}  收入 ￥{{oct[0].shouru}}</p>
         <div v-for="(item,index) in oct" :key="index" class="con">
-          <span class="icon photo"></span>
+          <span class="photo">
+            <i class="iconfont icon-AK-LYhuiyuanqia"></i>
+          </span>
           <div class="con_box">
             <div class="top flex_between">
               <p>{{item.type}}</p>
@@ -96,6 +100,12 @@ export default {
     width:24px;
     height:24px;
     background:#ccc;
+    border-radius:100%;
+  }
+  .photo i{
+    color: #fff;
+    margin: 4px 4px;
+    display: block;
   }
   .con_box{
     border-bottom:1px solid #ececec;
