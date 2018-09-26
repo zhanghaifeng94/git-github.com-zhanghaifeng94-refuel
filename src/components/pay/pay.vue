@@ -30,12 +30,12 @@
 					  @input="onInput"
 					  @delete="onDelete"
 					  @blur="onBlur"
-					/>					
+					/>
 				</div>
 				<div class="pay_box" v-if="!pay_status">
 					<span>已支付：</span>
-					<h2>-200元</h2> 
-					<input type="submit" name="" value="完成" @click="onSubmit()">	
+					<h2>-200元</h2>
+					<input type="submit" name="" value="完成" @click="onSubmit()">
 				</div>
 			</div>
 		</div>
@@ -46,7 +46,7 @@
 <script>
   import Headers from 'base/header/header'
   import Card from 'base/card/card'
- 
+
   export default {
   	name:"change_station",
   	components: {
@@ -144,7 +144,7 @@
 		width:100%;
 		text-align:center;
 	}
-	
+
 	//支付弹窗
 	.tip_box{
 		position:fixed;

@@ -117,6 +117,7 @@ export default {
   created () {
     Headers.props.title.default = this.title
     Headers.props.rightText.default = this.rightText
+    Headers.props.rightIcon.default = ''
     Headers.props.rightPath.default = this.rightPath
   },
   methods: {

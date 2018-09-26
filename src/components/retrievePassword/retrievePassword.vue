@@ -1,10 +1,6 @@
 <template>
-    <div class="sign_up">
-      <div class="header">
-        <div class="iconfont icon-close go_back" @click="go_back()"></div>
-        <div class="name">M50e站</div>
-        <router-link class="sign_in" to="sign_in">登录</router-link>
-      </div>
+    <div class="retrievePassword">
+      <headers></headers>
       <div class="form">
         <div class="phone">
           <input type="text" placeholder="请输入手机号" v-model="account.phone" @blur="verify(account.phone)">
@@ -15,34 +11,46 @@
           <span class="false" v-if="!code">获取验证码</span>
         </div>
         <div class="password">
-          <input type="password" v-model="account.password" placeholder="请设置密码" @blur="all()">
+          <input type="password" placeholder="请重新设置密码" v-model="account.password" @blur="all()">
+        </div>
+        <div class="confirmPwd">
+          <input type="password" placeholder="请确认密码" v-model="account.confirmPwd" @blur="all()">
         </div>
         <button class="button"  v-if="!button">注册</button>
         <button class="button1" v-if="button">注册</button>
-      </div>
-      <div class="weixin">
-        <router-link class="weixin_sign_in" to="#">
-          <div class="iconfont icon-weixin"></div>
-          微信快捷登入
-        </router-link>
       </div>
     </div>
 </template>
 
 <script>
+import Headers from 'base/header/header'
 import { Toast } from 'mint-ui'
 export default {
-  data() {
-    return {
-      code: false,
-      button: false,
+  components: {
+    Headers
+  },
+  data(){
+    return{
+      title: '找回密码',
+      rightIcon: '',
+      rightText: '',
+      leftIcon: 'icon-close',
       account: {
         phone: '',
         password: '',
-        code: ''
+        code: '',
+        confirmPwd: ''
       },
+      code: false,
+      button: false,
       countDownText: '获取验证码'
     }
+  },
+  created() {
+    Headers.props.title.default = this.title
+    Headers.props.rightIcon.default = this.rightIcon
+    Headers.props.rightText.default = this.rightText
+    Headers.props.leftIcon.default = this.leftIcon
   },
   methods: {
     verify(val) {
@@ -74,7 +82,7 @@ export default {
       }
     },
     all() {
-      if (this.account.phone !== '' && this.account.code !== '' && this.account.password !== '') {
+      if (this.account.phone !== '' && this.account.code !== '' && this.account.password !== '' && this.account.confirmPwd !== '') {
         this.button = true
       } else {
         this.button = false
@@ -92,6 +100,7 @@ export default {
       this.account.phone = ''
       this.account.code = ''
       this.account.password = ''
+      this.account.confirmPwd = ''
     }
   }
 }
@@ -99,43 +108,22 @@ export default {
 
 <style scoped lang="stylus" rel="stylesheet/stylus">
   @import "~common/stylus/variable"
-
-  .sign_up
-    position: fixed
-    top: 0
-    bottom: 0
-    z-index: 100
-    width: 100%
-    background: $color-background-t
-    padding 0 16px
-    box-sizing border-box
-    .header
-      display flex
-      justify-content space-between;
-      margin-bottom 30px
-      height: 48px
-      line-height 48px
-      color #929292
-      font-size 20px
-      .go_back
-        font-size 20px
-        color #bebebe
-      .sign_in
-        font-size 12px
+  .retrievePassword
     .form
       width: 100%
-      .phone,.code,.password
+      margin-top 20px
+      .phone,.code,.password,.confirmPwd
         height: 40px
-        background #e8e8e8
+        background #fff
         margin-bottom 10px
         font-size $font-size-medium
         input
           width: 100%
           height: 100%
-          background #e8e8e8
+          background #fff
           padding 0 16px
           box-sizing border-box
-          color #929292
+          color #BEBEBE
           border none
       .code
         input
@@ -154,13 +142,14 @@ export default {
           border 1px solid $color-header-background
           color: $color-header-background
       button
-        width: 100%
+        width: 91%
         height: 40px
         line-height 40px
         text-align center
         margin-top 55px
         outline none
         border none
+        margin-left 16px
         border-radius 4px
       .button
         background #c9c9c9
@@ -176,5 +165,4 @@ export default {
         font-size 34px
         color #71C253
         margin-bottom 10px
-
 </style>

@@ -18,7 +18,7 @@
           <input type="password" v-model="account.password" placeholder="请设置密码" @blur="all()">
         </div>
        <div class="cen">
-         <router-link class="forget" to="##" v-if="cop">忘记密码？</router-link>
+         <router-link class="forget" to="/retrievePassword" v-if="cop">忘记密码？</router-link>
          <span @click="cut()">{{sign}}</span>
        </div>
         <button class="button"  v-if="!button">登录</button>
@@ -27,7 +27,7 @@
       <div class="weixin">
         <router-link class="weixin_sign_in" to="#">
           <div class="iconfont icon-weixin"></div>
-          微信快捷登入
+          微信快捷登录
         </router-link>
       </div>
     </div>
@@ -47,7 +47,7 @@ export default {
         code: ''
       },
       countDownText: '获取验证码',
-      sign: '使用密码登入'
+      sign: '使用密码登录'
     }
   },
   methods: {
@@ -89,11 +89,11 @@ export default {
     cut() {
       if (!this.cop) {
         this.cop = true
-        this.sign = '使用验证码登入'
+        this.sign = '使用验证码登录'
         this.account.code = ''
       } else {
         this.cop = false
-        this.sign = '使用密码登入'
+        this.sign = '使用密码登录'
         this.account.password = ''
       }
       this.all()
@@ -187,6 +187,7 @@ export default {
         margin-top 55px
         outline none
         border none
+        border-radius 4px
       .button
         background #c9c9c9
         color: #ebebeb
