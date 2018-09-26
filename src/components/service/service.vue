@@ -11,7 +11,7 @@
         <div class="public">
           <div class="tit">常见问题</div>
           <ul class="list">
-            <li v-for="(item,index) in list" :key="index">{{item.title}}</li>
+            <li v-for="(item,index) in list" :key="index" @click="send(item)">{{item.title}}</li>
           </ul>
         </div>
       </div>
@@ -66,6 +66,13 @@ export default {
     Headers.props.title.default = this.title
     Headers.props.rightIcon.default = this.rightIcon
     Headers.props.rightText.default = this.rightText
+  },
+  methods:{
+    send(val) {
+      console.log(val)
+      val.direction = '1'
+      this.record.push(val)
+    }
   }
 }
 </script>

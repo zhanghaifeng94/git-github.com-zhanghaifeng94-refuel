@@ -16,7 +16,7 @@ import pay from 'components/pay/pay'
 import transactVIP from 'components/transactVIP/transactVIP'
 import help from 'components/help/help'
 import service from 'components/service/service'
-
+import retrieve from 'components/retrievePassword/retrievePassword'
 
 Vue.use(Router)
 
@@ -106,6 +106,11 @@ export default new Router({
       path: '/index/service',
       name: 'service',
       component: service,
-    }
+    },
+    {
+      path: '/retrievePassword',
+      name: 'retrieve',
+      component: retrieve,
+    },
   ]
 })
