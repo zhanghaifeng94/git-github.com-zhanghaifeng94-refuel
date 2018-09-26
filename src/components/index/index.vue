@@ -81,9 +81,9 @@ export default {
     }
   },
   created() {
-    // API.banner(1).then( result => {
-    //   console.log(result)
-    // })
+    API.index(1).then( result => {
+      console.log(result)
+    })
   }
 }
 </script>
