@@ -11,7 +11,7 @@
     </div>
     <mt-tab-container v-model="selected" class="con">
         <mt-tab-container-item id="1">
-          <div class="nav_list blue" v-for="(item,index) in coupon_list" :key="item.id">
+          <div class="nav_list" v-for="(item,index) in coupon_list" :key="item.id" :class="item.active">
             <div class="left_list">
               <p>{{item.price}}</p>
               <span>元</span>
@@ -29,7 +29,7 @@
           </div>
         </mt-tab-container-item>
         <mt-tab-container-item id="2">
-          <div class="nav_list" v-for="(item,index) in coupon_list" :key="item.id">
+          <div class="nav_list" v-for="(item,index) in coupon_list" :key="item.id" :class="item.active">
             <div class="left_list">
               <p>{{item.price}}</p>
               <span>元</span>
@@ -81,11 +81,13 @@ export default {
         return {
           selected: '1',
           title: '优惠券',
+          rightText: '',
+          rightIcon:'',
           coupon_list:[
-            {price:"20","type":"商场专用","description":"每满1000元减10元券",time:"2018.08.19-2018.09.25",path:"/index/shop"},
-            {price:"30","type":"充值专用","description":"每满1000元减10元券",time:"2018.08.19-2018.09.25",path:"/index/recharge"},
-            {price:"50","type":"充值专用","description":"每满1000元减10元券",time:"2018.08.19-2018.09.25",path:"/index/recharge"},
-            {price:"10","type":"商场专用","description":"每满1000元减10元券",time:"2018.08.19-2018.09.25",path:"/index/shop"},
+            {price:"20","type":"商场专用","description":"每满1000元减10元券",time:"2018.08.19-2018.09.25",path:"/index/shop",active:""},
+            {price:"30","type":"充值专用","description":"每满1000元减10元券",time:"2018.08.19-2018.09.25",path:"/index/recharge",active:"blue"},
+            {price:"50","type":"充值专用","description":"每满1000元减10元券",time:"2018.08.19-2018.09.25",path:"/index/recharge",active:"blue"},
+            {price:"10","type":"商场专用","description":"每满1000元减10元券",time:"2018.08.19-2018.09.25",path:"/index/shop",active:""},
             ]
         }
       },
@@ -97,6 +99,8 @@ export default {
       },
       created() {
         Headers.props.title.default = this.title
+        Headers.props.rightText.default = this.rightText
+        Headers.props.rightIcon.default = this.rightIcon
       }
     }
 </script>
@@ -109,6 +113,7 @@ export default {
     display: block;
     backgound:red;
   }
+  
   .msg_header{
     height:48px;
     background:#fff;
@@ -156,6 +161,9 @@ export default {
     -webkit-box-sizing:border-box;
     display:flex;
     color:#fff;
+  }
+  .nav_list.blue{
+    background:#C7B0C7;
   }
   .shixiao.nav_list{
     background:#bebebe;

@@ -49,7 +49,8 @@
       return {
       	selected: '1',
       	title: '消息中心',
-      	rightIcon:'icon-back',
+      	rightIcon:'iconfont icon-service',
+      	rightText: '',
       	order_list:[
       		{title:"商城通知",time:"2018-09-15",con:"您购买的神器已在路上，点击查看"},
       		{title:"会员通知",time:"2018-09-15",con:"您充值的会员卡已到账，点击查看"}
@@ -69,13 +70,14 @@
 	  created() {
 	    Headers.props.title.default = this.title
 	    Headers.props.rightIcon.default = this.rightIcon
+	    Headers.props.rightText.default = this.rightText
 	  }
   }
 </script>
 
 <style scoped lang="stylus" rel="stylesheet/stylus">
 	.con{
-		width:92%;
+		width:90%;
 		margin:0 auto;
 	}
 	.msg_header{

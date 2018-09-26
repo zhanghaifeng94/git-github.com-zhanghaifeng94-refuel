@@ -11,6 +11,9 @@ import recharge from 'components/recharge/recharge'
 import queryVIP from 'components/queryVIP/queryVIP'
 import msg from 'components/msg/msg'
 import coupon from 'components/coupon/coupon'
+import recharge_record from 'components/recharge_record/recharge_record'
+import change_station from 'components/change_station/change_station'
+import pay from 'components/pay/pay'
 
 Vue.use(Router)
 
@@ -62,7 +65,7 @@ export default new Router({
       component: queryVIP,
     },
     {
-      path: '/index/msg',
+      path: '/msg',
       name: 'msg',
       component: msg,
     },
@@ -70,6 +73,21 @@ export default new Router({
       path: '/index/coupon',
       name: 'coupon',
       component: coupon,
+    },
+    {
+      path: '/recharge_record',
+      name: 'recharge_record',
+      component: recharge_record,
+    },
+    {
+      path: '/change_station',
+      name: 'change_station',
+      component: change_station,
+    },
+    {
+      path: '/pay',
+      name: 'pay',
+      component: pay,
     }
   ]
 })
