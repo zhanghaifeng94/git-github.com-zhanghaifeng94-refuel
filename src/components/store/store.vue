@@ -5,13 +5,20 @@
 			<router-link to="/store/search" class="search"><i class="iconfont icon-search glass"></i></router-link>
 			<router-link to="/index/msg"><i class="iconfont icon-xiaoxi"></i></router-link>
 		</div>
-		<div class="nav" ref="wrapper">
-			<div v-for="(item,index) in nav" :key="item.id" class="nav_list" @click="onTop(index)" :class="Isindex==index?'onactive':''">{{item}}</div>
-			<i class="iconfont icon-unfold up" @click="onShow()"></i>
+		<div class="nav_box">
+			<div class="nav">
+				<div class="nav_nav">
+					<div v-for="(item,index) in nav" :key="item.id" class="nav_list" @click="onTop(index)" :class="Isindex==index?'onactive':''">{{item}}</div>
+				</div>						
+			</div>	
+			<span class="up">
+				<i class="iconfont icon-unfold" @click="onShow()"></i>
+			</span>	
 			<div class="open" v-if="show">
 				<div v-for="(item,index) in nav2" :key="item.id" class="open_list" :class="Isindex==index?'active':''" @click="onActive(index)"> {{item}}</div>
 			</div>
-		</div>		
+		</div>	
+
 		<mt-swipe :auto="0" class="swipe">
 			<mt-swipe-item class="swipe-item" v-for="item in swipe" :key="item.id">
 			  <img :src="item.img" alt="" class="swipe-item-img">
@@ -295,12 +302,18 @@
   		font-size:12px;
   		color:#929292;
   	}
+  	.nav_box{
+  		background:#ee722e;
+  		position:relative;
+  		background:#ee722e;
+  		width:100%;
+  		float:left
+  	}
   	.up{
   		color:#fff;
-  		position:absolute;
-  		right:16px;
   		font-size:24px;
-  		top:8px;
+  		float:left;
+  		margin:6px;
   	}
   	.search{
   		width:80%;
@@ -310,14 +323,12 @@
   		margin-top:7px;
   	}
   	.nav{
-  		background:#EE722E;
-  		position:relative;
   		height:36px;
-  		width:100%;
-  		padding-right: 25px;
+  		width:89%;
     	box-sizing: border-box;
     	white-space:nowrap;
     	overflow-x:auto;
+    	float:left;
   	}
   	.nav_list{
   		display:inline-block;
