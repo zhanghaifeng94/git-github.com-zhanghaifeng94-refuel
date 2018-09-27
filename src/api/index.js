@@ -11,7 +11,7 @@ if (data != null) {
 }
 axios.defaults.withCredentials = true
 axios.defaults.headers.common['Authorization'] = Authorization;
-// axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded;charset=UTF-8';//配置请求头
+axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded;charset=UTF-8';//配置请求头
 
 //添加一个请求拦截器
 // axios.interceptors.request.use(function (config) {
@@ -37,6 +37,10 @@ axios.interceptors.response.use(function (response) {
 //通用方法
 export const POST = (url, params) => {
   return axios.post(`${'/api'}${url}`, params).then((res) => res.data)
+}
+
+export const login = (url, params) => {
+  return axios.post(`${'/api'}${url}`, params).then((res) => res)
 }
 
 export const GET = (url, params) => {
