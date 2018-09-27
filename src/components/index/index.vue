@@ -100,7 +100,7 @@ export default {
     }
   },
   mounted() {
-     //this.dispose()
+     this.dispose()
   }
 }
 </script>

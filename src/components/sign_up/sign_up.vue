@@ -11,14 +11,14 @@
         </div>
         <div class="code">
           <input type="text" placeholder="输入验证码" v-model="account.code" @blur="all()">
-          <span class="true" v-if="code" @click="countDown">{{countDownText}}</span>
-          <span class="false" v-if="!code">获取验证码</span>
+          <span class="true" v-if="code" @click="vcode()">{{countDownText}}</span>
+          <span class="false" v-if="!code">{{countDownText}}</span>
         </div>
         <div class="password">
           <input type="password" v-model="account.password" placeholder="请设置密码" @blur="all()">
         </div>
         <button class="button"  v-if="!button">注册</button>
-        <button class="button1" v-if="button">注册</button>
+        <button class="button1" v-if="button" @click="sign_up()">注册</button>
       </div>
       <div class="weixin">
         <router-link class="weixin_sign_in" to="#">
@@ -31,13 +31,14 @@
 
 <script>
 import { Toast } from 'mint-ui'
+import API from 'api/api'
 export default {
   data() {
     return {
       code: false,
       button: false,
       account: {
-        phone: '',
+        phone: '15134920364',
         password: '',
         code: ''
       },
@@ -62,7 +63,9 @@ export default {
           if (count === 0) {
             vm.countDownText = '再次发送'
             count = 60
+            vm.code = true
           } else {
+            vm.code = false
             vm.countDownText = count + 's'
             count--
             setTimeout(function() {
@@ -82,13 +85,44 @@ export default {
     },
     go_back() {
       this.$router.go(-1)
+    },
+    vcode() {
+      let params = 'phone=' + this.account.phone
+      let vm = this
+      API.getVcode(params).then(result => {
+        if (result.status == 1000) {
+          Toast('验证码发送成功')
+          vm.countDown()
+        } else {
+          Toast('验证码发送失败')
+        }
+      })
+    },
+    sign_up() {
+      let vm = this
+      let params = 'phone=' + this.account.phone + '&vcode=' + this.account.code + '&password=' + this.account.password
+      if(this.account.password.length<6){
+        Toast('密码不能少于6位')
+      }else {
+        API.sign_up(params).then(result => {
+          if (result.status === 1000) {
+            Toast(result.msg)
+            vm.$router.push({
+              path: `/sign_in`
+            });
+          }else {
+            Toast(result.msg)
+          }
+        })
+      }
+
     }
   },
   mounted() {
     this.all()
   },
   watch: {
-    '$route' (to){
+    '$route' (to) {
       this.account.phone = ''
       this.account.code = ''
       this.account.password = ''
@@ -172,6 +206,8 @@ export default {
       margin-top 90px
       text-align center
       font-size $font-size-small
+      .weixin_sign_in
+        display inline-block
       .iconfont
         font-size 34px
         color #71C253

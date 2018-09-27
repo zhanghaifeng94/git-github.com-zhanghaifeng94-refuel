@@ -11,8 +11,8 @@
         </div>
         <div class="code" v-if="!cop">
           <input type="text" placeholder="输入验证码" v-model="account.code" @blur="all()">
-          <span class="true" v-if="code" @click="countDown">{{countDownText}}</span>
-          <span class="false" v-if="!code">获取验证码</span>
+          <span class="true" v-if="code" @click="vcode">{{countDownText}}</span>
+          <span class="false" v-if="!code">{{countDownText}}</span>
         </div>
         <div class="password" v-if="cop">
           <input type="password" v-model="account.password" placeholder="请设置密码" @blur="all()">
@@ -22,7 +22,7 @@
          <span @click="cut()">{{sign}}</span>
        </div>
         <button class="button"  v-if="!button">登录</button>
-        <button class="button1" v-if="button">登录</button>
+        <button class="button1" v-if="button" @click="sign_in">登录</button>
       </div>
       <div class="weixin">
         <router-link class="weixin_sign_in" to="#">
@@ -35,6 +35,7 @@
 
 <script>
 import { Toast } from 'mint-ui'
+import API from 'api/api'
 export default {
   data() {
     return {
@@ -68,7 +69,9 @@ export default {
           if (count === 0) {
             vm.countDownText = '再次发送'
             count = 60
+            vm.code = true
           } else {
+            vm.code = false
             vm.countDownText = count + 's'
             count--
             setTimeout(function() {
@@ -100,6 +103,43 @@ export default {
     },
     go_back() {
       this.$router.go(-1)
+    },
+    vcode() {
+      let params = 'phone=' + this.account.phone
+      let vm = this
+      API.getVcode(params).then(result => {
+        if (result.status == 1000) {
+          Toast('验证码发送成功')
+          vm.countDown()
+        } else {
+          Toast('验证码发送失败')
+        }
+      })
+    },
+    sign_in(){
+      let params = null
+      let vm = this
+      if(!this.cop){
+        params = 'phone='+this.account.phone+'&code='+this.account.code+'&type=0'
+      }else {
+        params = 'phone='+this.account.phone+'&passWord='+this.account.password+'&type=1'
+      }
+      API.sign_in(params).then(result =>{
+        console.log(result)
+        if(result.status == 200){
+          if(result.headers.zym){
+            sessionStorage.setItem('access-user', JSON.stringify(result.headers.zym))
+          }
+          if(result.data.status == 1000){
+            Toast('登录成功')
+            vm.$router.push({
+              path: vm.$route.query.redirect
+            });
+          }else {
+            Toast(result.data.msg)
+          }
+        }
+      })
     }
   },
   mounted() {
@@ -198,6 +238,8 @@ export default {
       margin-top 90px
       text-align center
       font-size $font-size-small
+      .weixin_sign_in
+        display inline-block
       .iconfont
         font-size 34px
         color #71C253
