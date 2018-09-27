@@ -118,6 +118,7 @@ export default {
     },
     sign_in(){
       let params = null
+      let vm = this
       if(!this.cop){
         params = 'phone='+this.account.phone+'&code='+this.account.code+'&type=0'
       }else {
@@ -125,11 +126,19 @@ export default {
       }
       API.sign_in(params).then(result =>{
         console.log(result)
-        // if(result.status == 1000){
-        //   Toast('登录成功')
-        // }else {
-        //   Toast(result.msg)
-        // }
+        if(result.status == 200){
+          if(result.headers.zym){
+            sessionStorage.setItem('access-user', JSON.stringify(result.headers.zym))
+          }
+          if(result.data.status == 1000){
+            Toast('登录成功')
+            vm.$router.push({
+              path: vm.$route.query.redirect
+            });
+          }else {
+            Toast(result.data.msg)
+          }
+        }
       })
     }
   },

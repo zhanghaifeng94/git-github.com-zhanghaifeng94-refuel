@@ -17,6 +17,25 @@ Vue.use(Vant)
 
 Vue.config.productionTip = false
 
+
+router.beforeEach((to, from, next) => {
+  console.log(to.fullPath)
+  if (to.meta.requireAuth) {
+    if (window.sessionStorage.getItem('access-user')) {
+      next()
+    }
+    else {
+      next({
+        path: '/sign_in',
+        query: {redirect: to.fullPath}
+      })
+    }
+  }
+  else {
+    next()
+  }
+})
+
 /* eslint-disable no-new */
 new Vue({
   el: '#app',

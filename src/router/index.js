@@ -62,6 +62,9 @@ export default new Router({
       path: '/index/recharge',
       name: 'recharge',
       component: recharge,
+      meta: {
+        requireAuth: true
+      }
     },
     {
       path: '/index/queryVIP',
