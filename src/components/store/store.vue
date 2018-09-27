@@ -127,7 +127,11 @@
 				</div>
 			</div>
 		</div>
-
+			
+		<div class="car">
+			<span><i class="iconfont icon-cart"></i></span>
+			<span><i class="iconfont icon-right"></i></span>
+		</div>
     </div>
 </template>
 
@@ -280,6 +284,26 @@
 </script>
 <style scoped lang="stylus" rel="stylesheet/stylus">
   @import "~common/stylus/variable"
+  	.car{
+  		position:fixed;
+  		bottom:68px;
+  		right:16px;
+  	}
+  	.car span{
+  		width:30px;
+  		height:30px;
+  		display:block;
+  		background:rgba(0,0,0,0.4);
+  		border-radius:100%;
+  		color:#fff;
+  	}
+  	.car span i{
+  		font-size:20px;
+  		display: block;
+	    line-height: 32px;
+	    text-align: center;
+	    margin-top:10px;
+  	}
   	.tuijian{
   		padding:16px 16px 0 16px;
   		overflow:hidden;
