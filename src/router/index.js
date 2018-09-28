@@ -72,16 +72,25 @@ export default new Router({
       path: '/index/queryVIP',
       name: 'queryVIP',
       component: queryVIP,
+      meta: {
+        requireAuth: true
+      }
     },
     {
       path: '/index/msg',
       name: 'msg',
       component: msg,
+      meta: {
+        requireAuth: true
+      }
     },
     {
       path: '/index/coupon',
       name: 'coupon',
       component: coupon,
+      meta: {
+        requireAuth: true
+      }
     },
     {
       path: '/index/recharge_record',

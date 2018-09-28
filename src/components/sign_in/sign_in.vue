@@ -10,12 +10,12 @@
           <input type="text" placeholder="请输入手机号" v-model="account.phone" @blur="verify(account.phone)">
         </div>
         <div class="code" v-if="!cop">
-          <input type="text" placeholder="输入验证码" v-model="account.code" @blur="all()">
+          <input type="text" placeholder="输入验证码" v-model="account.code" @input="all()">
           <span class="true" v-if="code" @click="vcode">{{countDownText}}</span>
           <span class="false" v-if="!code">{{countDownText}}</span>
         </div>
         <div class="password" v-if="cop">
-          <input type="password" v-model="account.password" placeholder="请设置密码" @blur="all()">
+          <input type="password" v-model="account.password" placeholder="请设置密码" @input="all()">
         </div>
        <div class="cen">
          <router-link class="forget" to="/retrievePassword" v-if="cop">忘记密码？</router-link>

@@ -24,7 +24,7 @@ axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded
 
 // 添加一个响应拦截器
 axios.interceptors.response.use(function (response) {
-  return response;
+  return response
 }, function (error) {
   if(error.response.status == 401){
     sessionStorage.clear()
