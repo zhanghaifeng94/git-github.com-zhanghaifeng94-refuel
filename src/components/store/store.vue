@@ -45,10 +45,10 @@
 			        <img src="../../common/image/store1.png" alt="">
 			    </div>	 
 				<div class="classify">
-					<div class="classify_box" v-for="(item,index) in classify" :key="item.id" @click="link(index)">
+					<router-link :to="index==2?'/store/commodity':'/store/my_shop'" class="classify_box" v-for="(item,index) in classify" :key="item.id">
 						<p>{{item.msg}}</p>
 						<img :src="item.img" alt="">
-					</div>
+					</router-link>
 				</div>   
 			</div>   
 			<div class="advice">
@@ -266,14 +266,6 @@
 	  			this.show=false;
 	  			this.nav=this.nav2
 	  			document.querySelector(".jiantou").style.transform = "rotate(90deg)";
-	  		}
-	  	},
-	  	link(index){
-	  		console.log(index)
-	  		if(index==2){
-	  				
-	  		}else{
-
 	  		}
 	  	},
 	  	onActive(index){
