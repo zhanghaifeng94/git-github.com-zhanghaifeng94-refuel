@@ -21,7 +21,7 @@ import retrieve from 'components/retrievePassword/retrievePassword'
 import search from 'components/search/search'
 import selection from 'components/selection/selection'
 import commodity from 'components/commodity/commodity'
-import my_shop from 'components/my_shop/my_shop'
+import members from 'components/members/members'
 
 
 Vue.use(Router)
@@ -151,9 +151,9 @@ export default new Router({
       component: commodity
     },
     {
-      path: '/store/my_shop',
-      name: 'my_shop',
-      component: my_shop
+      path: '/store/members',
+      name: 'members',
+      component: members
     }
   ]
 })
