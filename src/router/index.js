@@ -4,8 +4,8 @@ import index from 'components/index/index'
 import user from 'components/user/user'
 import store from 'components/store/store'
 import refuel from 'components/refuel/refuel'
-import sign_in from 'components/sign_in/sign_in'
-import sign_up from 'components/sign_up/sign_up'
+import signIn from 'components/sign_in/sign_in'
+import signUp from 'components/sign_up/sign_up'
 import recharge from 'components/recharge/recharge'
 import queryVIP from 'components/queryVIP/queryVIP'
 import msg from 'components/msg/msg'
@@ -16,10 +16,10 @@ import pay from 'components/pay/pay'
 import transactVIP from 'components/transactVIP/transactVIP'
 import help from 'components/help/help'
 import service from 'components/service/service'
-import recharge_progress  from 'components/recharge_progress/recharge_progress'
+import recharge_progress from 'components/recharge_progress/recharge_progress'
 import retrieve from 'components/retrievePassword/retrievePassword'
 import search from 'components/search/search'
-
+import commodity from 'components/commodity/commodity'
 
 Vue.use(Router)
 
@@ -52,13 +52,13 @@ export default new Router({
     },
     {
       path: '/sign_in',
-      name: 'sign_in',
-      component: sign_in
+      name: 'signIn',
+      component: signIn
     },
     {
       path: '/sign_up',
-      name: 'sign_up',
-      component: sign_up
+      name: 'signUp',
+      component: signUp
     },
     {
       path: '/index/recharge',
@@ -95,46 +95,52 @@ export default new Router({
     {
       path: '/index/recharge_record',
       name: 'recharge_record',
-      component: recharge_record,
+      component: recharge_record
     },
     {
       path: '/refuel/change_station',
       name: 'change_station',
-      component: change_station,
+      component: change_station
     },
     {
       path: '/refuel/pay',
       name: 'pay',
-      component: pay,
+      component: pay
     },
     {
       path: '/index/recharge_progress',
       name: 'recharge_progress',
-      component: recharge_progress,
+      component: recharge_progress
     },
     {
       path: '/index/transactVIP',
       name: 'transactVIP',
-      component: transactVIP,
+      component: transactVIP
     },
     {
       path: '/index/help',
       name: 'help',
-      component: help,
+      component: help
     },
     {
       path: '/index/service',
       name: 'service',
-      component: service,
+      component: service
     },
     {
       path: '/retrievePassword',
       name: 'retrieve',
-      component: retrieve,
-    },{
+      component: retrieve
+    },
+    {
       path: '/store/search',
       name: 'search',
-      component: search,
+      component: search
     },
+    {
+      path: '/store/commodity',
+      name: 'commodity',
+      component: commodity
+    }
   ]
 })

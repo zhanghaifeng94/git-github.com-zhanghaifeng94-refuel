@@ -2,18 +2,10 @@
  * Created by jerry on 2018/9/16.
  */
 import axios from 'axios'
-let data = JSON.parse(window.sessionStorage.getItem('access-user'));
-var Authorization
-if (data != null) {
-  Authorization = data.authorization ? data.authorization : ''
-} else {
-  Authorization = ''
-}
 axios.defaults.withCredentials = true
-axios.defaults.headers.common['Authorization'] = Authorization;
-axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded;charset=UTF-8';//配置请求头
+axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded;charset=UTF-8'// 配置请求头
 
-//添加一个请求拦截器
+// 添加一个请求拦截器
 // axios.interceptors.request.use(function (config) {
 //   console.dir(config);
 //   return config;
@@ -21,20 +13,30 @@ axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded
 //   // Do something with request error
 //   return Promise.reject(error);
 // });
+axios.interceptors.request.use(
+  config => {
+    if (window.sessionStorage.getItem('access-user')) {
+      config.headers.zym = window.sessionStorage.getItem('access-user')
+    }
+    return config
+  },
+  err => {
+    return Promise.reject(err)
+  })
 
 // 添加一个响应拦截器
 axios.interceptors.response.use(function (response) {
   return response
 }, function (error) {
-  if(error.response.status == 401){
+  if (error.response.status === 401) {
     sessionStorage.clear()
     location.replace(`/login`)
   }
   // Do something with response error
-  return Promise.reject(error);
-});
+  return Promise.reject(error)
+})
 
-//通用方法
+// 通用方法
 export const POST = (url, params) => {
   return axios.post(`${'/api'}${url}`, params).then((res) => res.data)
 }
