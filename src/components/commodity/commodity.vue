@@ -19,7 +19,7 @@ import API from 'api/api'
     created(){
       Headers.props.title.default = this.title
       Headers.props.rightText.default = ''
-      // Headers.props.rightPath.default = ''
+      Headers.props.rightPath.default = ''
     }
   }
 </script>
