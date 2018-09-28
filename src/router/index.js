@@ -23,7 +23,6 @@ import selection from 'components/selection/selection'
 import commodity from 'components/commodity/commodity'
 import members from 'components/members/members'
 
-
 Vue.use(Router)
 
 export default new Router({
