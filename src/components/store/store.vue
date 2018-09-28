@@ -12,7 +12,7 @@
 				</div>						
 			</div>	
 			<span class="up">
-				<i class="iconfont icon-unfold" @click="onShow()"></i>
+				<i class="iconfont icon-unfold jiantou" @click="onShow()"></i>
 			</span>	
 			<div class="open" v-if="show">
 				<div v-for="(item,index) in nav2" :key="item.id" class="open_list" :class="Isindex==index?'active':''" @click="onActive(index)"> {{item}}</div>
@@ -45,10 +45,10 @@
 			        <img src="../../common/image/store1.png" alt="">
 			    </div>	 
 				<div class="classify">
-					<router-link class="classify_box" v-for="item in classify" to="" :key="item.id">
+					<div class="classify_box" v-for="(item,index) in classify" :key="item.id" @click="link(index)">
 						<p>{{item.msg}}</p>
 						<img :src="item.img" alt="">
-					</router-link>
+					</div>
 				</div>   
 			</div>   
 			<div class="advice">
@@ -80,18 +80,20 @@
 			<div class="advice">
 				<div class="advice_title flex">
 					<p>专题精选</p>
-					<router-link to="">更多 ></router-link>
+					<router-link to="/store/selection">更多 ></router-link>
 				</div>
-<!-- 				<div class="select">
-					<div v-for="item in select" :key="item.id" class="select_box">
-					  <img :src="item.img" alt="" class="select_img">
-					  <div>
-					  	<h1 class="over">{{item.title}}</h1>
-					  	<span>{{item.price}}元起</span>
-					  </div>
-					  <p>{{item.msg}}</p>
-					</div>
-				</div> -->
+				<div class="select">
+					<div class="">
+						<router-link to="" v-for="item in select" :key="item.id" class="select_box">
+						  <img :src="item.img" alt="" class="select_img">
+						  <div class="flex select_msg">
+						  	<h1 class="over">{{item.title}}</h1>
+						  	<span>{{item.price}}元起</span>
+						  </div>
+						  <p>{{item.msg}}</p>
+						</router-link>
+					</div>					
+				</div>
 			</div>
 			
 			<div class="love">
@@ -130,7 +132,7 @@
 			
 		<div class="car">
 			<span><i class="iconfont icon-cart"></i></span>
-			<span><i class="iconfont icon-right"></i></span>
+			<span @click="scrollToTop()" v-if="toTopShow"><i class="iconfont icon-right back_top"></i></span>
 		</div>
     </div>
 </template>
@@ -143,6 +145,7 @@
 		title:"润滑油",
 		nav_title:"Catrol等品牌",
 		Isindex:0,
+		toTopShow:false,
 		status:true,
 		show:false,
 		  tuijian: [{
@@ -252,15 +255,25 @@
 	   	}
 	  },
 	  methods:{
-	  	onShow(){
-	  		console.log(this)
+	  	onShow(event){
+	  		console.log()
 	  		if(this.show==false){
 	  			//打开
 	  			this.show=true
-	  			this.nav=""
+	  			this.nav="";
+	  			document.querySelector(".jiantou").style.transform = "rotate(-90deg)";
 	  		}else{
 	  			this.show=false;
 	  			this.nav=this.nav2
+	  			document.querySelector(".jiantou").style.transform = "rotate(90deg)";
+	  		}
+	  	},
+	  	link(index){
+	  		console.log(index)
+	  		if(index==2){
+	  				
+	  		}else{
+
 	  		}
 	  	},
 	  	onActive(index){
@@ -279,11 +292,96 @@
 	  			this.status=false
 	  		}	  		
 	  	},
+		handleScroll() {
+	        //首先修改相对滚动位置
+	        this.scrollTop = this.scrollTop = window.pageYOffset || document.body.scrollTop
+	        if (this.scrollTop > 300) {
+	          this.toTopShow = true
+	        }else {
+	          this.toTopShow = false
+	        }
+	    },
+	    scrollToTop() {
+	        let timer = null, _that = this
+	        //动画，使用requestAnimationFrame代替setInterval
+	        cancelAnimationFrame(timer)
+	        timer = requestAnimationFrame(function fn() {
+	          if (_that.scrollTop > 0) {
+	            _that.scrollTop -= 50
+	            //然后修改这里实现动画滚动效果
+	            document.body.scrollTop = document.documentElement.scrollTop = _that.scrollTop
+	            timer = requestAnimationFrame(fn)
+	          } else {
+	            cancelAnimationFrame(timer);
+	            _that.toTopShow = false
+	          }
+	        })
+	      }
 	  },
+	    mounted() {
+	      this.$nextTick(function () {
+	        //修改事件监听
+	        window.addEventListener('scroll', this.handleScroll)
+	      });
+	    },
+	    destroyed() {
+	      window.removeEventListener('scroll', this.handleScroll)
+	    }
+	 
   }
 </script>
 <style scoped lang="stylus" rel="stylesheet/stylus">
   @import "~common/stylus/variable"
+  	.select{
+  		width:100%;
+  		padding:15px 0;
+  	}
+    .select,
+  	.nav{
+    	white-space:nowrap;
+    	overflow-x:auto;
+    	float:left;
+  	}
+  	.select::-webkit-scrollbar,
+	.nav::-webkit-scrollbar {
+        display: none;
+    }  	
+    .select_box{
+  		display:inline-block;
+  		margin-right:10px;
+		box-shadow: 0px 2px 6px rgba(88,0,0,0.16);
+		width:230px;
+		padding-bottom:14px;
+    }
+    .select_box img{
+    	width:100%;
+    	height:100%;
+    }
+    .select_msg{
+    	margin:10px 11px 5px 11px;
+    }
+    .select_msg h1{
+    	font-size:12px;
+    	width:60%;
+    	color:#666;
+    }
+    .select_msg span{
+    	color:#EE722E;
+    	font-size:12px;
+    }
+    .select_box p{
+    	font-size:12px;
+    	color:#929292;
+    	margin:0 11px;
+    }
+  	.back_top{
+  		-webkit-transform: rotate(-90deg);
+  		   -moz-transform: rotate(-90deg);
+  		    -ms-transform: rotate(-90deg);
+  		     -o-transform: rotate(-90deg);
+  		        transform: rotate(-90deg);
+  		line-height:30px;
+  	}
   	.car{
   		position:fixed;
   		bottom:68px;
@@ -350,9 +448,6 @@
   		height:36px;
   		width:89%;
     	box-sizing: border-box;
-    	white-space:nowrap;
-    	overflow-x:auto;
-    	float:left;
   	}
   	.nav_list{
   		display:inline-block;
@@ -499,7 +594,7 @@
 	.flex{
 		display:flex;
 		justify-content:space-between;
-		items-align:center;
+		align-items: center;
 	}
 	.hot{
 		background:#FFD1D1;

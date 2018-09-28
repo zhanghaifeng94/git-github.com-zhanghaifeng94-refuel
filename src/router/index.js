@@ -19,6 +19,7 @@ import service from 'components/service/service'
 import recharge_progress  from 'components/recharge_progress/recharge_progress'
 import retrieve from 'components/retrievePassword/retrievePassword'
 import search from 'components/search/search'
+import selection from 'components/selection/selection'
 
 
 Vue.use(Router)
@@ -126,6 +127,10 @@ export default new Router({
       path: '/store/search',
       name: 'search',
       component: search,
-    },
+    },{
+      path: '/store/selection',
+      name: 'selection',
+      component: selection,
+    }
   ]
 })
