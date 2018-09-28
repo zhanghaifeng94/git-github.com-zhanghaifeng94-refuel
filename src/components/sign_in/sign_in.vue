@@ -10,12 +10,12 @@
           <input type="text" placeholder="请输入手机号" v-model="account.phone" @blur="verify(account.phone)">
         </div>
         <div class="code" v-if="!cop">
-          <input type="text" placeholder="输入验证码" v-model="account.code" @blur="all()">
+          <input type="text" placeholder="输入验证码" v-model="account.code" @input="all()">
           <span class="true" v-if="code" @click="vcode">{{countDownText}}</span>
           <span class="false" v-if="!code">{{countDownText}}</span>
         </div>
         <div class="password" v-if="cop">
-          <input type="password" v-model="account.password" placeholder="请设置密码" @blur="all()">
+          <input type="password" v-model="account.password" placeholder="请设置密码" @input="all()">
         </div>
        <div class="cen">
          <router-link class="forget" to="/retrievePassword" v-if="cop">忘记密码？</router-link>
@@ -34,7 +34,7 @@
 </template>
 
 <script>
-import { Toast } from 'mint-ui'
+import { Toast } from 'vant';
 import API from 'api/api'
 export default {
   data() {
@@ -62,7 +62,7 @@ export default {
       this.all()
     },
     countDown() {
-      if (this.countDownText == '获取验证码' || this.countDownText == '再次发送') {
+      if (this.countDownText === '获取验证码' || this.countDownText === '再次发送') {
         let count = 60
         let vm = this
         function settime () {
@@ -108,7 +108,7 @@ export default {
       let params = 'phone=' + this.account.phone
       let vm = this
       API.getVcode(params).then(result => {
-        if (result.status == 1000) {
+        if (result.status === 1000) {
           Toast('验证码发送成功')
           vm.countDown()
         } else {
@@ -116,29 +116,36 @@ export default {
         }
       })
     },
-    sign_in(){
+    sign_in() {
+      Toast.loading({
+        mask: true,
+        message: '登录中...',
+        duration: 0
+      })
       let params = null
       let vm = this
-      if(!this.cop){
-        params = 'phone='+this.account.phone+'&code='+this.account.code+'&type=0'
-      }else {
-        params = 'phone='+this.account.phone+'&passWord='+this.account.password+'&type=1'
+      if (!this.cop) {
+        params = 'phone=' + this.account.phone + '&code=' + this.account.code + '&type=0'
+      } else {
+        params = 'phone=' + this.account.phone + '&passWord=' + this.account.password + '&type=1'
       }
-      API.sign_in(params).then(result =>{
-        console.log(result)
-        if(result.status == 200){
-          if(result.headers.zym){
+      API.sign_in(params).then(result => {
+        if (result.status === 200) {
+          if (result.headers.zym) {
             sessionStorage.setItem('access-user', JSON.stringify(result.headers.zym))
           }
-          if(result.data.status == 1000){
+          if (result.data.status === 1000) {
+            Toast.clear()
             Toast('登录成功')
             vm.$router.push({
               path: vm.$route.query.redirect
-            });
-          }else {
+            })
+          } else {
             Toast(result.data.msg)
           }
         }
+      },(error) =>{
+        Toast('登录失败')
       })
     }
   },
@@ -146,7 +153,7 @@ export default {
     this.all()
   },
   watch: {
-    '$route' (to){
+    '$route' (to) {
       this.account.phone = ''
       this.account.code = ''
       this.account.password = ''

@@ -13,12 +13,9 @@ import 'common/stylus/index.styl'
 Vue.use(MintUI)
 Vue.use(Vant)
 
-
 Vue.config.productionTip = false
 
-
 router.beforeEach((to, from, next) => {
-  console.log(to.fullPath)
   if (to.meta.requireAuth) {
     if (window.sessionStorage.getItem('access-user')) {
       next()
@@ -42,4 +39,3 @@ new Vue({
   components: { App },
   template: '<App/>'
 })
-

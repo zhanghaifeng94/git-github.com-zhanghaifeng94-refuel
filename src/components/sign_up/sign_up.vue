@@ -56,7 +56,7 @@ export default {
       this.all()
     },
     countDown() {
-      if (this.countDownText == '获取验证码' || this.countDownText == '再次发送') {
+      if (this.countDownText === '获取验证码' || this.countDownText === '再次发送') {
         let count = 60
         let vm = this
         function settime () {
@@ -90,7 +90,7 @@ export default {
       let params = 'phone=' + this.account.phone
       let vm = this
       API.getVcode(params).then(result => {
-        if (result.status == 1000) {
+        if (result.status === 1000) {
           Toast('验证码发送成功')
           vm.countDown()
         } else {
@@ -101,21 +101,20 @@ export default {
     sign_up() {
       let vm = this
       let params = 'phone=' + this.account.phone + '&vcode=' + this.account.code + '&password=' + this.account.password
-      if(this.account.password.length<6){
+      if (this.account.password.length < 6) {
         Toast('密码不能少于6位')
-      }else {
+      } else {
         API.sign_up(params).then(result => {
           if (result.status === 1000) {
             Toast(result.msg)
             vm.$router.push({
               path: `/sign_in`
-            });
-          }else {
+            })
+          } else {
             Toast(result.msg)
           }
         })
       }
-
     }
   },
   mounted() {

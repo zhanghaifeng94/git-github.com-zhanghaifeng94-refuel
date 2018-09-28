@@ -39,6 +39,7 @@ export default {
   created() {
     Headers.props.title.default = this.title
     Headers.props.rightText.default = ''
+    Headers.props.rightPath.default = ''
   }
 }
 </script>

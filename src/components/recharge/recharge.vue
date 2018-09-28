@@ -50,7 +50,6 @@
       </div>
     </van-popup>
 
-
     <!-- 优惠券列表 -->
     <van-popup v-model="showList" position="bottom">
       <van-coupon-list
@@ -66,18 +65,19 @@
 <script>
 import Headers from 'base/header/header'
 import Card from 'base/card/card'
+import API from 'api/api'
 
-const coupon = {
-  available: 1,
-  discount: 1,
-  denominations: 0,
-  originCondition: 0,
-  reason: '不可用原因：假的',
-  value: 150,
-  name: '优惠券名称',
-  startAt: 1489104000,
-  endAt: 1514592000
-}
+// const coupon = {
+//   available: 1,
+//   discount: 1,
+//   denominations: 0,
+//   originCondition: 0,
+//   reason: '不可用原因：假的',
+//   value: 150,
+//   name: '优惠券名称',
+//   startAt: 1489104000,
+//   endAt: 1514592000
+// }
 
 export default {
   components: {
@@ -89,7 +89,7 @@ export default {
       title: '会员充值',
       rightText: '充值记录',
       chosenCoupon: -1,
-      coupons: [coupon],
+      coupons: [],
       disabledCoupons: [],
       showList: false,
       rightPath: '/index/recharge_record',
@@ -138,12 +138,21 @@ export default {
     },
     close() {
       this.show = false
+    },
+    coupon() {
+      let params = 'status=0'
+      API.coupon(params).then(result => {
+        console.log(result)
+      })
     }
   },
   computed: {
     resultNum() {
       return this.num
     }
+  },
+  mounted(){
+    this.coupon()
   }
 }
 </script>
@@ -278,10 +287,5 @@ export default {
           margin-bottom 60px
           color: #fff
           background #EE722E
-
-
-
-
-
 
 </style>

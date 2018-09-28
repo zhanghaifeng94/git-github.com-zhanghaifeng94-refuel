@@ -11,6 +11,10 @@ export default {
     return API.POST('/api/login/register ', params)
   },
   sign_in: params => {
-    return API.login('/api/login/login',params)
+    return API.login('/api/login/login', params)
+  },
+  coupon: params => {
+    return API.POST('/api/member/getCoupon', params)
   }
+
 }
