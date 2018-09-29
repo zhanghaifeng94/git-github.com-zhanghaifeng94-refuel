@@ -8,7 +8,7 @@
     		<span @click="cancel()">取消</span>
     	</div>
 		
-		<div class="history h_record">
+		<div class="history h_record" v-if="show">
 			<h1 class="title flex">
 				<span>历史记录</span> 
 				<i class="iconfont icon-delete" @click="cancel_history()"></i>
@@ -34,6 +34,8 @@
  		data () {
 		return {
   			val:"",
+  			show:true,
+  			con:"888",
   			history:[
   				{con:"轮胎",id:"1"},
   				{con:"车灯",id:"2"},
@@ -54,7 +56,7 @@
   				this.val=""
   			},
   			cancel_history(){
-  				document.querySelector(".h_record").style.display = "none";
+  				this.show=false
   			}
   		}
   }
