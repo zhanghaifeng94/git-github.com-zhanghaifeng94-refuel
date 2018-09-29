@@ -11,7 +11,7 @@
 		<div class="history h_record">
 			<h1 class="title flex">
 				<span>历史记录</span> 
-				<i class="iconfont icon-search" @click="cancel_history()"></i>
+				<i class="iconfont icon-delete" @click="cancel_history()"></i>
 			</h1>
 			<ul class="list">
 				<li v-for="(item,index) in history" :key="item.id" @click="getCon(item.con)">{{item.con}}</li>

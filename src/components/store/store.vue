@@ -84,7 +84,7 @@
 				</div>
 				<div class="select">
 					<div class="">
-						<router-link to="" v-for="item in select" :key="item.id" class="select_box">
+						<router-link to="/store/selection_detail" v-for="item in select" :key="item.id" class="select_box">
 						  <img :src="item.img" alt="" class="select_img">
 						  <div class="flex select_msg">
 						  	<h1 class="over">{{item.title}}</h1>
