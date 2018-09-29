@@ -9,15 +9,15 @@
 			<div class="nav">
 				<div class="nav_nav">
 					<div v-for="(item,index) in nav" :key="item.id" class="nav_list" @click="onTop(index)" :class="Isindex==index?'onactive':''">{{item}}</div>
-				</div>						
-			</div>	
+				</div>
+			</div>
 			<span class="up">
 				<i class="iconfont icon-unfold jiantou" @click="onShow()"></i>
-			</span>	
+			</span>
 			<div class="open" v-if="show">
 				<div v-for="(item,index) in nav2" :key="item.id" class="open_list" :class="Isindex==index?'active':''" @click="onActive(index)"> {{item}}</div>
 			</div>
-		</div>	
+		</div>
 
 		<mt-swipe :auto="0" class="swipe">
 			<mt-swipe-item class="swipe-item" v-for="item in swipe" :key="item.id">
@@ -32,7 +32,7 @@
 				  	<i class="iconfont icon-roundcheck"></i>
 				  	<span>M50自营品牌</span>
 				  </van-col>
-				  <van-col span="8">		  	
+				  <van-col span="8">
 				  	<i class="iconfont icon-roundcheck"></i>
 				  	<span>30天无忧退换货</span>
 				  </van-col>
@@ -40,17 +40,17 @@
 					<i class="iconfont icon-roundcheck"></i>
 				  	<span>48小时快速退款</span>
 				  </van-col>
-				</van-row>	
+				</van-row>
 				<div class="activity">
 			        <img src="../../common/image/store1.png" alt="">
-			    </div>	 
+			    </div>
 				<div class="classify">
-					<router-link :to="index==2?'/store/commodity':'/store/my_shop'" class="classify_box" v-for="(item,index) in classify" :key="item.id">
+					<router-link :to="index==2?'/store/members':'/store/commodity'" class="classify_box" v-for="(item,index) in classify" :key="item.id">
 						<p>{{item.msg}}</p>
 						<img :src="item.img" alt="">
 					</router-link>
-				</div>   
-			</div>   
+				</div>
+			</div>
 			<div class="advice">
 				<div class="advice_title flex">
 					<p>人气推荐</p>
@@ -61,9 +61,9 @@
 					<div class="hot_msg">
 						<h1>{{hot.title}}</h1>
 						<p>{{hot.nav_title}}</p>
-						<span>{{hot.price}}</span>	
+						<span>{{hot.price}}</span>
 					</div>
-				</router-link>	
+				</router-link>
 				<div class="advice_list flex">
 					<router-link  to="" v-for="(item,index) in advice" :key="item.id" class="list">
 						<img :src="item.img" alt="">
@@ -92,10 +92,10 @@
 						  </div>
 						  <p>{{item.msg}}</p>
 						</router-link>
-					</div>					
+					</div>
 				</div>
 			</div>
-			
+
 			<div class="love">
 				<h1>猜你喜欢</h1>
 				<div class="">
@@ -109,7 +109,7 @@
 			</div>
 		</div>
 
-			
+
 		<div class="con" v-if="!status">
 			<div class="tuijian">
 				<router-link to="" v-for="item in tuijian" :key="item.id" class="tuijian_list">
@@ -129,7 +129,7 @@
 				</div>
 			</div>
 		</div>
-			
+
 		<div class="car">
 			<span><i class="iconfont icon-cart"></i></span>
 			<span @click="scrollToTop()" v-if="toTopShow"><i class="iconfont icon-right back_top"></i></span>
@@ -282,7 +282,7 @@
 	  			this.status=true
 	  		}else{
 	  			this.status=false
-	  		}	  		
+	  		}
 	  	},
 		handleScroll() {
 	        //首先修改相对滚动位置
@@ -319,7 +319,7 @@
 	    destroyed() {
 	      window.removeEventListener('scroll', this.handleScroll)
 	    }
-	 
+
   }
 </script>
 <style scoped lang="stylus" rel="stylesheet/stylus">
@@ -337,7 +337,7 @@
   	.select::-webkit-scrollbar,
 	.nav::-webkit-scrollbar {
         display: none;
-    }  	
+    }
     .select_box{
   		display:inline-block;
   		margin-right:10px;
@@ -504,7 +504,7 @@
   		margin-left:12px;
   		position:absolute;
   		top:0;
-  	}    
+  	}
     .header h1{
     	color:#fff;
     	font-size:20px;
@@ -692,7 +692,7 @@
 		color:#EE722E
 	}
 
-	
+
 </style>
 
 

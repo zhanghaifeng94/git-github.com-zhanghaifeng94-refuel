@@ -129,7 +129,6 @@ export default {
       this.coupons.push(coupon)
     },
     active (val, index) {
-      console.log(val)
       this.num = index
       this.amount = val.price + '元'
     },
