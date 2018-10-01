@@ -21,6 +21,7 @@ import retrieve from 'components/retrievePassword/retrievePassword'
 import search from 'components/search/search'
 import selection from 'components/selection/selection'
 import commodity from 'components/commodity/commodity'
+import selection_detail from 'components/selection_detail/selection_detail'
 import members from 'components/members/members'
 
 Vue.use(Router)
@@ -137,17 +138,21 @@ export default new Router({
     {
       path: '/store/search',
       name: 'search',
-      component: search,
+      component: search
     },{
       path: '/store/selection',
       name: 'selection',
-      component: selection,
-      component: search
+      component: selection
     },
     {
       path: '/store/commodity',
       name: 'commodity',
       component: commodity
+    },
+    {
+      path: '/store/selection_detail',
+      name: 'selection_detail',
+      component: selection_detail
     },
     {
       path: '/store/members',

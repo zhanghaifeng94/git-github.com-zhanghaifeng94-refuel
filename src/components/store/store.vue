@@ -8,11 +8,11 @@
 		<div class="nav_box">
 			<div class="nav">
 				<div class="nav_nav">
-					<div v-for="(item,index) in nav" :key="item.id" class="nav_list" @click="onTop(index)" :class="Isindex==index?'onactive':''">{{item}}</div>
+					<div v-for="(item,index) in nav" :key="item.id" class="nav_list" @click="onActive(index)" :class="Isindex==index?'onactive':''">{{item}}</div>
 				</div>
 			</div>
 			<span class="up">
-				<i class="iconfont icon-unfold jiantou" @click="onShow()"></i>
+				<i :class="show?'iconfont icon-unfold jiantou':'iconfont icon-unfold animation'" @click="onShow()"></i>
 			</span>
 			<div class="open" v-if="show">
 				<div v-for="(item,index) in nav2" :key="item.id" class="open_list" :class="Isindex==index?'active':''" @click="onActive(index)"> {{item}}</div>
@@ -84,7 +84,7 @@
 				</div>
 				<div class="select">
 					<div class="">
-						<router-link to="" v-for="item in select" :key="item.id" class="select_box">
+						<router-link to="/store/selection_detail" v-for="item in select" :key="item.id" class="select_box">
 						  <img :src="item.img" alt="" class="select_img">
 						  <div class="flex select_msg">
 						  	<h1 class="over">{{item.title}}</h1>
@@ -101,7 +101,7 @@
 				<div class="">
 					<router-link  to="" v-for="(item,index) in love" :key="item.id" class="love_list">
 						<img :src="item.img" alt="">
-						<p>{{item.erea}}</p>
+						<p v-if="item.erea">{{item.erea}}</p>
 						<span class="over">{{item.title}}</span>
 						<span class="love_price">￥{{item.price}}</span>
 					</router-link >
@@ -246,7 +246,7 @@
 	      	{img:require('common/image/store5.png'),title:"20寸 印花 纯PC拉链拉杆箱",price:"439",id:4},
 	      ],
 	      love:[
-	      	{img:require('common/image/store7.png'),title:"带帽式多功能肩枕",price:"66",id:1,erea:"限时特价"},
+	      	{img:require('common/image/store7.png'),title:"带帽式多功能肩枕",price:"66",id:1,},
 	      	{img:require('common/image/store7.png'),title:"带帽式多功能肩枕",price:"66",id:2,erea:"限时特价"},
 	      	{img:require('common/image/store7.png'),title:"带帽式多功能肩枕",price:"66",id:3,erea:"限时特价"},
 	      	{img:require('common/image/store7.png'),title:"带帽式多功能肩枕",price:"66",id:4,erea:"限时特价"},
@@ -261,22 +261,12 @@
 	  			//打开
 	  			this.show=true
 	  			this.nav="";
-	  			document.querySelector(".jiantou").style.transform = "rotate(-90deg)";
 	  		}else{
 	  			this.show=false;
 	  			this.nav=this.nav2
-	  			document.querySelector(".jiantou").style.transform = "rotate(90deg)";
 	  		}
 	  	},
 	  	onActive(index){
-	  		this.Isindex=index
-	  		if(index==0){
-	  			this.status=true
-	  		}else{
-	  			this.status=false
-	  		}
-	  	},
-	  	onTop(index){
 	  		this.Isindex=index
 	  		if(index==0){
 	  			this.status=true
@@ -292,7 +282,7 @@
 	        }else {
 	          this.toTopShow = false
 	        }
-	    },
+	     },
 	    scrollToTop() {
 	        let timer = null, _that = this
 	        //动画，使用requestAnimationFrame代替setInterval
@@ -324,6 +314,21 @@
 </script>
 <style scoped lang="stylus" rel="stylesheet/stylus">
   @import "~common/stylus/variable"
+  	.jiantou{
+  		-webkit-transform: rotate(180deg);
+  		   -moz-transform: rotate(180deg);
+  		    -ms-transform: rotate(180deg);
+  		     -o-transform: rotate(180deg);
+  		        transform: rotate(180deg);
+  	}
+  	.jiantou,
+  	.animation{
+  		-webkit-transition:-webkit-transform 0.5s linear;
+    	transition:transform 0.5s linear;
+  	}
+  	.up i{
+  		float:left
+  	}
   	.select{
   		width:100%;
   		padding:15px 0;
@@ -427,7 +432,7 @@
   		color:#fff;
   		font-size:24px;
   		float:left;
-  		margin:6px;
+		margin: 12px 0 0 10px;
   	}
   	.search{
   		width:80%;
@@ -666,15 +671,17 @@
 		margin-bottom:10px;
 		padding-bottom:10px;
 		border-radius:5px;
+		height:202px
 	}
 	.love_list:nth-child(2n){
 		margin-right:0
 	}
 	.love_list img{
 		width:100%;
+		margin-bottom:4px;
 	}
 	.love_list p{
-		margin:4px 6px;
+		margin:0 6px 4px 6px;
 		background:#FF4848;
 		padding:2px 6px;
 		color:#fff;

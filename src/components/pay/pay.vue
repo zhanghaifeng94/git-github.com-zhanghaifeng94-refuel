@@ -65,7 +65,7 @@
       	showKeyboard: false,
       	show:true,
       	pay_status:true,
-        tip_status:true
+        tip_status:false
       }
     },
      methods: {
@@ -99,9 +99,8 @@
 			  message: 'M50e会员您确定要放弃支付么？'
 			}).then(() => {
 			  // on confirm
-			  this.$router.go('/refuel');
 			  this.tip_status=false
-			  //console.log("000")
+			  this.$router.push({name:'refuel'})
 			}).catch(() => {
 			  // on cancel
 			});
