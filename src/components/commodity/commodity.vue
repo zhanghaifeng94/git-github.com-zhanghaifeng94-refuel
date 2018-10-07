@@ -20,7 +20,7 @@
               <div class="info">
                 <div class="limit" v-if="item.limit">{{item.limit}}</div>
                 <div class="title">{{item.title}}</div>
-                <div class="price">{{item.price}}</div>
+                <div class="price">¥ {{item.price}}</div>
               </div>
             </router-link>
           </li>
@@ -58,24 +58,24 @@ export default {
       }],
       active: '0',
       list: [{
-        img: require('common/image/store6.png'),
+        img: require('common/image/store7.png'),
         id: '1',
         title: '带帽式多功能肩枕',
         limit: '限时特价',
         price: 66
       }, {
-        img: require('common/image/store6.png'),
+        img: require('common/image/store7.png'),
         id: '2',
         title: '带帽式多功能肩枕',
         price: 66
       }, {
-        img: require('common/image/store6.png'),
+        img: require('common/image/store7.png'),
         id: '3',
         title: '带帽式多功能肩枕',
         limit: '限时特价',
         price: 66
       }, {
-        img: require('common/image/store6.png'),
+        img: require('common/image/store7.png'),
         id: '4',
         title: '带帽式多功能肩枕',
         price: 66
@@ -97,7 +97,7 @@ export default {
       // 异步更新数据
       setTimeout(() => {
         let aa = {
-          img: require('common/image/store6.png'),
+          img: require('common/image/store7.png'),
           title: '带帽式多功能肩枕',
           price: 66
         }
@@ -147,6 +147,7 @@ export default {
         li
           float: left
           width: 48%
+          min-height 215px
           margin-right 10px
           margin-bottom 10px
           background rgba(252,252,252,1)
@@ -159,6 +160,24 @@ export default {
           .info
             padding 6px 10px
             font-size 12px
+            .limit
+              padding 4px
+              background #FF4848
+              border-radius 1px
+              box-sizing border-box
+              margin-bottom 4px
+              display inline-block
+              color: #ffffff
+              font-size 8px
+            .title
+                color: #666666
+                margin-bottom 4px
+                display: -webkit-box
+                -webkit-box-orient: vertical
+                -webkit-line-clamp: 2
+                overflow: hidden
+            .price
+              color: #ee722e
         li:nth-child(2n)
           margin-right 0
 
