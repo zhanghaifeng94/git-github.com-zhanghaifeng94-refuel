@@ -2,7 +2,7 @@
 	<div class="change_station">
  		<headers></headers>
 		<mt-search v-model="value" class="list_box">
-		  <div v-for="item in result" class="list">
+		  <div v-for="item in result" class="list" @click="adrress(item.title)">
 		  	<h1>{{item.title}}</h1>
 				<p>地址：{{item.value}}</p>
 		  </div>
@@ -25,11 +25,24 @@
       	rightIcon:'',
       	rightText: '',
       	result:[
-      		{title:"中国石化加油站(关谷万科中心西)",value:"雄楚大道1002号关山中学附近",id:1},
-      		{title:"中国石化加油站(关谷万科中心西)",value:"雄楚大道1002号关山中学附近",id:2},
-      		{title:"中国石化加油站(关谷万科中心西)",value:"雄楚大道1002号关山中学附近",id:3}
+      		{title:"中国石化加油站(关谷万科中心西)1",value:"雄楚大道1002号关山中学附近",id:1},
+      		{title:"中国石化加油站(关谷万科中心西)2",value:"雄楚大道1002号关山中学附近",id:2},
+      		{title:"中国石化加油站(关谷万科中心西)3",value:"雄楚大道1002号关山中学附近",id:3}
       	]
       }
+    },
+    methods:{
+    	adrress(val){
+    		//console.log(val)
+    		this.$router.push({
+    			name:'refuel',
+    			path:"/refuel",
+    			params:{
+    				con:val
+    			}
+
+    		})
+    	}
     },
 	  created() {
 	    Headers.props.title.default = this.title

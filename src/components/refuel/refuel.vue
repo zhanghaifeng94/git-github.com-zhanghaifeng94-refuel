@@ -11,7 +11,7 @@
 	  	<div class="flex_between nav_right">
 		  	<div class="right_box">
 		  		<h1>您当前在</h1>
-		  		<p>光谷鲁巷加油站</p>
+		  		<p>{{address}}</p>
 		  	</div>
 		  	<router-link to="/refuel/change_station" class="change">更改加油站</router-link>	  		
 	  	</div>
@@ -26,16 +26,14 @@
 			<li v-for="(item,index) in list" :key="item.id" :class="Isindex==index?'active':''" @click="chice(item.con)">{{item.con}}#</li>
 		</ul>
 		
-        <router-link to="">
-        	<input type="submit" name="" value="确认" class="submit" @click="tijiao()">
-        </router-link>		
+        <button class="submit" @click="tijiao()">确认</button>	
 	  </div>	
 
     </div>
 </template>
 
 <script>
-
+import { Toast } from 'vant';
 export default {
 	name:"refuel",
 	components: {
@@ -44,6 +42,7 @@ export default {
 		return{
 			Isindex:-55,
 			val:"",
+			address:"",
 			list:[
 				{id:1,con:1},
 				{id:2,con:2},
@@ -75,11 +74,23 @@ export default {
 			this.Isindex=data-1;
 			this.val=data;
 		},
+		getParams () {        
+		// 取到路由带过来的参数         
+			this.address = this.$route.params.con  
+			//console.log(this.address)      
+		// 将数据放在当前组件的数据内        
+			//this.msg = routerParams      
+		},
 		tijiao(){
 			if(this.val==""){
-
+				Toast('请选择油枪号')
 			}else{
-				this.$router.push({name:'pay'})
+				console.log("成功")
+	    		this.$router.push({
+	    			name:'pay',
+	    			path:"/refuel/pay"
+
+	    		})
 			}
 		},
 		loadBMapScript () {
@@ -129,6 +140,10 @@ export default {
 	    window['bMapInit'] = () => {
 	      this.qeuryLocation();
 	    };
+  },
+  watch:{
+  	// 监测路由变化,只要变化了就调用获取路由参数方法将数据存储本组件即可
+  	'$route': 'getParams'
   }
 }
 </script>
@@ -245,6 +260,7 @@ export default {
 		border-radius:4px;
 		margin:20px 0;
 		padding:10px 0;
+		border:0
 	}
 
 </style>

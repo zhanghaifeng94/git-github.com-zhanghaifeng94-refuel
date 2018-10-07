@@ -5,8 +5,8 @@
             <i class="iconfont icon-back back"></i>
           </mt-button>
           <mt-button class="" slot="right">
-            <i class="iconfont icon-favor back"></i>
-            <i class="iconfont icon-share back"></i>
+            <i class="iconfont icon-favor back" @click="onFavor($event)" ref="favor"></i>
+            <i class="iconfont icon-share back" @click="onShare()"></i>
           </mt-button>
       </mt-header>
       
@@ -71,8 +71,14 @@
       }
     },
     methods:{
-      onFavor(){
-
+      onFavor(e){
+        var attr=this.$refs.favor.getAttribute("class")
+        // if(attr=="iconfont icon-favor back"){
+        //     this.$refs.favor.setAttribute("class")="iconfont icon-favorfill"
+        // }else{
+        //   console.log("不是")
+        //   this.$refs.favor.setAttribute("class")="iconfont icon-favor"
+        // }
       },
       onShare(){
 

@@ -81,15 +81,15 @@
 					<P>客服</P>
 				</router-link>
 				<router-link to="/index/help">
-					<i class="iconfont icon-refund"></i>
+					<i class="iconfont icon-copy"></i>
 					<P>帮助</P>
 				</router-link>
 				<router-link to="">
-					<i class="iconfont icon-refund"></i>
+					<i class="iconfont icon-location"></i>
 					<P>地址</P>
 				</router-link>
 				<router-link to="">
-					<i class="iconfont icon-refund"></i>
+					<i class="iconfont icon-settings"></i>
 					<P>设置</P>
 				</router-link>				
 
@@ -238,9 +238,9 @@
 		justify-content:flex_wrap;
 		align-items:center;
 		flex-wrap:wrap;
-		padding:10px 0;
+		padding:0;
 	} 
 	.flex_wrap i{
-		margin-top:24px;
+		margin-top:20px;
 	}
 </style>
