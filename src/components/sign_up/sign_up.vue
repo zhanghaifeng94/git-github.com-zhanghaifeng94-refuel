@@ -38,7 +38,7 @@ export default {
       code: false,
       button: false,
       account: {
-        phone: '15134920364',
+        phone: '',
         password: '',
         code: ''
       },
