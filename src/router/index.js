@@ -23,6 +23,7 @@ import selection from 'components/selection/selection'
 import commodity from 'components/commodity/commodity'
 import selection_detail from 'components/selection_detail/selection_detail'
 import members from 'components/members/members'
+import details from 'components/details/details'
 
 Vue.use(Router)
 
@@ -139,7 +140,8 @@ export default new Router({
       path: '/store/search',
       name: 'search',
       component: search
-    },{
+    },
+    {
       path: '/store/selection',
       name: 'selection',
       component: selection
@@ -158,6 +160,11 @@ export default new Router({
       path: '/store/members',
       name: 'members',
       component: members
+    },
+    {
+      path: '/store/details/:id',
+      name: 'details',
+      component: details
     }
   ]
 })
