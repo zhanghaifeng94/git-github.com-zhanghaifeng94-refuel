@@ -20,21 +20,22 @@
 	  <div class="list">
 	  	<div class="search_box">
 	  		<img src="../../common/image/qiang.png" alt="">
-	  		<input type="text" name="" placeholder="请输入油枪号(询问加油员)" v-model='val' :input="change(val)">
+	  		<input type="text" name="" placeholder="请选择油枪号(询问加油员)" v-model='val' disabled="disabled">
 	  	</div>
 		<ul class="list_box">
 			<li v-for="(item,index) in list" :key="item.id" :class="Isindex==index?'active':''" @click="chice(item.con)">{{item.con}}#</li>
 		</ul>
 		
-        <router-link to="/refuel/pay">
-        	<input type="submit" name="" value="确认" class="submit">
+        <router-link to="">
+        	<input type="submit" name="" value="确认" class="submit" @click="tijiao()">
         </router-link>		
-	  </div>
-		
+	  </div>	
+
     </div>
 </template>
 
 <script>
+
 export default {
 	name:"refuel",
 	components: {
@@ -64,7 +65,8 @@ export default {
 				{id:18,con:18},
 				{id:19,con:19},
 				{id:20,con:20},
-			]
+			],
+			location:""
 		}
 	},
 	methods:{
@@ -73,13 +75,61 @@ export default {
 			this.Isindex=data-1;
 			this.val=data;
 		},
-		change(num){
-			// console.log(num)
-			// this.Isindex=-8
+		tijiao(){
+			if(this.val==""){
+
+			}else{
+				this.$router.push({name:'pay'})
+			}
+		},
+		loadBMapScript () {
+	      let script = document.createElement('script');
+	        script.src = 'http://api.map.baidu.com/api?v=3.0&ak=cEdG6fvjZOI0cN9HOrjkHpAOkReeqPK7&callback=bMapInit';
+	        document.body.appendChild(script);
+	    },
+	    qeuryLocation () {
+	      // let myGeo = new BMap.Geocoder();
+	      //   // 地址转换成坐标系
+	      //   myGeo.getPoint('武汉市光谷鲁巷', function (point) {
+	      //     if (point) {
+	      //       console.log(point);
+	      //     }
+	      //   },
+	      //   '武汉市');
+	      	let _this = this
+			var geolocation = new BMap.Geolocation()
+			geolocation.getCurrentPosition(function(r) {
+			if (this.getStatus() == BMAP_STATUS_SUCCESS) {
+			  const myGeo = new BMap.Geocoder()
+			  myGeo.getLocation(new BMap.Point(r.point.lng, r.point.lat), data => {
+			    if (data.addressComponents) {
+			      const result = data.addressComponents
+			      const location = {
+			        creditLongitude: r.point.lat, // 经度
+			        creditLatitude: r.point.lng, // 纬度
+			        creditProvince: result.province || '', // 省
+			        creditCity: result.city || '', // 市
+			        creditArea: result.district || '', // 区
+			        creditStreet: (result.street || '') + (result.streetNumber || '') // 街道
+			      }
+			      _this.location = location
+			      console.log(location)
+			    }
+			  })
+			}
+			})
+
 		}
+
 	},
 	created() {
-	}
+	},
+  	mounted () {
+		this.loadBMapScript();
+	    window['bMapInit'] = () => {
+	      this.qeuryLocation();
+	    };
+  }
 }
 </script>
 
@@ -163,6 +213,7 @@ export default {
 		color:#666;
 		height:32px;
 		width:100%;
+		background:#fff;
 	}
 	.list_box{
 		display:flex;

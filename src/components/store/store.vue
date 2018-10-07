@@ -99,12 +99,18 @@
 			<div class="love">
 				<h1>猜你喜欢</h1>
 				<div class="">
-					<router-link  to="" v-for="(item,index) in love" :key="item.id" class="love_list">
-						<img :src="item.img" alt="">
-						<p v-if="item.erea">{{item.erea}}</p>
-						<span class="over">{{item.title}}</span>
-						<span class="love_price">￥{{item.price}}</span>
-					</router-link >
+					<van-list
+						v-model="loading"
+						:finished="finished"
+						@load="onLoad"
+					>
+						<router-link  to="" v-for="(item,index) in love" :key="item.id" class="love_list">
+							<img :src="item.img" alt="">
+							<p v-if="item.erea">{{item.erea}}</p>
+							<span class="over">{{item.title}}</span>
+							<span class="love_price">￥{{item.price}}</span>
+						</router-link >
+					</van-list>
 				</div>
 			</div>
 		</div>
@@ -148,6 +154,8 @@
 		toTopShow:false,
 		status:true,
 		show:false,
+		loading: false,
+        finished: false,
 		  tuijian: [{
 		    img: require('common/image/store3.png'),
 		    id: '1',
@@ -283,6 +291,26 @@
 	          this.toTopShow = false
 	        }
 	     },
+	     onLoad() {
+          // 异步更新数据
+          setTimeout(() => {
+            let aa = {
+              img: require('common/image/store7.png'),
+              title: '带帽式多功能肩枕',
+              price:"66"
+            }
+            for (let i = 0; i < 10; i++) {
+              this.love.push(aa)
+            }
+            // 加载状态结束
+            this.loading = false
+
+            // 数据全部加载完成
+            if (this.love.length >= 5) {
+              this.finished = true
+            }
+          }, 1000)
+        },
 	    scrollToTop() {
 	        let timer = null, _that = this
 	        //动画，使用requestAnimationFrame代替setInterval

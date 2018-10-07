@@ -4,7 +4,7 @@
           <mt-button @click="go_back()" slot="left">
             <i class="iconfont icon-back back"></i>
           </mt-button>
-          <mt-button class="right" slot="right">
+          <mt-button class="" slot="right">
             <i class="iconfont icon-favor back"></i>
             <i class="iconfont icon-share back"></i>
           </mt-button>

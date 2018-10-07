@@ -9,9 +9,14 @@ import 'vant/lib/vant-css/index.css'
 import API from 'api/api'
 
 import 'common/stylus/index.styl'
+// import BMap from 'vue-baidu-map'
 
 Vue.use(MintUI)
 Vue.use(Vant)
+// Vue.use(BaiduMap, {
+//   // ak 是在百度地图开发者平台申请的密钥 详见 http://lbsyun.baidu.com/apiconsole/key */
+//   ak: 'YOUR_APP_KEY'
+// })
 
 Vue.config.productionTip = false
 
