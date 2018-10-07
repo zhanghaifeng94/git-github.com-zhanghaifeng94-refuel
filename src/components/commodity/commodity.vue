@@ -15,7 +15,7 @@
       >
         <ul class="clearfix">
           <li v-for="(item,index) in list" :key="index">
-            <router-link to="">
+            <router-link :to="'/store/details/'+item.id">
               <div class="pic"><img v-lazy="item.img" alt=""></div>
               <div class="info">
                 <div class="limit" v-if="item.limit">{{item.limit}}</div>
@@ -147,7 +147,7 @@ export default {
         li
           float: left
           width: 48%
-          min-height 215px
+          min-height 232px
           margin-right 10px
           margin-bottom 10px
           background rgba(252,252,252,1)
