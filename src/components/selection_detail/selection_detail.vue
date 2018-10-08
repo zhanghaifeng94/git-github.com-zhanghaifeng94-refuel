@@ -5,7 +5,8 @@
             <i class="iconfont icon-back back"></i>
           </mt-button>
           <mt-button class="" slot="right">
-            <i class="iconfont icon-favor back" @click="onFavor($event)" ref="favor"></i>
+            <i class="iconfont icon-favor back" @click="onFavor($event)" ref="favor" v-if="show"></i>
+            <i class="iconfont icon-favorfill back" @click="onFavor($event)" ref="favor" v-if="!show"></i>
             <i class="iconfont icon-share back" @click="onShare()"></i>
           </mt-button>
       </mt-header>
@@ -47,10 +48,38 @@
         </router-link> 
       </div>
 
+      <div class="tip_box" v-if="tip_show">
+        <div class="tip flex_wrap">
+          <router-link to="">
+            <i class="iconfont icon-weixin1"></i>
+            <p>微信好友</p>
+          </router-link>
+          <router-link to="">
+            <i class="iconfont icon-pengyouquan"></i>
+            <p>微信朋友圈</p>
+          </router-link>
+          <router-link to="">
+            <i class="iconfont icon-weibo"></i>
+            <p>新浪微博</p>
+          </router-link>
+          <router-link to="">
+            <i class="iconfont icon-QQCopy"></i>
+            <p>QQ好友</p>
+          </router-link>
+          <router-link to="">
+            <i class="iconfont icon-QQkongjian"></i>
+            <p>QQ空间</p>
+          </router-link>
+        </div>
+
+        <i class="iconfont icon-round_close_light cancel" @click="onCancel()"></i>
+      </div>
+
     </div>
 </template>
 
 <script>
+import { Toast } from 'vant';
   export default {
   	name:"selection_detail",
     components: {
@@ -58,6 +87,8 @@
     },    
     data () {
       return {
+        show:true,
+        tip_show:false,
         detail:{img:require('common/image/store6.png'),con:"经常出差的人或旅游的人，最难熬的就是睡觉问题。M50e款多功能枕，软硬适中，支撑力很强，戴上后头不会东倒西歪，一路醒几次，醒了也不觉得腰酸脖子痛。帽子的设计尤其周到，能遮光、当空调，一秒帮你隔绝世界，真的超级实用。出门带上它，相当于亲手为自己打开了幸福旅途的大门。这款颈枕，外面卖200多块，这里主要66。现在买，国庆出去正好能用上。"},
         advice:[
           {img:require('common/image/store6.png'),title:"带帽日式多功能颈枕",nav_title:"带帽设计，遮光更安心","erea":"限时特价","price":"66",old:"89",id:"1"}
@@ -72,19 +103,23 @@
     },
     methods:{
       onFavor(e){
-        var attr=this.$refs.favor.getAttribute("class")
-        // if(attr=="iconfont icon-favor back"){
-        //     this.$refs.favor.setAttribute("class")="iconfont icon-favorfill"
-        // }else{
-        //   console.log("不是")
-        //   this.$refs.favor.setAttribute("class")="iconfont icon-favor"
-        // }
+        var state=this.show
+        if(state==true){
+            this.show=false
+            Toast('收藏成功')
+        }else{
+          this.show=true
+          Toast('取消收藏')
+        }
       },
       onShare(){
-
+          this.tip_show=true
       },    
       go_back() {
         this.$router.back(-1)
+      },
+      onCancel(){
+        this.tip_show=false
       }
     }
   }
@@ -114,6 +149,9 @@
   }
   .back{
     color: #666
+  }
+  .back.icon-favorfill{
+    color: #EE722E
   }
   .detail{
     background: #fff;
@@ -250,5 +288,62 @@
     font-size:12px;
     color:#929292;
     margin:0 15px;
+  }
+  .tip_box{
+    position: fixed;
+    top:0;
+    left:0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.6);
+  }
+  .tip{
+    background:rgba(255,255,255,1);
+    border-radius:10px;
+    opacity:1;
+    padding: 10px 10px 30px 10px;
+    width: 86%;
+    margin:240px auto 0 auto;
+  }
+  .flex_wrap{
+    display:flex;
+    justify-content:flex_wrap;
+    align-items:center;
+    flex-wrap:wrap;
+  } 
+  .tip a{
+    width: 33%;
+    text-align: center;
+    margin-top: 20px;
+  }
+  .tip i{
+    font-size:60px;
+  }
+  .tip p{
+    font-size:14px;
+    color: #929292;
+    margin-top: 2px;
+  }
+  .icon-weixin1{
+    color: #1FC254
+  }
+  .icon-pengyouquan{
+    color: #14D212
+  }
+  .icon-weibo{
+    color: #DF4D69
+  }
+  .icon-QQCopy{
+    color: #3CAAE3
+  }
+  .icon-QQkongjian{
+    color: #FAB619
+  }
+  .cancel{
+    color: #fff;
+    font-size:24px;
+    text-align: center;
+    display: block;
+    margin-top: 20px;
   }
 </style>

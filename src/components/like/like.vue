@@ -1,0 +1,111 @@
+<template>
+    <div class="like">
+    	<Headers></Headers>
+		<ul class="lists">
+			<li v-for="(item,index) in list" :key="item.id">
+				<router-link to="">
+					<img :src="item.img" alt="">
+				</router-link>
+				<div class="msg">
+					<p>{{item.title}}</p>
+					<span>{{item.grade}}积分</span>
+					<b>{{item.erea}}</b>
+				</div>
+				<button type="button" class="btn" @click="reChange(item.title,item.grade)">马上兑</button>
+			</li>
+		</ul>
+    </div>
+</template>
+
+<script>
+  import Headers from 'base/header/header'
+  export default {
+  	name:"like",
+    components: {
+      Headers
+    },    
+    data () {
+        return {
+          title: '猜你喜欢',
+          rightText: '',
+          rightIcon:'',
+          list:[
+            {img:require('common/image/member1.png'),title:"5充值优惠券",grade:"500",id:"1",erea:"近30天已经兑换50件"},
+            {img:require('common/image/member2.png'),title:"5商城优惠券",grade:"500",id:"2",erea:""},
+            {img:require('common/image/member3.png'),title:"日式多功能颈枕",grade:"500",id:"3",erea:"近30天已经兑换50件"},
+            {img:require('common/image/member1.png'),title:"5充值优惠券",grade:"500",id:"4",erea:""},
+            {img:require('common/image/member2.png'),title:"5商城优惠券",grade:"500",id:"5",erea:"近30天已经兑换50件"},
+            {img:require('common/image/member4.png'),title:"日式多功能颈枕",grade:"500",id:"6",erea:"近30天已经兑换50件"},
+          ],
+        }
+      },
+      methods:{
+      	reChange(val,num){
+      		//console.log(val,num)
+      		this.$router.push({
+    			name:'voucher_details',
+    			path:"/store/voucher_details",
+    			params:{
+    				con:val,
+    				grade:num
+    			}
+
+    		})
+      	}
+      },
+      created() {
+        Headers.props.title.default = this.title
+        Headers.props.rightText.default = this.rightText
+        Headers.props.rightIcon.default = this.rightIcon
+      }
+  }
+</script>
+
+<style scoped rel="stylesheet/stylus">
+	.lists{
+		background: #fff;
+		min-height: 620px;
+	}
+	.lists li{
+		border-bottom: 1px solid #cecece;
+		padding: 14px 16px;
+		overflow: hidden;
+	}
+	.lists li img{
+		width: 40px;
+		height: 40px;
+		border-radius: 100%;
+		margin-right: 10px;
+		float: left;
+	}
+	.msg{
+		float: left;
+	}
+	.msg p{
+		font-size:12px;
+		color: #666
+	}
+	.msg span{
+		display: block;
+		color: #EE722E;
+		font-size: 8px;
+		margin-top:3px;
+	}
+	.msg b{
+		font-weight: normal;
+		font-size: 8px;
+		color: #929292
+	}
+	.btn{
+		float: right;
+		width:50px;
+		height:22px;
+		border:1px solid #929292;
+		border-radius:4px;
+		font-size:12px;
+		color: #929292;
+		background: #fff;
+		margin-top: 10px;
+	}
+</style>
+

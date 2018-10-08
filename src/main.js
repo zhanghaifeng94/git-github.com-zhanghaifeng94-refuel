@@ -9,7 +9,6 @@ import 'vant/lib/vant-css/index.css'
 import API from 'api/api'
 
 import 'common/stylus/index.styl'
-// import BMap from 'vue-baidu-map'
 
 Vue.use(MintUI)
 Vue.use(Vant)

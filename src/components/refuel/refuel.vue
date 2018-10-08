@@ -24,8 +24,7 @@
 	  	</div>
 		<ul class="list_box">
 			<li v-for="(item,index) in list" :key="item.id" :class="Isindex==index?'active':''" @click="chice(item.con)">{{item.con}}#</li>
-		</ul>
-		
+		</ul>		
         <button class="submit" @click="tijiao()">确认</button>	
 	  </div>	
 
@@ -34,6 +33,8 @@
 
 <script>
 import { Toast } from 'vant';
+// import BMap from 'BMap'
+// import {map} from '../../api'
 export default {
 	name:"refuel",
 	components: {
@@ -77,9 +78,6 @@ export default {
 		getParams () {        
 		// 取到路由带过来的参数         
 			this.address = this.$route.params.con  
-			//console.log(this.address)      
-		// 将数据放在当前组件的数据内        
-			//this.msg = routerParams      
 		},
 		tijiao(){
 			if(this.val==""){
@@ -89,62 +87,41 @@ export default {
 	    		this.$router.push({
 	    			name:'pay',
 	    			path:"/refuel/pay"
-
 	    		})
 			}
 		},
-		loadBMapScript () {
-	      let script = document.createElement('script');
-	        script.src = 'http://api.map.baidu.com/api?v=3.0&ak=cEdG6fvjZOI0cN9HOrjkHpAOkReeqPK7&callback=bMapInit';
-	        document.body.appendChild(script);
-	    },
-	    qeuryLocation () {
-	      // let myGeo = new BMap.Geocoder();
-	      //   // 地址转换成坐标系
-	      //   myGeo.getPoint('武汉市光谷鲁巷', function (point) {
-	      //     if (point) {
-	      //       console.log(point);
-	      //     }
-	      //   },
-	      //   '武汉市');
-	      	let _this = this
-			var geolocation = new BMap.Geolocation()
-			geolocation.getCurrentPosition(function(r) {
-			if (this.getStatus() == BMAP_STATUS_SUCCESS) {
-			  const myGeo = new BMap.Geocoder()
-			  myGeo.getLocation(new BMap.Point(r.point.lng, r.point.lat), data => {
-			    if (data.addressComponents) {
-			      const result = data.addressComponents
-			      const location = {
-			        creditLongitude: r.point.lat, // 经度
-			        creditLatitude: r.point.lng, // 纬度
-			        creditProvince: result.province || '', // 省
-			        creditCity: result.city || '', // 市
-			        creditArea: result.district || '', // 区
-			        creditStreet: (result.street || '') + (result.streetNumber || '') // 街道
-			      }
-			      _this.location = location
-			      console.log(location)
-			    }
-			  })
-			}
-			})
-
-		}
-
 	},
 	created() {
+		this.getParams()
 	},
   	mounted () {
-		this.loadBMapScript();
-	    window['bMapInit'] = () => {
-	      this.qeuryLocation();
-	    };
-  },
-  watch:{
-  	// 监测路由变化,只要变化了就调用获取路由参数方法将数据存储本组件即可
-  	'$route': 'getParams'
-  }
+ 	//     let _this = this
+		// var geolocation = new BMap.Geolocation()
+		// geolocation.getCurrentPosition(function(r) {
+		// if (this.getStatus() == BMAP_STATUS_SUCCESS) {
+		//   const myGeo = new BMap.Geocoder()
+		//   myGeo.getLocation(new BMap.Point(r.point.lng, r.point.lat), data => {
+		//     if (data.addressComponents) {
+		//       const result = data.addressComponents
+		//       const location = {
+		//         creditLongitude: r.point.lat, // 经度
+		//         creditLatitude: r.point.lng, // 纬度
+		//         creditProvince: result.province || '', // 省
+		//         creditCity: result.city || '', // 市
+		//         creditArea: result.district || '', // 区
+		//         creditStreet: (result.street || '') + (result.streetNumber || '') // 街道
+		//       }
+		//       _this.location = location
+		//       console.log(location)
+		//     }
+		//   })
+		// }
+		// })
+	},
+	watch:{
+		// 监测路由变化,只要变化了就调用获取路由参数方法将数据存储本组件即可
+		//'$route': 'getParams'
+	}
 }
 </script>
 

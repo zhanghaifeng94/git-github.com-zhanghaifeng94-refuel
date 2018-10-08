@@ -68,7 +68,7 @@
 					<i class="iconfont icon-form"></i>
 					<P>账单</P>
 				</router-link>
-				<router-link to="">
+				<router-link to="/user/invite">
 					<i class="iconfont icon-present"></i>
 					<P>邀请有礼</P>
 				</router-link>

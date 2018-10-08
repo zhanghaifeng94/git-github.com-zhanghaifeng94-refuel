@@ -24,6 +24,10 @@ import commodity from 'components/commodity/commodity'
 import selection_detail from 'components/selection_detail/selection_detail'
 import members from 'components/members/members'
 import details from 'components/details/details'
+import like from 'components/like/like'
+import voucher_details from 'components/voucher_details/voucher_details'
+import invite from 'components/invite/invite'
+import coupon_codes from 'components/coupon_codes/coupon_codes'
 
 Vue.use(Router)
 
@@ -165,6 +169,26 @@ export default new Router({
       path: '/store/details/:id',
       name: 'details',
       component: details
+    },
+    {
+      path: '/store/like',
+      name: 'like',
+      component: like
+    },
+    {
+      path: '/store/voucher_details',
+      name: 'voucher_details',
+      component: voucher_details
+    },
+    {
+      path: '/user/invite',
+      name: 'invite',
+      component: invite         
+    },
+    {
+      path: '/user/coupon_codes',
+      name: 'coupon_codes',
+      component: coupon_codes         
     }
   ]
 })
