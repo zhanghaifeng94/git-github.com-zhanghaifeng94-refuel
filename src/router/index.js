@@ -24,6 +24,8 @@ import commodity from 'components/commodity/commodity'
 import selection_detail from 'components/selection_detail/selection_detail'
 import members from 'components/members/members'
 import details from 'components/details/details'
+import order from 'components/order/order'
+import order_details from 'components/order_details/order_details'
 
 Vue.use(Router)
 
@@ -165,6 +167,16 @@ export default new Router({
       path: '/store/details/:id',
       name: 'details',
       component: details
+    },
+    {
+      path: '/user/order/:type',
+      name: 'order',
+      component: order
+    },
+    {
+      path: '/user/order_details/:id',
+      name: 'order_details',
+      component: order_details
     }
   ]
 })
