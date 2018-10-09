@@ -34,7 +34,6 @@ import rule from 'components/rule/rule'
 import share_details from 'components/share_details/share_details'
 import integrate from 'components/integrate/integrate'
 
-
 Vue.use(Router)
 
 export default new Router({
@@ -189,13 +188,14 @@ export default new Router({
     {
       path: '/user/invite',
       name: 'invite',
-      component: invite         
+      component: invite
     },
     {
       path: '/user/coupon_codes',
       name: 'coupon_codes',
       component: coupon_codes         
-    },{
+    },
+    {
       path: '/user/order/:type',
       name: 'order',
       component: order
