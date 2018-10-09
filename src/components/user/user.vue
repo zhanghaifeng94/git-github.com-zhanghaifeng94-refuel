@@ -64,7 +64,7 @@
 					<i class="iconfont icon-favor"></i>
 					<P>收藏</P>
 				</router-link>
-				<router-link to="">
+				<router-link to="/user/bill">
 					<i class="iconfont icon-form"> </i>
 					<P>账单</P>
 				</router-link>
@@ -88,7 +88,7 @@
 					<i class="iconfont icon-location"></i>
 					<P>地址</P>
 				</router-link>
-				<router-link to="">
+				<router-link to="/user/setting">
 					<i class="iconfont icon-settings"></i>
 					<P>设置</P>
 				</router-link>				

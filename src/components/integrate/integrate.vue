@@ -15,7 +15,7 @@
 		</div>
 		<p class="tip">积分轻松得</p>
 
-		<ul class="list">
+		<ul class="list flex_between">
 			<li>
 				<img src="../../common/image/222.png" height="80" width="80" alt="">
 				<p>充值返现</p>
@@ -33,7 +33,7 @@
 			</li>
 		</ul>
 
-		<router-link to="">
+		<router-link to="" class="banner">
 			<img src="../../common/image/489481.png" height="296" width="640" alt="">
 		</router-link>
 
@@ -53,7 +53,8 @@
 			    rightIcon:'',	
 		        userName:"欧阳阳阳",
 		        grade:"100",
-		        img:require('common/image/user_img.png'),			
+		        img:require('common/image/user_img.png'),
+		        rightPath:"/user/integrate_introduce"	
 			}
 		},
 		methods:{
@@ -63,6 +64,7 @@
 			Headers.props.title.default = this.title,
 			Headers.props.rightIcon.default = this.rightIcon
 			Headers.props.rightText.default = this.rightText
+			Headers.props.rightPath.default = this.rightPath
 		}
 	}
 </script>
@@ -70,7 +72,7 @@
 <style scoped>
 	.integrate{
 		background:#fff;
-		min-height: 610px;
+		min-height: 667px;
 	}
 	.integrate >>> .title .right{
 		color: #666;	
@@ -123,5 +125,45 @@
 	  	color: #666;
 	  	text-align: center;
 	  	margin:15px 0 20px 0;
+	  }
+	  .list{
+	  	width: 92%;
+	  	margin:0 auto;
+	  }
+	  .flex_between{
+	  	display: flex;
+	  	justify-content: space-between;
+	  	align-items: center;
+	  }
+	  .list li{
+	  	width: 33.3%;
+	  }
+	  .list li img{
+	  	width: 50px;
+	  	height: 50px;
+	  	border-radius: 100%;
+	  	display: block;
+	  	margin:0 auto;
+	  }
+	  .list li p{
+	  	font-size: 12px;
+	  	color: #666;
+	  	text-align: center;
+	  	margin:10px 0 6px 0;
+	  }
+	  .list li span{
+	  	font-size: 10px;
+	  	color: #929292;
+	  	text-align: center;
+	  	display: block
+	  }
+	  .banner{
+	  	width: 92%;
+	  	margin:30px auto;
+	  	display: block;
+	  }
+	  .banner img{
+	  	width: 100%;
+	  	height: 147px;
 	  }
 </style>
