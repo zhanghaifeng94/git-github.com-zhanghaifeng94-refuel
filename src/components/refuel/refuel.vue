@@ -13,7 +13,7 @@
 		  		<h1>您当前在</h1>
 		  		<p>{{address}}</p>
 		  	</div>
-		  	<router-link to="/refuel/change_station" class="change">更改加油站</router-link>	  		
+		  	<router-link to="/refuel/change_station" class="change">更改加油站</router-link>
 	  	</div>
 	  </div>
 
@@ -24,9 +24,9 @@
 	  	</div>
 		<ul class="list_box">
 			<li v-for="(item,index) in list" :key="item.id" :class="Isindex==index?'active':''" @click="chice(item.con)">{{item.con}}#</li>
-		</ul>		
-        <button class="submit" @click="tijiao()">确认</button>	
-	  </div>	
+		</ul>
+        <button class="submit" @click="tijiao()">确认</button>
+	  </div>
 
     </div>
 </template>
@@ -75,9 +75,9 @@ export default {
 			this.Isindex=data-1;
 			this.val=data;
 		},
-		getParams () {        
-		// 取到路由带过来的参数         
-			this.address = this.$route.params.con  
+		getParams () {
+		// 取到路由带过来的参数
+			this.address = this.$route.params.con
 		},
 		tijiao(){
 			if(this.val==""){
@@ -95,28 +95,28 @@ export default {
 		this.getParams()
 	},
   	mounted () {
- 	//     let _this = this
-		// var geolocation = new BMap.Geolocation()
-		// geolocation.getCurrentPosition(function(r) {
-		// if (this.getStatus() == BMAP_STATUS_SUCCESS) {
-		//   const myGeo = new BMap.Geocoder()
-		//   myGeo.getLocation(new BMap.Point(r.point.lng, r.point.lat), data => {
-		//     if (data.addressComponents) {
-		//       const result = data.addressComponents
-		//       const location = {
-		//         creditLongitude: r.point.lat, // 经度
-		//         creditLatitude: r.point.lng, // 纬度
-		//         creditProvince: result.province || '', // 省
-		//         creditCity: result.city || '', // 市
-		//         creditArea: result.district || '', // 区
-		//         creditStreet: (result.street || '') + (result.streetNumber || '') // 街道
-		//       }
-		//       _this.location = location
-		//       console.log(location)
-		//     }
-		//   })
-		// }
-		// })
+ 	    let _this = this
+		var geolocation = new BMap.Geolocation()
+		geolocation.getCurrentPosition(function(r) {
+		if (this.getStatus() == BMAP_STATUS_SUCCESS) {
+		  const myGeo = new BMap.Geocoder()
+		  myGeo.getLocation(new BMap.Point(r.point.lng, r.point.lat), data => {
+		    if (data.addressComponents) {
+		      const result = data.addressComponents
+		      const location = {
+		        creditLongitude: r.point.lat, // 经度
+		        creditLatitude: r.point.lng, // 纬度
+		        creditProvince: result.province || '', // 省
+		        creditCity: result.city || '', // 市
+		        creditArea: result.district || '', // 区
+		        creditStreet: (result.street || '') + (result.streetNumber || '') // 街道
+		      }
+		      _this.location = location
+		      console.log(location)
+		    }
+		  })
+		}
+		})
 	},
 	watch:{
 		// 监测路由变化,只要变化了就调用获取路由参数方法将数据存储本组件即可
@@ -191,7 +191,7 @@ export default {
 	}
 	.search_box{
 		display:flex;
-	    align-items:center;	
+	    align-items:center;
 	    border-bottom:1px solid #ececec;
 	    padding:10px 0;
 	}
@@ -211,7 +211,7 @@ export default {
 		display:flex;
 		flex-wrap:wrap;
 		justify-content:space-between;
-	    align-items:center;	
+	    align-items:center;
 		padding:14px 0;
 		border-bottom:1px solid #ececec
 	}

@@ -24,15 +24,12 @@ import commodity from 'components/commodity/commodity'
 import selection_detail from 'components/selection_detail/selection_detail'
 import members from 'components/members/members'
 import details from 'components/details/details'
-<<<<<<< HEAD
 import like from 'components/like/like'
 import voucher_details from 'components/voucher_details/voucher_details'
 import invite from 'components/invite/invite'
 import coupon_codes from 'components/coupon_codes/coupon_codes'
-=======
 import order from 'components/order/order'
 import order_details from 'components/order_details/order_details'
->>>>>>> 901de840fe8addf2af521b74f657a770a9475cbf
 
 Vue.use(Router)
 
@@ -176,7 +173,6 @@ export default new Router({
       component: details
     },
     {
-<<<<<<< HEAD
       path: '/store/like',
       name: 'like',
       component: like
@@ -189,13 +185,14 @@ export default new Router({
     {
       path: '/user/invite',
       name: 'invite',
-      component: invite         
+      component: invite
     },
     {
       path: '/user/coupon_codes',
       name: 'coupon_codes',
-      component: coupon_codes         
-=======
+      component: coupon_codes
+    },
+    {
       path: '/user/order/:type',
       name: 'order',
       component: order
@@ -204,7 +201,6 @@ export default new Router({
       path: '/user/order_details/:id',
       name: 'order_details',
       component: order_details
->>>>>>> 901de840fe8addf2af521b74f657a770a9475cbf
     }
   ]
 })
