@@ -1,6 +1,5 @@
 <template>
-<<<<<<< HEAD
-    <div class="user">
+  <div class="user">
 		<div class="head">
 			<div class="flex">
 				<img :src="img" alt="">
@@ -10,7 +9,7 @@
 				</div>
 				<div class="status" v-if="state">欧阳</div>
 			</div>
-			<div class="ad flex">
+			<div class="ad flex" @click="integrate()">
 				<div class="ad_left">
 					<p>M50会员</p>
 					<span>积分{{integral}}</span>
@@ -23,7 +22,7 @@
 		</div>
 
 		<div class="order_box">
-			<h1 class="flex_between">
+			<h1 class="flex_between" @click="order()">
 				我的订单
 				<i class="iconfont icon-right"></i>
 			</h1>
@@ -66,7 +65,7 @@
 					<P>收藏</P>
 				</router-link>
 				<router-link to="">
-					<i class="iconfont icon-form"></i>
+					<i class="iconfont icon-form"> </i>
 					<P>账单</P>
 				</router-link>
 				<router-link to="/user/invite">
@@ -95,108 +94,8 @@
 				</router-link>				
 
 			</div>
-		</div>		
-=======
-  <div class="user">
-    <div class="head">
-      <div class="flex">
-        <img :src="img" alt="">
-        <div class="status_none" v-if="!state">
-          <router-link to="sign_in">登录</router-link>
-          /
-          <router-link to="sign_up">注册</router-link>
-        </div>
-        <div class="status" v-if="state">欧阳</div>
-      </div>
-      <div class="ad flex">
-        <div class="ad_left">
-          <p>M50会员</p>
-          <span>积分{{integral}}</span>
-        </div>
-        <div class="ad_right">
-          <p>会员优享，超值换购</p>
-          <span>iPhone XS大礼等着你</span>
-        </div>
-      </div>
-    </div>
-
-    <div class="order_box">
-      <h1 class="flex_between" @click="order()">
-        我的订单
-        <i class="iconfont icon-right"></i>
-      </h1>
-      <div class="order_status flex">
-        <router-link to="">
-          <i class="iconfont icon-pay"></i>
-          <P>待付款</P>
-        </router-link>
-        <router-link to="">
-          <i class="iconfont icon-send"></i>
-          <P>待发货</P>
-        </router-link>
-        <router-link to="">
-          <i class="iconfont icon-deliver"></i>
-          <P>待收货</P>
-        </router-link>
-        <router-link to="">
-          <i class="iconfont icon-comment"></i>
-          <P>待评价</P>
-        </router-link>
-        <router-link to="">
-          <i class="iconfont icon-refund"></i>
-          <P>退款/售后</P>
-        </router-link>
-      </div>
-      <router-link to="" class="card">
-        <i class="iconfont icon-cart"></i>
-        <span v-if="card_state">您的购物车空空如也</span>
-        <span v-if="!card_state">您的购物车的商品还没结算</span>
-      </router-link>
-    </div>
-
-    <div class="order_box service_box">
-      <h1 class="flex_between">
-        我的服务
-      </h1>
-      <div class="order_status flex_wrap">
-        <router-link to="">
-          <i class="iconfont icon-favor"></i>
-          <P>收藏</P>
-        </router-link>
-        <router-link to="">
-          <i class="iconfont icon-form"></i>
-          <P>账单</P>
-        </router-link>
-        <router-link to="">
-          <i class="iconfont icon-present"></i>
-          <P>邀请有礼</P>
-        </router-link>
-        <router-link to="/index/coupon">
-          <i class="iconfont icon-comment"></i>
-          <P>优惠券</P>
-        </router-link>
-        <router-link to="/index/service">
-          <i class="iconfont icon-service"></i>
-          <P>客服</P>
-        </router-link>
-        <router-link to="/index/help">
-          <i class="iconfont icon-copy"></i>
-          <P>帮助</P>
-        </router-link>
-        <router-link to="">
-          <i class="iconfont icon-location"></i>
-          <P>地址</P>
-        </router-link>
-        <router-link to="">
-          <i class="iconfont icon-settings"></i>
-          <P>设置</P>
-        </router-link>
->>>>>>> 901de840fe8addf2af521b74f657a770a9475cbf
-
-      </div>
-    </div>
-
-  </div>
+		</div>	
+  </div>	
 </template>
 
 <script>
@@ -213,7 +112,12 @@ export default {
   methods:{
     order(){
       this.$router.push({
-        path: `/user/order/0`
+        path: '/user/order/0'
+      })
+    },
+    integrate(){
+      this.$router.push({
+        path: '/user/integrate'
       })
     }
   }

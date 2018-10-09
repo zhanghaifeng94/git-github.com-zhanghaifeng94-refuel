@@ -33,8 +33,7 @@
 
 <script>
 import { Toast } from 'vant';
-// import BMap from 'BMap'
-// import {map} from '../../api'
+import BMap from 'BMap'
 export default {
 	name:"refuel",
 	components: {
@@ -95,32 +94,32 @@ export default {
 		this.getParams()
 	},
   	mounted () {
- 	//     let _this = this
-		// var geolocation = new BMap.Geolocation()
-		// geolocation.getCurrentPosition(function(r) {
-		// if (this.getStatus() == BMAP_STATUS_SUCCESS) {
-		//   const myGeo = new BMap.Geocoder()
-		//   myGeo.getLocation(new BMap.Point(r.point.lng, r.point.lat), data => {
-		//     if (data.addressComponents) {
-		//       const result = data.addressComponents
-		//       const location = {
-		//         creditLongitude: r.point.lat, // 经度
-		//         creditLatitude: r.point.lng, // 纬度
-		//         creditProvince: result.province || '', // 省
-		//         creditCity: result.city || '', // 市
-		//         creditArea: result.district || '', // 区
-		//         creditStreet: (result.street || '') + (result.streetNumber || '') // 街道
-		//       }
-		//       _this.location = location
-		//       console.log(location)
-		//     }
-		//   })
-		// }
-		// })
+  		let _this = this
+  		var geolocation = new BMap.Geolocation()
+  		geolocation.getCurrentPosition(function(r) {
+  			if (this.getStatus() == BMAP_STATUS_SUCCESS) {
+  				const myGeo = new BMap.Geocoder()
+  				myGeo.getLocation(new BMap.Point(r.point.lng, r.point.lat), data => {
+  					if (data.addressComponents) {
+  						const result = data.addressComponents
+  						const location = {
+					        creditLongitude: r.point.lat, // 经度
+					        creditLatitude: r.point.lng, // 纬度
+					        creditProvince: result.province || '', // 省
+					        creditCity: result.city || '', // 市
+					        creditArea: result.district || '', // 区
+					        creditStreet: (result.street || '') + (result.streetNumber || '') // 街道
+		    			}
+					    _this.location = location
+					    console.log(location)
+					}
+				})
+  			}
+  		})
 	},
 	watch:{
 		// 监测路由变化,只要变化了就调用获取路由参数方法将数据存储本组件即可
-		//'$route': 'getParams'
+		'$route': 'getParams'
 	}
 }
 </script>

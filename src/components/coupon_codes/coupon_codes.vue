@@ -22,7 +22,7 @@
           title: '我的优惠码',
           rightText: '活动规则',
           rightIcon:'',
-          rightPath:'',
+          rightPath:'/user/rule',
           list:[
             {con:"JU3564",id:"1",state:1},
             {con:"JU4574",id:"2",state:1},

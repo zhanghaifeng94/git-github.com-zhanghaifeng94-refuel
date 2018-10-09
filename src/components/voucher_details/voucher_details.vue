@@ -41,6 +41,9 @@
 		// 取到路由带过来的参数         
 			this.con = this.$route.params.con;
 			this.grade= this.$route.params.grade;
+			this.title= this.$route.params.con;
+			//console.log(this.$route.params.con)
+			//console.log(this.$route.params.grade)
 		}
 	},
 	created() {
@@ -50,7 +53,7 @@
 		Headers.props.rightIcon.default = this.rightIcon
 	},
 	watch:{
-		//'$route': 'getParams'
+		'$route': 'getParams'
 	}   
     
   }
