@@ -2,7 +2,7 @@
   <div class="user">
 		<div class="head">
 			<div class="flex">
-				<img :src="img" alt="">
+				<img :src="img" alt="" @click="onLink()">
 				<div class="status_none" v-if="!state">
 			      <router-link to="sign_in">登录</router-link>/             
 			      <router-link to="sign_up">注册</router-link>					
@@ -118,6 +118,11 @@ export default {
     integrate(){
       this.$router.push({
         path: '/user/integrate'
+      })
+    },
+    onLink(){
+      this.$router.push({
+        path: '/user/personal'
       })
     }
   }

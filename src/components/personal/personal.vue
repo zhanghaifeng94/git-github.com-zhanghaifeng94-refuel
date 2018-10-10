@@ -3,12 +3,11 @@
       <headers></headers>
         
       <div class="box">
-        <router-link to="/user/advice" class="list flex_between">意见反馈 <i class="iconfont icon-back_android"></i></router-link>
-         <router-link to="/user/about"  class="list flex_between">关于M50e <i class="iconfont icon-back_android"></i></router-link>
-         <p class="list flex_between">清楚缓存 <span>123kb</span></p>
+        <router-link to="/user/personal_msg" class="list flex_between">个人信息 <i class="iconfont icon-back_android"></i></router-link>
+         <router-link to="/user/change_password"  class="list flex_between">修改密码 <i class="iconfont icon-back_android"></i></router-link>
+         <router-link to="/user/change_payword" class="list flex_between">修改支付密码 <i class="iconfont icon-back_android"></i></router-link>
+         <router-link to="/user/change_phone"  class="list flex_between">修改手机号 <i class="iconfont icon-back_android"></i></router-link>        
       </div>
-
-      <button type="button" class="btn">退出登录</button>
 
     </div>
 </template>
@@ -22,10 +21,9 @@ export default {
   },
   data() {
     return {
-      title: '设置',
+      title: '个人中心',
       rightText: '',
       rightIcon:'',      
-
     }
   },
   methods:{

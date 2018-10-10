@@ -37,6 +37,10 @@ import integrate_introduce from 'components/integrate_introduce/integrate_introd
 import bill from 'components/bill/bill'
 import setting from 'components/setting/setting'
 import about from 'components/about/about'
+import advice from 'components/advice/advice'
+import personal from 'components/personal/personal'
+import personal_msg from 'components/personal_msg/personal_msg'
+
 
 
 Vue.use(Router)
@@ -244,6 +248,21 @@ export default new Router({
       path: '/user/about',
       name: 'about',
       component: about
+    },
+    {
+      path: '/user/advice',
+      name: 'advice',
+      component: advice
+    },
+    {
+      path: '/user/personal',
+      name: 'personal',
+      component: personal
+    },
+    {
+      path: '/user/personal_msg',
+      name: 'personal_msg',
+      component: personal_msg
     }
   ]
 })

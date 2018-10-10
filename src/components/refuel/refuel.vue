@@ -96,6 +96,8 @@ export default {
   	mounted () {
  	    let _this = this
 		var geolocation = new BMap.Geolocation()
+		// 开启SDK辅助定位
+		geolocation.enableSDKLocation();
 		geolocation.getCurrentPosition(function(r) {
 		if (this.getStatus() == BMAP_STATUS_SUCCESS) {
 		  const myGeo = new BMap.Geocoder()
