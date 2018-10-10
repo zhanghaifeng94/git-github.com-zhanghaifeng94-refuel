@@ -33,11 +33,6 @@ import order_details from 'components/order_details/order_details'
 import rule from 'components/rule/rule'
 import share_details from 'components/share_details/share_details'
 import integrate from 'components/integrate/integrate'
-import integrate_introduce from 'components/integrate_introduce/integrate_introduce'
-import bill from 'components/bill/bill'
-import setting from 'components/setting/setting'
-import about from 'components/about/about'
-
 
 Vue.use(Router)
 
@@ -198,7 +193,7 @@ export default new Router({
     {
       path: '/user/coupon_codes',
       name: 'coupon_codes',
-      component: coupon_codes         
+      component: coupon_codes
     },
     {
       path: '/user/order/:type',
@@ -224,26 +219,6 @@ export default new Router({
       path: '/user/integrate',
       name: 'integrate',
       component: integrate
-    },
-    {
-      path: '/user/integrate_introduce',
-      name: 'integrate_introduce',
-      component: integrate_introduce
-    },
-    {
-      path: '/user/bill',
-      name: 'bill',
-      component: bill
-    },
-    {
-      path: '/user/setting',
-      name: 'setting',
-      component: setting
-    },
-    {
-      path: '/user/about',
-      name: 'about',
-      component: about
     }
   ]
 })

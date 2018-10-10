@@ -23,15 +23,16 @@
                 </div>
                 <div class="type">{{item.type_text}}</div>
               </div>
-              <div class="bottom">
-                <span class="btn" v-if="item.type === '1'">再次购买</span>
-                <span class="btn" v-if="item.type === '1'">退换/售后</span>
-                <span class="btn" v-if="item.type === '2'">提醒发货</span>
-                <span class="btn" v-if="item.type === '3'">快递单号</span>
-                <span class="btn btn_1" @click="confirm" v-if="item.type === '3'">确认收货</span>
-                <span class="btn" v-if="item.type === '4'">去评价</span>
-              </div>
-              <van-popup class="password" v-model="password">
+            </router-link>
+            <div class="bottom">
+              <span class="btn" v-if="item.type === '1'">再次购买</span>
+              <span class="btn" v-if="item.type === '1'">退换/售后</span>
+              <span class="btn" v-if="item.type === '2'">提醒发货</span>
+              <span class="btn" v-if="item.type === '3'">快递单号</span>
+              <span class="btn btn_1" @click="confirm" v-if="item.type === '3'">确认收货</span>
+              <span class="btn" v-if="item.type === '4'" @click="evaluate(item)">去评价</span>
+            </div>
+            <van-popup class="password" v-model="password">
                 <div class="tit">请输入支付密码</div>
                 <van-password-input
                   :value="value"
@@ -44,7 +45,6 @@
                   @blur="showKeyboard = false"
                 />
               </van-popup>
-            </router-link>
           </li>
         </ul>
         <div class="null" v-if="!list">
@@ -159,6 +159,11 @@ export default {
     },
     onDelete() {
       this.value = this.value.slice(0, this.value.length - 1)
+    },
+    evaluate(val) {
+      this.$router.push({
+        path: `/user/evaluate/${val.id}`
+      })
     }
   },
   mounted() {
