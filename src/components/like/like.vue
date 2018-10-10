@@ -2,16 +2,18 @@
     <div class="like">
     	<Headers></Headers>
 		<ul class="lists">
-			<li v-for="(item,index) in list" :key="item.id">
-				<router-link to="">
-					<img :src="item.img" alt="">
-				</router-link>
-				<div class="msg">
-					<p>{{item.title}}</p>
-					<span>{{item.grade}}积分</span>
-					<b>{{item.erea}}</b>
+			<li v-for="(item,index) in list" :key="item.id" class="flex_between">
+				<div class="flex">
+					<router-link to="">
+						<img :src="item.img" alt="">
+					</router-link>
+					<div class="msg">
+						<p>{{item.title}}</p>
+						<span>{{item.grade}}积分</span>
+						<b>{{item.erea}}</b>
+					</div>				
 				</div>
-				<button type="button" class="btn" @click="reChange(item.title,item.grade)">马上兑</button>
+				<button type="button" class="btn" @click="reChange(item.title,item.grade,item.id)">马上兑</button>
 			</li>
 		</ul>
     </div>
@@ -40,14 +42,15 @@
         }
       },
       methods:{
-      	reChange(val,num){
+      	reChange(val,num,id){
       		//console.log(val,num)
       		this.$router.push({
     			name:'voucher_details',
     			path:"/store/voucher_details",
     			params:{
     				con:val,
-    				grade:num
+    				grade:num,
+    				id:id
     			}
 
     		})
@@ -76,10 +79,14 @@
 		height: 40px;
 		border-radius: 100%;
 		margin-right: 10px;
-		float: left;
 	}
-	.msg{
-		float: left;
+	.flex{
+		display: flex;
+	}
+	.flex_between{
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
 	}
 	.msg p{
 		font-size:12px;
@@ -97,15 +104,12 @@
 		color: #929292
 	}
 	.btn{
-		float: right;
-		width:50px;
 		height:22px;
 		border:1px solid #929292;
 		border-radius:4px;
 		font-size:12px;
 		color: #929292;
 		background: #fff;
-		margin-top: 10px;
 	}
 </style>
 

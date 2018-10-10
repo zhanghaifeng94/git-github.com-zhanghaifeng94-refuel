@@ -11,6 +11,21 @@
        <input type="file" name="avatar" accept="image/gif,image/jpeg,image/jpg,image/png" @change="changeImage($event)" ref="avatarInput" class="uppic">
         <p>点击修改头像</p>
        </div>
+        
+      <van-radio-group v-model="radio">
+        <van-cell-group>
+          <van-cell class="flex">
+            <label>昵称</label>
+            <p>欧阳阳</p>
+          </van-cell>
+          <van-cell class="flex">
+            <label>性别</label>
+            <van-radio name="1" @click="radio = '1'">男</van-radio>
+            <van-radio name="2" @click="radio = '2'">女</van-radio>
+          </van-cell>
+        </van-cell-group>
+      </van-radio-group>
+
     </div>
 </template>
 
@@ -22,7 +37,8 @@ export default {
   },
   data() {
     return {
-        avatar: require('common/image/user_head.png')  
+        avatar: require('common/image/user_head.png'),
+        radio:"1"  
     }
   },
   methods:{
@@ -45,24 +61,22 @@ export default {
 }
 </script>
 
-<style scoped lang="stylus" rel="stylesheet/stylus">
-.title
-    height: 48px
-    background #fff
-    color: #666666
-    font-size 20px
-    padding 0 16px
-    box-sizing border-box
-    margin-bottom 10px
-    .iconfont
-      font-size 20px
-    .right
-      font-size 12px
-      color #766BDB
-</style>
-<style type="text/css" media="screen">
+<style scoped>
   .personal_msg >>> .right{
     color:#666;
+    font-size:12px;
+  }
+  .personal_msg >>> .title{
+    height: 48px;
+    background: #fff;
+    color: #666666;
+    font-size: 20px;
+    padding: 0 16px;
+    box-sizing:border-box;
+    margin-bottom: 10px;
+  }
+  .personal_msg >>> .iconfont{
+    font-size:20px;
   }
   .picter{
     background: #fff;
@@ -72,15 +86,16 @@ export default {
   }
   .uppic{
     width: 60px;
-    height: 80px;
+    height: 86px;
     background: red;
     margin:0 auto;
     display: block;
     position: absolute;
     left:50%;
     margin-left: -30px;
-    top:20px;
-    opacity: 0                                                                                                                                                                                                
+    top:15px;
+    opacity: 0;
+    z-index:100;
   }
   .avatar_img{
     width:60px;
@@ -91,7 +106,7 @@ export default {
     border-radius:100%;
     position: absolute;
     left:50%;
-    top:20px;
+    top:15px;
     margin-left: -30px;
   }
   .picter p{
@@ -101,6 +116,27 @@ export default {
     width: 100%;
     text-align: center;
     top:86px;
+  }
+  .flex label{
+    float: left;
+    margin-right: 30px;
+    color:#666;
+    font-size: 12px
+  }
+  .flex p{
+    color:#929292;
+  }
+  .flex .van-radio{
+    float: left;
+    margin-right: 30px;
+    color:#929292;
+    font-size: 12px;
+  }
+  .flex >>> .van-radio .van-icon-checked{
+    color:#EE722E;
+  }
+  .flex >>> .van-radio .van-icon-check{
+    font-size: 18px
   }
 
 </style>

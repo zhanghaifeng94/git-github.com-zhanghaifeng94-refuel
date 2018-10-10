@@ -40,6 +40,8 @@ import about from 'components/about/about'
 import advice from 'components/advice/advice'
 import personal from 'components/personal/personal'
 import personal_msg from 'components/personal_msg/personal_msg'
+import change_password from 'components/change_password/change_password'
+import collect from 'components/collect/collect'
 
 
 Vue.use(Router)
@@ -262,6 +264,16 @@ export default new Router({
       path: '/user/personal_msg',
       name: 'personal_msg',
       component: personal_msg
+    },
+    {
+      path: '/user/change_password',
+      name: 'change_password',
+      component: change_password
+    },
+    {
+      path: '/user/collect',
+      name: 'collect',
+      component: collect
     }
   ]
 })

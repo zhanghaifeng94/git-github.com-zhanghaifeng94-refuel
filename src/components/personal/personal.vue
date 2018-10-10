@@ -2,12 +2,12 @@
     <div class="setting">
       <headers></headers>
         
-      <div class="box">
-        <router-link to="/user/personal_msg" class="list flex_between">个人信息 <i class="iconfont icon-back_android"></i></router-link>
-         <router-link to="/user/change_password"  class="list flex_between">修改密码 <i class="iconfont icon-back_android"></i></router-link>
-         <router-link to="/user/change_payword" class="list flex_between">修改支付密码 <i class="iconfont icon-back_android"></i></router-link>
-         <router-link to="/user/change_phone"  class="list flex_between">修改手机号 <i class="iconfont icon-back_android"></i></router-link>        
-      </div>
+      <ul class="box">
+        <li class="list flex_between" @click="onMsg()">个人信息 <i class="iconfont icon-back_android"></i></li>
+        <li class="list flex_between" @click="onCode('1')">修改密码 <i class="iconfont icon-back_android"></i></li>
+        <li class="list flex_between" @click="onCode('2')">修改支付密码 <i class="iconfont icon-back_android"></i></li>
+        <li class="list flex_between">修改手机号 <i class="iconfont icon-back_android"></i></li>        
+      </ul>
 
     </div>
 </template>
@@ -23,11 +23,28 @@ export default {
     return {
       title: '个人中心',
       rightText: '',
-      rightIcon:'',      
+      rightIcon:'', 
+      id:""     
     }
   },
   methods:{
-
+    onCode(id){
+      //console.log(id)
+      this.$router.push({
+        name:'change_password',
+        path:"/user/change_password",
+        params:{
+          id:id,
+        }
+      })
+    },
+    onMsg(){
+      //console.log(val,num)
+      this.$router.push({
+        name:'personal_msg',
+        path:"/user/personal_msg",
+      })
+    },
   },
   created() {
     Headers.props.title.default = this.title,

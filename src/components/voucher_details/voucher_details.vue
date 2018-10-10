@@ -33,16 +33,18 @@
 	      grade:"0",
 	      rightText: '',
 	      rightIcon:'',
+	      id:"",
 	      suggest:"服务协议服务协议服务协议服务协议服务协议服务协议服务协议服务协议服务协议服务协议服务协议服务协议服务协议服务协议服务协议服务协议服务协议服务协议服务协议服务协议服务协议服务协议服务协议服务协议服务协议服务协议服务协议服务协议服务协议服务协议服务协议服务协议服务协议服务协议"
 	    }
   	},
   	methods:{
 		getParams () {        
-		// 取到路由带过来的参数         
+		// 取到路由带过来的参数  
+			this.id = this.$route.params.id;       
 			this.con = this.$route.params.con;
 			this.grade= this.$route.params.grade;
 			this.title= this.$route.params.con;
-			//console.log(this.$route.params.con)
+			//console.log(this.$route.params.id)
 			//console.log(this.$route.params.grade)
 		}
 	},

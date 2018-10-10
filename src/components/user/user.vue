@@ -60,7 +60,7 @@
 				我的服务
 			</h1>
 			<div class="order_status flex_wrap">
-				<router-link to="">
+				<router-link to="user/collect">
 					<i class="iconfont icon-favor"></i>
 					<P>收藏</P>
 				</router-link>
