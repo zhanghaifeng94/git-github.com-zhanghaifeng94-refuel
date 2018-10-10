@@ -42,7 +42,6 @@ import personal from 'components/personal/personal'
 import personal_msg from 'components/personal_msg/personal_msg'
 
 
-
 Vue.use(Router)
 
 export default new Router({
@@ -202,7 +201,7 @@ export default new Router({
     {
       path: '/user/coupon_codes',
       name: 'coupon_codes',
-      component: coupon_codes         
+      component: coupon_codes
     },
     {
       path: '/user/order/:type',
