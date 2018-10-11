@@ -1,8 +1,8 @@
 <template>
     <div class="index">
       <div class="header">
-        <i class="iconfont icon-saoma"></i>
-        <router-link to="/index/msg"><i class="iconfont icon-xiaoxi"></i></router-link>
+        <i class="iconfont icon-scan"></i>
+        <router-link to="/index/msg"><i class="iconfont icon-comment"></i></router-link>
       </div>
       <mt-swipe :auto="0" class="swipe">
         <mt-swipe-item class="swipe-item" v-for="item in swipe" :key="item.id">
@@ -111,6 +111,9 @@ export default {
   .index >>> .is-active{
     background: #980000;
     opacity: 1;
+  }
+  .header i.icon-comment{
+    font-size:26px;
   }
 </style>
 <style scoped lang="stylus" rel="stylesheet/stylus">

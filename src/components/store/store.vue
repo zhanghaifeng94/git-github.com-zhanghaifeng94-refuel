@@ -1,9 +1,9 @@
 <template>
     <div class="store">
 		<div class="header">
-			<i class="iconfont icon-saoma"></i>
+			<i class="iconfont icon-scan"></i>
 			<router-link to="/store/search" class="search"><i class="iconfont icon-search glass"></i></router-link>
-			<router-link to="/index/msg"><i class="iconfont icon-xiaoxi"></i></router-link>
+			<router-link to="/index/msg"><i class="iconfont icon-comment"></i></router-link>
 		</div>
 		<div class="nav_box">
 			<div class="nav">
@@ -27,20 +27,20 @@
 
 		<div class="con" v-if="status">
 			<div class="box">
-				<van-row class="tip">
-				  <van-col span="8">
+				<ul class="tip flex_between">
+				  <li class="flex">
 				  	<i class="iconfont icon-roundcheck"></i>
 				  	<span>M50自营品牌</span>
-				  </van-col>
-				  <van-col span="8">
+				  </li>
+				  <li class="flex">
 				  	<i class="iconfont icon-roundcheck"></i>
 				  	<span>30天无忧退换货</span>
-				  </van-col>
-				  <van-col span="8">
+				  </li>
+				  <li class="flex">
 					<i class="iconfont icon-roundcheck"></i>
 				  	<span>48小时快速退款</span>
-				  </van-col>
-				</van-row>
+				  </li>
+				</ul>
 				<div class="activity">
 			        <img src="../../common/image/store1.png" alt="">
 			    </div>
@@ -54,7 +54,7 @@
 			<div class="advice">
 				<div class="advice_title flex">
 					<p>人气推荐</p>
-					<router-link to="">更多 ></router-link>
+					<router-link to="">更多 <i class="iconfont icon-right"></i></router-link>
 				</div>
 				<router-link class="hot" to="">
 					<img :src="hot.img" alt="">
@@ -64,8 +64,8 @@
 						<span>{{hot.price}}</span>
 					</div>
 				</router-link>
-				<div class="advice_list flex">
-					<router-link  to="" v-for="(item,index) in advice" :key="item.id" class="list">
+				<div class="advice_list">
+					<router-link  to="" v-for="(item,index) in advice" :key="item.id" class="list" tag="li">
 						<img :src="item.img" alt="">
 						<div class="msg">
 							<h1 class="over">{{item.title}}</h1>
@@ -77,10 +77,10 @@
 					</router-link >
 				</div>
 			</div>
-			<div class="advice">
+<!-- 			<div class="advice">
 				<div class="advice_title flex">
 					<p>专题精选</p>
-					<router-link to="/store/selection">更多 ></router-link>
+					<router-link to="/store/selection">更多 <i class="iconfont icon-right"></i></router-link>
 				</div>
 				<div class="select">
 					<div class="">
@@ -94,7 +94,7 @@
 						</router-link>
 					</div>
 				</div>
-			</div>
+			</div> -->
 
 			<div class="love">
 				<h1>猜你喜欢</h1>
@@ -137,8 +137,8 @@
 		</div>
 
 		<div class="car">
-			<span><i class="iconfont icon-cart"></i></span>
-			<span @click="scrollToTop()" v-if="toTopShow"><i class="iconfont icon-right back_top"></i></span>
+			<span class="car_icon"><i class="iconfont icon-cart"></i></span>
+			<span @click="scrollToTop()" v-if="toTopShow"><img src="../../common/image/top.png" lt=""></span>
 		</div>
     </div>
 </template>
@@ -342,6 +342,12 @@
 </script>
 <style scoped lang="stylus" rel="stylesheet/stylus">
   @import "~common/stylus/variable"
+  	.header i.icon-comment{
+  		font-size:26px;
+  	}
+  	.icon-right{
+  		font-size:7px;
+  	}
   	.jiantou{
   		-webkit-transform: rotate(180deg);
   		   -moz-transform: rotate(180deg);
@@ -412,13 +418,14 @@
   		bottom:68px;
   		right:16px;
   	}
-  	.car span{
+  	.car_icon{
   		width:30px;
   		height:30px;
   		display:block;
   		background:rgba(0,0,0,0.4);
   		border-radius:100%;
   		color:#fff;
+  		margin-bottom:10px;
   	}
   	.car span i{
   		font-size:20px;
@@ -572,9 +579,13 @@
 	.tip{
 		margin:8px 0 20px 0;
 	}
+	.flex_between{
+		display:flex;
+		justify-content:space-between;
+		align-items:center
+	}
 	.tip i{
 		font-size:10px;
-		margin-right:6px;
 		color:#742900
 	}
 	.tip span{
@@ -657,14 +668,20 @@
 		white-space: nowrap;
 	}
 	.list{
-		width:102px;
+		width:32%;
 		font-size:10px;
 		color:#666;
 		margin-top:15px;
+		margin-left:2%;
+		box-sizing:border-box;
+		display:inline-block
+	}
+	.list:first-child{
+		margin-left:0
 	}
 	.list img{
-		width:102px;
-		height:102px
+		width:100%;
+		height:100%;
 	}
 	.list h1{
 		font-weight:nomal;
@@ -673,6 +690,7 @@
 	.msg span{
 		color:#EE722E;
 	}
+	
 	.love{
 		border-top: 20px solid #ececec;
     	padding: 16px;
@@ -699,7 +717,7 @@
 		margin-bottom:10px;
 		padding-bottom:10px;
 		border-radius:5px;
-		height:202px
+	    min-height: 232px;
 	}
 	.love_list:nth-child(2n){
 		margin-right:0
@@ -715,7 +733,7 @@
 		color:#fff;
 		font-size:8px;
 		border-radius:3px;
-		width:50px;
+		display: inline-block;
 	}
 	.love_list span{
 		display:block;
@@ -726,8 +744,21 @@
 	.love_list span.love_price{
 		color:#EE722E
 	}
-
-
+	// 手机适配
+	@media (max-width:375px) {
+		.love_list{
+			min-height:210px;
+		}
+	}
+	@media (max-width:360px) {
+		.love_list{
+			min-height:205px;
+		}
+	}
+	@media (max-width:320px) {
+		.love_list{
+			min-height:185px;
+		}
+	}
 </style>
-
 

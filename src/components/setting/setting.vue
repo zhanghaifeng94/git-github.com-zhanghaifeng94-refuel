@@ -3,8 +3,8 @@
       <headers></headers>
         
       <div class="box">
-        <router-link to="/user/advice" class="list flex_between">意见反馈 <i class="iconfont icon-back_android"></i></router-link>
-         <router-link to="/user/about"  class="list flex_between">关于M50e <i class="iconfont icon-back_android"></i></router-link>
+        <router-link to="/user/advice" class="list flex_between">意见反馈 <i class="iconfont icon-right"></i></router-link>
+         <router-link to="/user/about"  class="list flex_between">关于M50e <i class="iconfont icon-right"></i></router-link>
          <p class="list flex_between">清楚缓存 <span>123kb</span></p>
       </div>
 

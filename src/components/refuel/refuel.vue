@@ -1,9 +1,9 @@
 <template>
     <div class="refuel">
       <div class="header">
-        <i class="iconfont icon-saoma"></i>
+        <i class="iconfont icon-scan"></i>
         <h1>输入加油枪号</h1>
-        <router-link to="/index/msg"><i class="iconfont icon-xiaoxi"></i></router-link>
+        <router-link to="/index/msg"><i class="iconfont icon-comment"></i></router-link>
       </div>
 
 	  <div class="nav">
@@ -127,6 +127,9 @@ export default {
 </script>
 
 <style scoped lang="stylus" rel="stylesheet/stylus">
+  	.header i.icon-comment{
+  		font-size:26px;
+  	}
     .header{
       background :#EE722E
       width :100%

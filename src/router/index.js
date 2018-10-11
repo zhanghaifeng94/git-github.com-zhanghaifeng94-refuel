@@ -42,6 +42,12 @@ import personal from 'components/personal/personal'
 import personal_msg from 'components/personal_msg/personal_msg'
 import change_password from 'components/change_password/change_password'
 import collect from 'components/collect/collect'
+import customer_service from 'components/customer_service/customer_service'
+import apply from 'components/apply/apply'
+import reasons_return from 'components/reasons_return/reasons_return'
+import return_record from 'components/return_record/return_record'
+import progress from 'components/progress/progress'
+
 
 
 Vue.use(Router)
@@ -274,6 +280,31 @@ export default new Router({
       path: '/user/collect',
       name: 'collect',
       component: collect
+    },
+    {
+      path: '/user/customer_service',
+      name: 'customer_service',
+      component: customer_service
+    },
+    {
+      path: '/user/apply',
+      name: 'apply',
+      component: apply
+    },
+    {
+      path: '/user/reasons_return',
+      name: 'reasons_return',
+      component: reasons_return
+    },
+    {
+      path: '/user/return_record',
+      name: 'return_record',
+      component: return_record
+    },
+    {
+      path: '/user/progress',
+      name: 'progress',
+      component: progress
     }
   ]
 })

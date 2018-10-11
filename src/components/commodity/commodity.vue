@@ -180,6 +180,4 @@ export default {
               color: #ee722e
         li:nth-child(2n)
           margin-right 0
-
-
 </style>

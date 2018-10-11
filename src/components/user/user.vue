@@ -43,7 +43,7 @@
 					<i class="iconfont icon-comment"></i>
 					<P>待评价</P>
 				</router-link>
-				<router-link to="">
+				<router-link to="/user/customer_service">
 					<i class="iconfont icon-refund"></i>
 					<P>退款/售后</P>
 				</router-link>
