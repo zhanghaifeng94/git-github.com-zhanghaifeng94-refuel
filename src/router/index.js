@@ -46,7 +46,8 @@ import customer_service from 'components/customer_service/customer_service'
 import apply from 'components/apply/apply'
 import reasons_return from 'components/reasons_return/reasons_return'
 import return_record from 'components/return_record/return_record'
-import progress from 'components/progress/progress'
+import schedule from 'components/schedule/schedule'
+import apply_list from 'components/apply_list/apply_list'
 
 
 
@@ -302,9 +303,14 @@ export default new Router({
       component: return_record
     },
     {
-      path: '/user/progress',
-      name: 'progress',
-      component: progress
+      path: '/user/schedule',
+      name: 'schedule',
+      component: schedule
+    },
+    {
+      path: '/user/apply_list',
+      name: 'apply_list',
+      component: apply_list
     }
   ]
 })

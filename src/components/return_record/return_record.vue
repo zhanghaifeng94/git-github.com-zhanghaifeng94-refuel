@@ -3,12 +3,11 @@
       <headers></headers>
         
       <ul class="box">
-        <li v-for="(item,index) in lists" :key="index" class="product" @click="onProgress(item.type)">
+        <li v-for="(item,index) in lists" :key="index" class="product" @click="onProgress(item.type_num)">
           <h1 class="num flex_between">
             <div class="flex t_left">
-              <p v-if="item.type==1 || item.type==2" class="r_shop">退货</p>
-              <p v-if="item.type==3" class="r_price">退款</p>
-              <p v-if="item.type==5 || item.type==4" class="c_shop">换货</p>
+              <p v-if="item.type==1" class="r_shop">退货</p>
+              <p v-if="item.type==2" class="c_shop">换货</p>
               <p class="t_min">订单编号：{{item.num}}</p>
             </div>
             <p class="time">{{item.time}}</p>
@@ -22,15 +21,13 @@
                 <p class="price">￥{{item.price}}</p>
               </div>            
             </div>
-            <p class="tip" v-if="item.type==1">待受理</p>
-            <p class="tip" v-if="item.type==2">用户寄回商品</p>
-            <p class="tip" v-if="item.type==3">已退款</p>
-            <p class="tip" v-if="item.type==4">已换货</p>
-            <p class="tip" v-if="item.type==5">已取消</p>
+            <p class="tip" v-if="item.type_num==1">待受理</p>
+            <p class="tip" v-if="item.type_num==2">用户寄回商品</p>
+            <p class="tip" v-if="item.type_num==3">申请失败</p>
+            <p class="tip" v-if="item.type_num==4">已退货</p>
+            <p class="tip" v-if="item.type_num==5">请拒收快件</p>
           </div>
-          <p v-if="item.type==1 || item.type==2 || item.type==3" class="money">应退:{{item.r_price}}</p>
-          <p v-if="item.type==4"  class="money">已为:{{item.r_color}}</p>
-          <p v-if="item.type==5"  class="money">换为:{{item.r_color}}</p>
+          <p class="money">应退:{{item.r_price}}</p>
         </li>
       </ul>
     </div>
@@ -50,11 +47,12 @@ export default {
         rightIcon:'', 
         id:"" ,
         lists:[
-        {img:require('common/image/12.png'),title:"带帽式多动能颈枕",color:"藏青色","price":"78",num:"6523158",time:"2018.09.26  09:35",r_price:"156.00",type:"1"},
-        {img:require('common/image/12.png'),title:"带帽式多动能颈枕",color:"藏青色","price":"78",num:"6556158",time:"2018.09.26  09:35",r_price:"156.00",type:"2"},
-        {img:require('common/image/12.png'),title:"带帽式多动能颈枕",color:"藏青色","price":"90",num:"65225655",time:"2018.09.26  09:35",r_price:"156.00",type:"3"},
-        {img:require('common/image/12.png'),title:"带帽式多动能颈枕",color:"藏青色","price":"90",num:"65225655",time:"2018.09.26  09:35",r_price:"156.00",type:"4",r_color:"黄色"},
-        {img:require('common/image/12.png'),title:"带帽式多动能颈枕",color:"藏青色","price":"90",num:"65225655",time:"2018.09.26  09:35",r_price:"156.00",type:"5",r_color:"黄色"}
+        {img:require('common/image/12.png'),title:"带帽式多动能颈枕",color:"藏青色","price":"78",num:"6523158",time:"2018.09.26  09:35",r_price:"156.00",type:"1",type_num:"1"},
+        {img:require('common/image/12.png'),title:"带帽式多动能颈枕",color:"藏青色","price":"78",num:"6556158",time:"2018.09.26  09:35",r_price:"156.00",type:"1",type_num:"2"},
+        {img:require('common/image/12.png'),title:"带帽式多动能颈枕",color:"藏青色","price":"90",num:"65225655",time:"2018.09.26  09:35",r_price:"156.00",type:"1",type_num:"3"},
+        {img:require('common/image/12.png'),title:"带帽式多动能颈枕",color:"藏青色","price":"90",num:"65225655",time:"2018.09.26  09:35",r_price:"156.00",type:"1",type_num:"4"},        
+        {img:require('common/image/12.png'),title:"带帽式多动能颈枕",color:"藏青色","price":"90",num:"65225655",time:"2018.09.26  09:35",r_price:"156.00",type:"2",type_num:"1"},
+        {img:require('common/image/12.png'),title:"带帽式多动能颈枕",color:"藏青色","price":"90",num:"65225655",time:"2018.09.26  09:35",r_price:"156.00",type:"2",type_num:"5"}
       ]
     }
 
@@ -62,8 +60,8 @@ export default {
   methods:{
     onProgress(state){
       this.$router.push({
-        name:'progress',
-        path:"/user/progress",
+        name:'schedule',
+        path:"/user/schedule",
         params:{
           state:state
         }
