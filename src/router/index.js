@@ -33,6 +33,7 @@ import order_details from 'components/order_details/order_details'
 import rule from 'components/rule/rule'
 import share_details from 'components/share_details/share_details'
 import integrate from 'components/integrate/integrate'
+import evaluate from 'components/evaluate/evaluate'
 import integrate_introduce from 'components/integrate_introduce/integrate_introduce'
 import bill from 'components/bill/bill'
 import setting from 'components/setting/setting'
@@ -302,15 +303,10 @@ export default new Router({
       name: 'return_record',
       component: return_record
     },
-    {
-      path: '/user/schedule',
-      name: 'schedule',
-      component: schedule
-    },
-    {
-      path: '/user/apply_list',
-      name: 'apply_list',
-      component: apply_list
-    }
+    // {
+    //   path: '/user/progress',
+    //   name: 'progress',
+    //   component: progress
+    // }
   ]
 })
