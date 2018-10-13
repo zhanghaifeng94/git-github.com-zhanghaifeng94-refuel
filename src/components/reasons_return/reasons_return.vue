@@ -31,7 +31,7 @@
           <span>{{reason}}</span>
           <i class="iconfont icon-unfold"></i>
         </div>
-        <van-cell-group>
+ <!--        <van-cell-group>
           <van-field  0
             v-model="message"
             type="textarea"
@@ -39,7 +39,7 @@
             rows="6"
             autosize
           />
-        </van-cell-group>
+        </van-cell-group> -->
       </div>
         
       

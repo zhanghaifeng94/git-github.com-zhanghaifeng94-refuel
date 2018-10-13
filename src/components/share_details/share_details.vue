@@ -16,7 +16,7 @@
             <p class="coupon_tip"><span>充值专用</span></p>
             <button type="button" class="btn">领取</button>
           </div>
-        </div>
+        </div>z
       </div>
 
       <div class="love">
