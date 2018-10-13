@@ -13,16 +13,6 @@
           </div>
           <i class="iconfont icon-right"></i>
         </li>
-        <li class="list flex_between" @click="onReturn(2)">
-          <div class="flex">
-            <i class="iconfont icon-huan"></i>
-            <div>
-              <h1>换货</h1>
-              <p>因尺寸、错发等问题需要换货，或因漏发需要补发货</p>
-            </div>
-          </div>
-          <i class="iconfont icon-right"></i>
-        </li>
         <li class="list flex_between" @click="onReturn(3)">
           <div class="flex">
             <i class="iconfont icon-refund"></i>

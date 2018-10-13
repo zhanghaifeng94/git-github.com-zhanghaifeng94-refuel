@@ -44,7 +44,7 @@
 
             <div class="one">
               <p>2018.09.28 09:23</p>
-              <h1>商品已到达，正在验收</h1>
+              <h1>取消申请</h1>
             </div>  
 
             <div class="one">
@@ -177,7 +177,7 @@ export default {
 
 <style scoped>
 .schedule >>> .title .right{
-  color: #666
+color: #666
 }
  .flex_between{
   display: flex;
@@ -197,8 +197,9 @@ export default {
   text-align: center;
  }
  .nav_box li.active{
-  color:#BE6B6B;
-  background: #E6E6E6
+  color:#fff;
+  background: url(../../common/image/active.png);
+  background-size: 100%;
  }
  .box{
   padding: 0 16px;
