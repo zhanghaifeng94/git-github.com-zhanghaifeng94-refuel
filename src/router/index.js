@@ -49,6 +49,7 @@ import reasons_return from 'components/reasons_return/reasons_return'
 import return_record from 'components/return_record/return_record'
 import schedule from 'components/schedule/schedule'
 import apply_list from 'components/apply_list/apply_list'
+import comment_list from 'components/comment_list/comment_list'
 
 
 
@@ -303,10 +304,10 @@ export default new Router({
       name: 'return_record',
       component: return_record
     },
-    // {
-    //   path: '/user/progress',
-    //   name: 'progress',
-    //   component: progress
-    // }
+    {
+      path: '/store/comment_list',
+      name: 'comment_list',
+      component: comment_list
+    }
   ]
 })
