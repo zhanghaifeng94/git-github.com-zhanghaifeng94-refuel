@@ -22,5 +22,8 @@ export default {
   transactVIP: params => {
     return API.POST('/api/member/memberTransact', params)
   },
+  pullCopon:params => {
+    return API.POST('/api/member/pullCopon', params)
+  }
 
 }
