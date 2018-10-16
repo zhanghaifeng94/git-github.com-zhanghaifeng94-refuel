@@ -10,22 +10,22 @@
           <input type="text" placeholder="请输入手机号" v-model="account.phone" @blur="verify(account.phone)">
         </div>
         <div class="code">
-          <input type="text" placeholder="输入验证码" v-model="account.code" @blur="all()">
+          <input type="text" placeholder="输入验证码" v-model="account.code" @input="all()">
           <span class="true" v-if="code" @click="vcode()">{{countDownText}}</span>
           <span class="false" v-if="!code">{{countDownText}}</span>
         </div>
         <div class="password">
-          <input type="password" v-model="account.password" placeholder="请设置密码" @blur="all()">
+          <input type="password" v-model="account.password" placeholder="请设置密码" @input="all()">
         </div>
         <button class="button"  v-if="!button">注册</button>
         <button class="button1" v-if="button" @click="sign_up()">注册</button>
       </div>
-      <div class="weixin">
-        <router-link class="weixin_sign_in" to="#">
-          <div class="iconfont icon-weixin"></div>
-          微信快捷登入
-        </router-link>
-      </div>
+      <!--<div class="weixin">-->
+        <!--<router-link class="weixin_sign_in" to="#">-->
+          <!--<div class="iconfont icon-weixin"></div>-->
+          <!--微信快捷登入-->
+        <!--</router-link>-->
+      <!--</div>-->
     </div>
 </template>
 

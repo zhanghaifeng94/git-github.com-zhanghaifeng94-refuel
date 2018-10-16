@@ -15,6 +15,12 @@ export default {
   },
   coupon: params => {
     return API.POST('/api/member/getCoupon', params)
-  }
+  },
+  user_info: params => {
+    return API.POST('/api/member/getUserByBase64Id', params)
+  },
+  transactVIP: params => {
+    return API.POST('/api/member/memberTransact', params)
+  },
 
 }
