@@ -6,27 +6,11 @@
           </mt-button>
           <mt-button class="right" slot="right" @click="onShow(btn)">{{btn}}</mt-button>
       </mt-header>
-<!--       
-      <ul>
-        <li v-for="(item,index) in lists" :key="index" class="product">
-          <div class="flex_between">
-            <div class="flex">
-              <img :src="item.img" alt="">
-              <div>
-                <p class="title">{{item.title}}</p>
-                <span>{{item.color}}</span>
-                <p class="price">￥{{item.price}}<u>￥{{item.discount}}</u></p>
-              </div>            
-            </div>
-          </div>
-        </li>
-      </ul>
- -->
       <van-checkbox-group v-model="result">
         <van-cell-group>
           <van-cell v-for="(item,index) in lists" :key="index"  class="product">
             <div class="flex">
-              <van-checkbox v-model="item.danxuan" ref="checkboxes" class="check" v-if="show" @change="singleChecked(item.danxuan,index)"/>
+              <van-checkbox v-model="item.danxuan" class="check" v-if="show" @change="singleChecked(item.danxuan,index)"/>
               <img :src="item.img" alt="">
               <div>
                 <p class="title">{{item.title}}</p>
@@ -40,7 +24,7 @@
 
       <div class="tip flex_between" v-if="show">
         <p class="flex">
-          <van-checkbox v-model="checkAll" class="check" @click="choiceAll(checkAll)"/>全选
+          <van-checkbox v-model="checkAll" class="check" @change="choiceAll(checkAll)"/>全选
         </p>
         <button type="button">删除{{length}}</button>
       </div>
@@ -80,13 +64,17 @@ export default {
         this.show=false
       }
     },
+    go_back(){
+      this.$router.back(-1)
+    },
     singleChecked:function(checked,index){
           console.log(checked)
+          console.log("2222")
         if (!checked) {
-          this.cart[index].danxuan = false;
+          this.lists[index].danxuan = false;
         }
         else{
-          this.cart[index].danxuan = true;
+          this.lists[index].danxuan = true;
         }
        //   console.log("this.checked = " + this.checked)
        //  // 判断checked的值是否还等于商品种类数目，
@@ -98,6 +86,12 @@ export default {
     },
     choiceAll(checkAll){
       console.log(checkAll)
+      if(checkAll){
+        this.lists.danxuan = true;
+        console.log(this.lists.danxuan)
+      }else{
+        this.lists.danxuan = false;
+      }
     }
   },
   created() {

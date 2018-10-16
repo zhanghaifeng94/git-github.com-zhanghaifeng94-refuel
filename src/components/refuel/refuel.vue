@@ -1,7 +1,7 @@
 <template>
     <div class="refuel">
       <div class="header">
-        <i class="iconfont icon-scan"></i>
+        <router-link to="/index/quick_pay"><i class="iconfont icon-zhifu1"></i></router-link>
         <h1>输入加油枪号</h1>
         <router-link to="/index/msg"><i class="iconfont icon-comment"></i></router-link>
       </div>
@@ -127,6 +127,9 @@ export default {
 </script>
 
 <style scoped lang="stylus" rel="stylesheet/stylus">
+	.refuel .header i.icon-zhifu1{
+		font-size: 17px;
+	}
   	.header i.icon-comment{
   		font-size:26px;
   	}

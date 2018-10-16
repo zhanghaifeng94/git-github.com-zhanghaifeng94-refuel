@@ -13,7 +13,7 @@
 						<b>{{item.erea}}</b>
 					</div>				
 				</div>
-				<button type="button" class="btn" @click="reChange(item.title,item.grade,item.id)">马上兑</button>
+				<button type="button" class="btn" @click="reChange(item.title,item.grade,item.id,item.type)">马上兑</button>
 			</li>
 		</ul>
     </div>
@@ -32,28 +32,38 @@
           rightText: '',
           rightIcon:'',
           list:[
-            {img:require('common/image/member1.png'),title:"5充值优惠券",grade:"500",id:"1",erea:"近30天已经兑换50件"},
-            {img:require('common/image/member2.png'),title:"5商城优惠券",grade:"500",id:"2",erea:""},
-            {img:require('common/image/member3.png'),title:"日式多功能颈枕",grade:"500",id:"3",erea:"近30天已经兑换50件"},
-            {img:require('common/image/member1.png'),title:"5充值优惠券",grade:"500",id:"4",erea:""},
-            {img:require('common/image/member2.png'),title:"5商城优惠券",grade:"500",id:"5",erea:"近30天已经兑换50件"},
-            {img:require('common/image/member4.png'),title:"日式多功能颈枕",grade:"500",id:"6",erea:"近30天已经兑换50件"},
+            {img:require('common/image/member1.png'),title:"5充值优惠券",grade:"500",id:"1",erea:"近30天已经兑换50件",type:"1"},
+            {img:require('common/image/member2.png'),title:"5商城优惠券",grade:"500",id:"2",erea:"",type:"1"},
+            {img:require('common/image/member3.png'),title:"日式多功能颈枕",grade:"500",id:"3",erea:"近30天已经兑换50件",type:"2"},
+            {img:require('common/image/member1.png'),title:"5充值优惠券",grade:"500",id:"4",erea:"",type:"1"},
+            {img:require('common/image/member2.png'),title:"5商城优惠券",grade:"500",id:"5",erea:"近30天已经兑换50件",type:"1"},
+            {img:require('common/image/member4.png'),title:"日式多功能颈枕",grade:"500",id:"6",erea:"近30天已经兑换50件",type:"2"},
           ],
         }
       },
       methods:{
-      	reChange(val,num,id){
+      	reChange(val,num,id,type){
       		//console.log(val,num)
-      		this.$router.push({
-    			name:'voucher_details',
-    			path:"/store/voucher_details",
-    			params:{
-    				con:val,
-    				grade:num,
-    				id:id
-    			}
+      		if(type=="1"){
+	      		this.$router.push({
+	    			name:'voucher_details',
+	    			path:"/store/voucher_details",
+	    			params:{
+	    				con:val,
+	    				grade:num,
+	    				id:id
+	    			}
 
-    		})
+	    		})
+      		}else{
+      			this.$router.push({
+	    			name:'change_details',
+	    			path:"/store/change_details",
+	    			params:{
+	    				id:id
+	    			}
+	    		})
+      		}
       	}
       },
       created() {

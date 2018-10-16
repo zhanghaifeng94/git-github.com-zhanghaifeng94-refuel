@@ -1,7 +1,7 @@
 <template>
     <div class="index">
       <div class="header">
-        <i class="iconfont icon-scan"></i>
+        <router-link to="/index/quick_pay"><i class="iconfont icon-zhifu1"></i></router-link>
         <router-link to="/index/msg"><i class="iconfont icon-comment"></i></router-link>
       </div>
       <mt-swipe :auto="0" class="swipe">
@@ -16,7 +16,6 @@
               <img :src="item.img" alt="">
               <div>{{item.name}}</div>
             </router-link>
-
           </li>
         </ul>
       </div>
@@ -114,6 +113,9 @@ export default {
   }
   .header i.icon-comment{
     font-size:26px;
+  }
+  .index .header i.icon-zhifu1{
+    font-size: 17px;
   }
 </style>
 <style scoped lang="stylus" rel="stylesheet/stylus">

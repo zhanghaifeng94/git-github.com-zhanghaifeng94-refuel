@@ -18,7 +18,7 @@
         <div class="love">
           <h1 class="flex_between love_title">猜你喜欢 <router-link to="/store/like">更多</router-link></h1>
           <ul class="love_list flex_wrap list_box">
-            <li v-for="item in list" :key="item.id">
+            <li v-for="(item,index) in list" :key="index" @click="change_details(item.type,item.id,item.title)">
               <img :src="item.img" alt="">
               <p>{{item.title}}</p>
               <span>{{item.grade}}积分</span>
@@ -27,18 +27,11 @@
           </ul>
         </div>  
         <div class="love">
-          <h1 class="flex_between love_title">精品好货 <router-link to="">更多</router-link></h1>
+          <h1 class="flex_between love_title">精品好货 <router-link to="/store/like">更多</router-link></h1>
           <div class="love_list">
-            <div class="first">
-              <div class="first_left">
-                <p>{{first.title}}</p>
-                <span>会员专享优惠</span>
-                <b>{{first.grade}}积分</b>
-              </div>
-              <img :src="first.img" alt="" >
-            </div>
+            <img :src="like" alt="" class="like_img">
             <ul class="flex_wrap list_box">
-              <li v-for="item in list" :key="item.id">
+              <li v-for="item in list" :key="index"  @click="change_details(item.type,item.id)">
                 <router-link to=""><img :src="item.img" alt=""></router-link>
                 <p>{{item.title}}</p>
                 <span>{{item.grade}}积分</span>
@@ -50,7 +43,6 @@
 
 
       </div>
-
     </div>
 </template>
 
@@ -65,25 +57,51 @@
         return {
           title: '会员优享',
           rightText: '记录',
-          rightIcon:'',
+          rightIcon:'/user/bill',
+          rightPath:"",
           userName:"欧阳阳阳",
           grade:"100",
+          like:require('common/image/like.png'),
           img:require('common/image/user_img.png'),
           list:[
-            {img:require('common/image/member1.png'),title:"5充值优惠券",grade:"500",id:"1"},
-            {img:require('common/image/member2.png'),title:"5商城优惠券",grade:"500",id:"2"},
-            {img:require('common/image/member3.png'),title:"日式多功能颈枕",grade:"500",id:"3"},
-            {img:require('common/image/member1.png'),title:"5充值优惠券",grade:"500",id:"4"},
-            {img:require('common/image/member2.png'),title:"5商城优惠券",grade:"500",id:"5"},
-            {img:require('common/image/member4.png'),title:"日式多功能颈枕",grade:"500",id:"6"},
+            {img:require('common/image/member1.png'),title:"5充值优惠券",grade:"500",id:"1",type:"1"},
+            {img:require('common/image/member2.png'),title:"5商城优惠券",grade:"500",id:"2",type:"1"},
+            {img:require('common/image/member3.png'),title:"日式多功能颈枕",grade:"500",id:"3",type:"2"},
+            {img:require('common/image/member1.png'),title:"5充值优惠券",grade:"500",id:"4",type:"1"},
+            {img:require('common/image/member2.png'),title:"5商城优惠券",grade:"500",id:"5",type:"1"},
+            {img:require('common/image/member4.png'),title:"日式多功能颈枕",grade:"500",id:"6",type:"2"},
           ],
           first:{img:require('common/image/product.png'),grade:"69999",title:"AirPods耳机"}
+        }
+      },
+      methods:{
+        change_details(type,id,name){
+          console.log(type)
+          if(type=="1"){
+            this.$router.push({
+              name:'voucher_details',
+              path:"/store/voucher_details",
+              params:{
+                id:id,
+                con:name,
+              }
+            })
+          }else{
+            this.$router.push({
+              name:'change_details',
+              path:"/store/change_details",
+              params:{
+                id:id
+              }
+            })
+          }
         }
       },
       created() {
         Headers.props.title.default = this.title
         Headers.props.rightText.default = this.rightText
         Headers.props.rightIcon.default = this.rightIcon
+        Headers.props.rightPath.default = this.rightPath
       }
   }
 </script>
@@ -196,33 +214,7 @@
     color:#929292;
     font-size:8px;
   }
-  .first{
-    background:#BEBEBE;
-    overflow:hidden;
-  }
-  .first_left{
-    float:left;
-    padding:15px 10px 0 16px;
-  }
-  .first_left p{
-    font-size:16px;
-    color:#666;
-    margin-top:10px;
-  }
-  .first_left span{
-    display:block;
-    color:#929292;
-    margin:5px 0;
-    font-size:12px;
-  }
-  .first_left b{
-    color:#ee722e;
-    font-size:12px;
-  }
-  .first img{
-    float:right;
-    width:140px;
-    height:100px;
-    margin-right:20px;
+  .like_img{
+    width:100%;
   }
 </style>

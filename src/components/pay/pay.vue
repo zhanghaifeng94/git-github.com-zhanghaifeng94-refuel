@@ -55,13 +55,12 @@
   	},
 	data () {
       return {
-      	value:"",
       	title: '支付',
       	rightIcon:'',
       	rightText: '',
       	result:{img:require('common/image/code.png'),name:"123 4556"},
       	pay:{shop:"光谷鲁巷加油站",price:200},
-      	value: '',
+      	value:"",
       	showKeyboard: false,
       	show:true,
       	pay_status:true,

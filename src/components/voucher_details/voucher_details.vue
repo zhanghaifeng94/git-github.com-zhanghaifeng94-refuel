@@ -30,7 +30,7 @@
 	    return {
 	      title: '优惠券',
 	      con:"0",
-	      grade:"0",
+	      grade:"500",
 	      rightText: '',
 	      rightIcon:'',
 	      id:"",

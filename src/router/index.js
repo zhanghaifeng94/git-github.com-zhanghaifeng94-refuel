@@ -50,6 +50,10 @@ import return_record from 'components/return_record/return_record'
 import schedule from 'components/schedule/schedule'
 import apply_list from 'components/apply_list/apply_list'
 import comment_list from 'components/comment_list/comment_list'
+import quick_pay from 'components/quick_pay/quick_pay'
+import nav_list from 'components/nav_list/nav_list'
+import change_details from 'components/change_details/change_details'
+import change_pay from 'components/change_pay/change_pay'
 
 
 
@@ -308,6 +312,26 @@ export default new Router({
       path: '/store/comment_list',
       name: 'comment_list',
       component: comment_list
+    },
+    {
+      path: '/index/quick_pay',
+      name: 'quick_pay',
+      component: quick_pay
+    },
+    {
+      path: '/store/nav_list',
+      name: 'nav_list',
+      component: nav_list
+    },
+    {
+      path: '/store/change_details',
+      name: 'change_details',
+      component: change_details
+    },
+    {
+      path: '/store/change_pay',
+      name: 'change_pay',
+      component: change_pay
     }
   ]
 })

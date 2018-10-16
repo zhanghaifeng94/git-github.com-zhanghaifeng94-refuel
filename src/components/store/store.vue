@@ -1,26 +1,26 @@
 <template>
     <div class="store">
 		<div class="header">
-			<i class="iconfont icon-scan"></i>
+	        <router-link to="/index/quick_pay"><i class="iconfont icon-zhifu1"></i></router-link>
 			<router-link to="/store/search" class="search"><i class="iconfont icon-search glass"></i></router-link>
 			<router-link to="/index/msg"><i class="iconfont icon-comment"></i></router-link>
 		</div>
 		<div class="nav_box">
 			<div class="nav">
 				<div class="nav_nav">
-					<div v-for="(item,index) in nav" :key="item.id" class="nav_list" @click="onActive(index)" :class="Isindex==index?'onactive':''">{{item}}</div>
+					<div v-for="(item,index) in nav" :key="index" class="nav_list" @click="onActive(index)" :class="Isindex==index?'onactive':''">{{item}}</div>
 				</div>
 			</div>
 			<span class="up">
 				<i :class="show?'iconfont icon-unfold jiantou':'iconfont icon-unfold animation'" @click="onShow()"></i>
 			</span>
 			<div class="open" v-if="show">
-				<div v-for="(item,index) in nav2" :key="item.id" class="open_list" :class="Isindex==index?'active':''" @click="onActive(index)"> {{item}}</div>
+				<div v-for="(item,index) in nav2" :key="index" class="open_list" :class="Isindex==index?'active':''" @click="onActive(index)"> {{item}}</div>
 			</div>
 		</div>
 
 		<mt-swipe :auto="0" class="swipe">
-			<mt-swipe-item class="swipe-item" v-for="item in swipe" :key="item.id">
+			<mt-swipe-item class="swipe-item" v-for="(item,index) in swipe" :key="index">
 			  <img :src="item.img" alt="" class="swipe-item-img">
 			</mt-swipe-item>
 		</mt-swipe>
@@ -77,62 +77,33 @@
 					</router-link >
 				</div>
 			</div>
-<!-- 			<div class="advice">
-				<div class="advice_title flex">
-					<p>专题精选</p>
-					<router-link to="/store/selection">更多 <i class="iconfont icon-right"></i></router-link>
-				</div>
-				<div class="select">
-					<div class="">
-						<router-link to="/store/selection_detail" v-for="item in select" :key="item.id" class="select_box">
-						  <img :src="item.img" alt="" class="select_img">
-						  <div class="flex select_msg">
-						  	<h1 class="over">{{item.title}}</h1>
-						  	<span>{{item.price}}元起</span>
-						  </div>
-						  <p>{{item.msg}}</p>
-						</router-link>
-					</div>
-				</div>
-			</div> -->
-
-			<div class="love">
-				<h1>猜你喜欢</h1>
-				<div class="">
-					<van-list
-						v-model="loading"
-						:finished="finished"
-						@load="onLoad"
-					>
-						<router-link  to="" v-for="(item,index) in love" :key="item.id" class="love_list">
-							<img :src="item.img" alt="">
-							<p v-if="item.erea">{{item.erea}}</p>
-							<span class="over">{{item.title}}</span>
-							<span class="love_price">￥{{item.price}}</span>
-						</router-link >
-					</van-list>
-				</div>
-			</div>
 		</div>
 
 
 		<div class="con" v-if="!status">
 			<div class="tuijian">
-				<router-link to="" v-for="item in tuijian" :key="item.id" class="tuijian_list">
+				<div v-for="(item,index) in tuijian" :key="index" class="tuijian_list" @click="onNav(index)">
 					<img :src="item.img" alt="">
 					<p>{{item.title}}</p>
-				</router-link>
+				</div>
 			</div>
-			<div class="love">
-				<h1>{{title}}<h2>{{nav_title}}</h2></h1>
-				<div class="">
-					<router-link  to="" v-for="(item,index) in love" :key="item.id" class="love_list">
+		</div>
+
+		<div class="love">
+			<h1>{{title}}<h2>{{nav_title}}</h2></h1>
+			<div class="">
+				<van-list
+					v-model="loading"
+					:finished="finished"
+					@load="onLoad"
+				>
+					<router-link  to="" v-for="(item,index) in love" :key="index" class="love_list">
 						<img :src="item.img" alt="">
-						<p>{{item.erea}}</p>
+						<p v-if="item.erea">{{item.erea}}</p>
 						<span class="over">{{item.title}}</span>
 						<span class="love_price">￥{{item.price}}</span>
 					</router-link >
-				</div>
+				</van-list>
 			</div>
 		</div>
 
@@ -148,8 +119,8 @@
   	  name:"store",
   	  data () {
 		return {
-		title:"润滑油",
-		nav_title:"Catrol等品牌",
+		title:"猜你喜欢",
+		nav_title:"",
 		Isindex:0,
 		toTopShow:false,
 		status:true,
@@ -199,32 +170,26 @@
 		  }],
 		  swipe: [{
 		    img: require('common/image/banner.png'),
-		    id: '1'
 		  }, {
 		    img: require('common/image/banner.png'),
-		    id: '2'
 		  }, {
 		    img: require('common/image/banner.png'),
-		    id: '3'
 		  }],
 		  nav:["推荐","维修保养","车载电器","汽车装饰","安全自驾","维修保养"],
 		  nav2:["推荐","维修保养","车载电器","汽车装饰","安全自驾","维修保养"],
 		  select:[
 			{
 				img: require('common/image/store6.png'),
-				id: '1',
 				title:"颈枕眼罩二合一，国庆大减价",
 				msg:"带帽式多功能颈枕,限时七折",
 				price:66
 			}, {
 				img: require('common/image/store6.png'),
-				id: '2',
 				title:"颈枕眼罩二合一，国庆大减价",
 				msg:"带帽式多功能颈枕,限时七折",
 				price:66
 			}, {
 				img: require('common/image/store6.png'),
-				id: '3',
 				title:"颈枕眼罩二合一，国庆大减价",
 				msg:"带帽式多功能颈枕,限时七折",
 				price:66
@@ -232,32 +197,28 @@
 		  ],
 	      classify: [{
 	        img: require('common/image/store2.png'),
-	        id: '1',
 	        msg:"M50自有商品"
 	      }, {
 	        img: require('common/image/store2.png'),
-	        id: '2',
 	        msg:"M50自有商品"
 	      }, {
 	        img: require('common/image/store2.png'),
-	        id: '3',
 	        msg:"M50会员优享"
 	      }, {
 	        img: require('common/image/store2.png'),
-	        id: '4',
 	        msg:"M50自有商品"
 	      } ],
-	      hot:{img:require('common/image/store8.png'),title:"日式和风声波式便携电动",price:"199",nav_title:"随时充电，精巧实用",id:1},
+	      hot:{img:require('common/image/store8.png'),title:"日式和风声波式便携电动",price:"199",nav_title:"随时充电，精巧实用"},
 	      advice:[
-	      	{img:require('common/image/store3.png'),title:"带帽式多功能肩枕",price:"66",id:2},
-	      	{img:require('common/image/store4.png'),title:"智造智能随行杯",price:"159",id:3},
-	      	{img:require('common/image/store5.png'),title:"20寸 印花 纯PC拉链拉杆箱",price:"439",id:4},
+	      	{img:require('common/image/store3.png'),title:"带帽式多功能肩枕",price:"66"},
+	      	{img:require('common/image/store4.png'),title:"智造智能随行杯",price:"159",},
+	      	{img:require('common/image/store5.png'),title:"20寸 印花 纯PC拉链拉杆箱",price:"439"},
 	      ],
 	      love:[
-	      	{img:require('common/image/store7.png'),title:"带帽式多功能肩枕",price:"66",id:1,},
-	      	{img:require('common/image/store7.png'),title:"带帽式多功能肩枕",price:"66",id:2,erea:"限时特价"},
-	      	{img:require('common/image/store7.png'),title:"带帽式多功能肩枕",price:"66",id:3,erea:"限时特价"},
-	      	{img:require('common/image/store7.png'),title:"带帽式多功能肩枕",price:"66",id:4,erea:"限时特价"},
+	      	{img:require('common/image/store7.png'),title:"带帽式多功能肩枕",price:"66",id:11,},
+	      	{img:require('common/image/store7.png'),title:"带帽式多功能肩枕",price:"66",id:12,erea:"限时特价"},
+	      	{img:require('common/image/store7.png'),title:"带帽式多功能肩枕",price:"66",id:13,erea:"限时特价"},
+	      	{img:require('common/image/store7.png'),title:"带帽式多功能肩枕",price:"66",id:14,erea:"限时特价"},
 	      ]
 
 	   	}
@@ -278,9 +239,23 @@
 	  		this.Isindex=index
 	  		if(index==0){
 	  			this.status=true
+	  			this.title="猜你喜欢"
+	  			this.nav_title=""
 	  		}else{
 	  			this.status=false
+	  			this.title="润滑油"
+	  			this.nav_title="Catrol等品牌"
 	  		}
+	  	},
+	  	onNav(id){
+	  		//console.log(id)
+	  		this.$router.push({
+				name:'nav_list',
+				path:"/store/nav_list",
+				params:{
+					id:id
+				}
+    		})
 	  	},
 		handleScroll() {
 	        //首先修改相对滚动位置
@@ -328,20 +303,26 @@
 	        })
 	      }
 	  },
-	    mounted() {
-	      this.$nextTick(function () {
-	        //修改事件监听
-	        window.addEventListener('scroll', this.handleScroll)
-	      });
-	    },
-	    destroyed() {
-	      window.removeEventListener('scroll', this.handleScroll)
-	    }
+	  mounted() {
+		  this.$nextTick(function () {
+		    //修改事件监听
+		    window.addEventListener('scroll', this.handleScroll)
+		  });
+	  },
+	  destroyed() {
+		  window.removeEventListener('scroll', this.handleScroll)
+	  }
 
   }
 </script>
 <style scoped lang="stylus" rel="stylesheet/stylus">
-  @import "~common/stylus/variable"
+	.store{
+		padding-bottom:100px;
+		background:#fff;
+	}
+    .store .header i.icon-zhifu1{
+    	font-size: 17px;
+  	}
   	.header i.icon-comment{
   		font-size:26px;
   	}
@@ -568,7 +549,6 @@
 		opacity: 1;
 	}
 	.con{
-		padding-bottom:100px;
 		background:#fff;
 	}
 	.box{
@@ -694,7 +674,8 @@
 	.love{
 		border-top: 20px solid #ececec;
     	padding: 16px;
-    	overflow:hidden
+    	overflow:hidden;
+    	background:#fff;
 	}
 	.love h1{
 		width:100%;
