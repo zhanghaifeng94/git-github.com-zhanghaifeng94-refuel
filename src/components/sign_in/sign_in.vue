@@ -24,17 +24,17 @@
         <button class="button"  v-if="!button">登录</button>
         <button class="button1" v-if="button" @click="sign_in">登录</button>
       </div>
-      <div class="weixin">
-        <router-link class="weixin_sign_in" to="#">
-          <div class="iconfont icon-weixin"></div>
-          微信快捷登录
-        </router-link>
-      </div>
+      <!--<div class="weixin">-->
+        <!--<router-link class="weixin_sign_in" to="#">-->
+          <!--<div class="iconfont icon-weixin"></div>-->
+          <!--微信快捷登录-->
+        <!--</router-link>-->
+      <!--</div>-->
     </div>
 </template>
 
 <script>
-import { Toast } from 'vant';
+import { Toast } from 'vant'
 import API from 'api/api'
 export default {
   data() {
@@ -137,14 +137,20 @@ export default {
           if (result.data.status === 1000) {
             Toast.clear()
             Toast('登录成功')
-            vm.$router.push({
-              path: vm.$route.query.redirect
-            })
+            if (vm.$route.query.redirect === undefined) {
+              vm.$router.push({
+                path: '/index'
+              })
+            } else {
+              vm.$router.push({
+                path: vm.$route.query.redirect
+              })
+            }
           } else {
             Toast(result.data.msg)
           }
         }
-      },(error) =>{
+      }, (error) => {
         Toast('登录失败')
       })
     }

@@ -54,6 +54,7 @@
     <van-popup v-model="showList" position="bottom">
       <van-coupon-list
         :coupons="coupons"
+        :show-exchange-bar="false"
         :chosen-coupon="chosenCoupon"
         :disabled-coupons="disabledCoupons"
         @change="onChange" @exchange="onExchange"
@@ -110,7 +111,8 @@ export default {
       amount: '',
       card: true,
       show: false,
-      radio: ''
+      radio: '',
+      // coupon:[]
 
     }
   },
@@ -139,9 +141,16 @@ export default {
       this.show = false
     },
     coupon() {
-      let params = 'status=0'
+      let params = 'status=1&type=1'
+      let vm = this
       API.coupon(params).then(result => {
         console.log(result)
+        result.data.forEach(item => {
+          console.log(item.startAt)
+          item.startAt = item.startAt/1000
+          item.endAt = item.endAt/1000
+          vm.coupons.push(item)
+        })
       })
     }
   },

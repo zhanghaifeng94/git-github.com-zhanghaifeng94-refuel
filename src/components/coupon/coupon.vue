@@ -3,110 +3,143 @@
       <headers></headers>
 
     <div class="nav_box">
-      <div class="search">
-        <input type="text" placeholder="请输入优惠券码">
-        <button type="button">兑换</button>
-      </div>
+      <!--<div class="search">-->
+        <!--<input type="text" placeholder="请输入优惠券码">-->
+        <!--<button type="button">兑换</button>-->
+      <!--</div>-->
       <mt-navbar v-model="selected" class="nav flex_between">
-          <mt-tab-item id="1">未领取</mt-tab-item>
-          <mt-tab-item id="2">已领取</mt-tab-item>
-          <mt-tab-item id="3">已失效</mt-tab-item>
-      </mt-navbar>      
+          <mt-tab-item id="0">未领取</mt-tab-item>
+          <mt-tab-item id="1">已领取</mt-tab-item>
+          <mt-tab-item id="2">已失效</mt-tab-item>
+      </mt-navbar>
     </div>
-    <mt-tab-container v-model="selected" class="con">
+      <mt-tab-container v-model="selected" class="con">
+          <mt-tab-container-item id="0">
+          <div class="nav_list" v-for="(item,index) in coupon_list" :key="item.id" :class="item.active">
+            <div class="left_list">
+              {{item.denominations/100}}<span>元</span>
+            </div>
+            <div class="min_list">
+              <p>{{item.types}}</p>
+              <p>每满{{item.originCondition/100}}元减{{item.denominations/100}}元券</p>
+              <p>{{item.startAt}}-{{item.endAt}}</p>
+            </div>
+            <div class="right_list">
+              <div to="" class="use" @click="draw(item.id)">领取</div>
+            </div>
+          </div>
+            <div v-if="coupon_list.length === 0" style="text-align: center;margin-top: 20px">暂无优惠券</div>
+        </mt-tab-container-item>
         <mt-tab-container-item id="1">
           <div class="nav_list" v-for="(item,index) in coupon_list" :key="item.id" :class="item.active">
             <div class="left_list">
-              <p>{{item.price}}</p>
-              <span>元</span>
+              {{item.denominations/100}}<span>元</span>
             </div>
             <div class="min_list">
-              <p>{{item.type}}</p>
-              <p>{{item.description}}</p>
-              <p>{{item.time}}</p>
+              <p>{{item.types}}</p>
+              <p>每满{{item.originCondition/100}}元减{{item.denominations/100}}元券</p>
+              <p>{{item.startAt}}-{{item.endAt}}</p>
             </div>
             <div class="right_list">
-              <router-link to="" class="use">领取</router-link>
+              <router-link :to="item.type === 1 ? '/index/recharge' : '/store'" class="use">使用</router-link>
             </div>
-            <span class="left_round"></span>
-            <span class="right_round"></span>          
+
           </div>
+          <div v-if="coupon_list.length === 0" style="text-align: center;margin-top: 20px">暂无优惠券</div>
         </mt-tab-container-item>
         <mt-tab-container-item id="2">
-          <div class="nav_list" v-for="(item,index) in coupon_list" :key="item.id" :class="item.active">
-            <div class="left_list">
-              <p>{{item.price}}</p>
-              <span>元</span>
-            </div>
-            <div class="min_list">
-              <p>{{item.type}}</p>
-              <p>{{item.description}}</p>
-              <p>{{item.time}}</p>
-            </div>
-            <div class="right_list">
-              <router-link to="" class="use">使用</router-link>
-            </div>
-            <span class="left_round"></span>
-            <span class="right_round"></span>          
-          </div>
-        </mt-tab-container-item>
-        <mt-tab-container-item id="3">
           <div class="nav_list shixiao" v-for="(item,index) in coupon_list" :key="item.id">
             <div class="left_list">
-              <p>{{item.price}}</p>
-              <span>元</span>
+              {{item.denominations/100}}<span>元</span>
             </div>
             <div class="min_list">
-              <p>{{item.type}}</p>
-              <p>{{item.description}}</p>
-              <p>{{item.time}}</p>
+              <p>{{item.types}}</p>
+              <p>每满{{item.originCondition/100}}元减{{item.denominations/100}}元券</p>
+              <p>{{item.startAt}}-{{item.endAt}}</p>
             </div>
             <div class="right_list">
-              <span class="ready_use"></span>
+              <i class="iconfont icon-yishixiao"></i>
             </div>
-            <span class="left_round"></span>
-            <span class="right_round"></span>            
-          </div>          
-        </mt-tab-container-item>        
-        <!--没有通知，消息的时候-->
-      <p class="icon icon-gouwu none_msg" v-if="coupon_list.length==0"></p> 
+          </div>
+          <div v-if="coupon_list.length === 0" style="text-align: center;margin-top: 20px">暂无优惠券</div>
+        </mt-tab-container-item>
     </mt-tab-container>
     </div>
 </template>
 
 <script>
-  import Headers from 'base/header/header'
+import Headers from 'base/header/header'
+import { Toast } from 'vant'
+import API from 'api/api'
 export default {
-    name:"coupon",
-    components: {
-      Headers
-    },    
-    data () {
-        return {
-          selected: '1',
-          title: '优惠券',
-          rightText: '',
-          rightIcon:'',
-          coupon_list:[
-            {price:"20","type":"商场专用","description":"每满1000元减10元券",time:"2018.08.19-2018.09.25",path:"/index/shop",active:""},
-            {price:"30","type":"充值专用","description":"每满1000元减10元券",time:"2018.08.19-2018.09.25",path:"/index/recharge",active:"blue"},
-            {price:"50","type":"充值专用","description":"每满1000元减10元券",time:"2018.08.19-2018.09.25",path:"/index/recharge",active:"blue"},
-            {price:"10","type":"商场专用","description":"每满1000元减10元券",time:"2018.08.19-2018.09.25",path:"/index/shop",active:""},
-            ]
-        }
-      },
-      watch: {
-        selected: function (val, oldVal) {
-          console.log(val)
-          // click后打印出当前mt-tab-item的id
-        }
-      },
-      created() {
-        Headers.props.title.default = this.title
-        Headers.props.rightText.default = this.rightText
-        Headers.props.rightIcon.default = this.rightIcon
-      }
+  name: 'coupon',
+  components: {
+    Headers
+  },
+  data () {
+    return {
+      selected: '0',
+      title: '优惠券',
+      rightText: '',
+      rightIcon: '',
+      coupon_list: [
+        // {price: '20', 'type': '商场专用', 'description': '每满1000元减10元券', time: '2018.08.19-2018.09.25', path: '/index/shop', active: ''},
+        // {price: '30', 'type': '充值专用', 'description': '每满1000元减10元券', time: '2018.08.19-2018.09.25', path: '/index/recharge', active: 'blue'},
+        // {price: '50', 'type': '充值专用', 'description': '每满1000元减10元券', time: '2018.08.19-2018.09.25', path: '/index/recharge', active: 'blue'},
+        // {price: '10', 'type': '商场专用', 'description': '每满1000元减10元券', time: '2018.08.19-2018.09.25', path: '/index/shop', active: ''}
+      ],
+      nulls: true
     }
+  },
+  watch: {
+    selected: function (val, oldVal) {
+      console.log(val)
+      // click后打印出当前mt-tab-item的id
+      this.couponList(val)
+    }
+  },
+  created() {
+    Headers.props.title.default = this.title
+    Headers.props.rightText.default = this.rightText
+    Headers.props.rightIcon.default = this.rightIcon
+  },
+  methods: {
+    couponList(val) {
+      let params = 'status=' + val
+      let vm = this
+      API.coupon(params).then(result => {
+        if (result.status === 1000) {
+          vm.coupon_list = []
+          result.data.forEach(item => {
+            item.startAt = item.startAt.split(' ')[0]
+            item.endAt = item.endAt.split(' ')[0]
+            if (item.type === 1) {
+              item.types = '充值专用'
+              item.active = 'blue'
+            } else if (item.type === 2) {
+              item.types = '商场专用'
+            }
+            vm.coupon_list.push(item)
+          })
+        }
+      })
+    },
+    draw(id) {
+      let params = 'couponId=' + id
+      console.log(typeof String(params))
+      API.pullCopon(String(params)).then(result => {
+        console.log(result)
+        if(result.status === 1000){
+          Toast('领取成功')
+          this.couponList(0)
+        }
+      })
+    }
+  },
+  mounted() {
+    this.couponList(0)
+  }
+}
 </script>
 
 <style scoped lang="stylus" rel="stylesheet/stylus">
@@ -133,13 +166,13 @@ export default {
     border-radius:3px;
   }
   .con{
-    margin:20px auto;
+    padding: 20px 16px 0 16px;
   }
   .con .mint-tab-container-wrap{
     display: block;
     backgound:red;
   }
-  
+
   .msg_header{
     height:48px;
     background:#fff;
@@ -175,69 +208,71 @@ export default {
     display:flex;
     justify-content:space-between
   }
+  @media screen and (min-width:320px) and (max-width:374px){
+    .nav_list{
+      padding 20px 10px 10px 0 !important
+    .left_list{
+      width: 36%;
+      font-size 36px
+      padding-top 15px
+    }
+    .right_list{
+      margin-left 0
+      i{
+        font-size 56px !important
+      }
+    }
+    }
+  }
+  @media screen and (min-width:376px) and (max-width:414px){
+    .nav_list{
+      padding 42px 26px 13px 0 !important
+      .right_list{
+        margin-left 30px
+        i{
+          font-size 60px
+        }
+      }
+    }
+  }
   .nav_list{
-    position:relative;
-    background:#f586a4;
-    width:92%;
-    padding:15px 25px;
-    margin:0 auto 10px auto;
-    border-radius:15px;
-    box-sizing:border-box;
-    -moz-box-sizing:border-box;
-    -webkit-box-sizing:border-box;
+    background: url("~common/image/q8.png") no-repeat;
+    background-size: 100%
+    width:100%;
+    padding 30px 26px 13px 0
+    box-sizing border-box
     display:flex;
     color:#fff;
-    box-shadow: 0 1px 5px rgba(88,0,0,0.16);
+    margin-bottom 12px
   }
   .nav_list.blue{
-    background:#C7B0C7;
+    background: url("~common/image/q6.png") no-repeat;
+    background-size: 100%
   }
   .shixiao.nav_list{
-    background:#bebebe;
-  }  
-  .left_round{
-    position:absolute;
-    left:-15px;
-    top:50%;
-    width: 30px;
-    height: 30px;
-    background:#ececec;
-    border-radius:100%;
-    margin-top:-15px;
-  }
-  .right_round{
-    position:absolute;
-    right:-15px;
-    top:50%;
-    width: 30px;
-    height: 30px;
-    background:#ececec;
-    border-radius:100%;
-    margin-top:-15px;
+    background: url("~common/image/q2.png") no-repeat;
+    background-size: 100%
   }
   .left_list{
-    width:25%;
-    border-right:1px dashed #ececec;
-    align-items:center;
-    display:flex;
-  }
-  .left_list p{
-    font-size:35px;
+    font-size:40px;
+    width: 40%;
+    text-align: center;
+    padding-top 20px
   }
   .left_list span{
-    line-height:40px;
+    font-size 14px
   }
   .min_list{
-    width:60%;
     font-size:12px;
-    margin:0 15px 0;
     line-height:22px;
-    
   }
   .right_list{
-    width:20%;
+    margin-left 15px
     align-items:center;
     display:flex;
+    i{
+      font-size 54px
+    }
   }
   .use{
     background:#fff;

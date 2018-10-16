@@ -5,13 +5,13 @@
         <router-link to="/index/msg"><i class="iconfont icon-comment"></i></router-link>
       </div>
       <mt-swipe :auto="0" class="swipe">
-        <mt-swipe-item class="swipe-item" v-for="item in swipe" :key="item.id">
-          <img :src="item.img" alt="" class="swipe-item-img">
+        <mt-swipe-item class="swipe-item" v-for="(item,index) in swipe" :key="index">
+          <img v-lazy="item.imgUrl" alt="" class="swipe-item-img">
         </mt-swipe-item>
       </mt-swipe>
       <div class="nav">
         <ul class="list">
-          <li class="item" v-for="item in nav" :key="item.id">
+          <li class="item" v-for="(item,index) in nav" :key="index">
             <router-link :to="item.path">
               <img :src="item.img" alt="">
               <div>{{item.name}}</div>
@@ -20,10 +20,10 @@
         </ul>
       </div>
       <div class="classify clearfix">
-        <router-link class="classify-box" v-for="item in classify" to="" :key="item.id"><img :src="item.img" alt=""></router-link>
+        <router-link class="classify-box" v-for="(item,index) in classify" to="" :key="index"><img v-lazy="item.imgUrl" alt=""></router-link>
       </div>
       <div class="activity">
-        <img src="../../common/image/03.png" alt="">
+        <img v-lazy="activity.imgUrl" alt="">
       </div>
     </div>
 </template>
@@ -33,16 +33,18 @@ import API from 'api/api'
 export default {
   data () {
     return {
-      swipe: [{
-        img: require('common/image/banner.png'),
-        id: '1'
-      }, {
-        img: require('common/image/banner.png'),
-        id: '2'
-      }, {
-        img: require('common/image/banner.png'),
-        id: '3'
-      }],
+      swipe: [
+      //   {
+      //   img: require('common/image/banner.png'),
+      //   id: '1'
+      // }, {
+      //   img: require('common/image/banner.png'),
+      //   id: '2'
+      // }, {
+      //   img: require('common/image/banner.png'),
+      //   id: '3'
+      // }
+      ],
       nav: [{
         img: require('common/image/cz.png'),
         name: '会员充值',
@@ -76,7 +78,8 @@ export default {
       }, {
         img: require('common/image/02.png'),
         id: '4'
-      } ]
+      }],
+      activity: ''
     }
   },
   created() {
@@ -85,21 +88,26 @@ export default {
   methods: {
     dispose() {
       let vm = this
-      API.index(1).then(result => {
-        if (result.status == 200){
+      API.index().then(result => {
+        if (result.status === 1000) {
+          vm.swipe = []
+          vm.classify = []
           let arr = result.data
-          console.log(result)
+          console.log(arr)
           arr.IndexSlideList.forEach(item => {
-            console.log(item)
             vm.swipe.push(item)
           })
+          arr.indexActivityList.forEach(item => {
+            vm.classify.push(item)
+          })
+          vm.activity = arr.indexEventList[0]
         }
-
       })
     }
+
   },
   mounted() {
-     this.dispose()
+    this.dispose()
   }
 }
 </script>
@@ -163,9 +171,10 @@ export default {
       padding 0 16px
       box-sizing border-box
       .classify-box
-        width 50%
+        width 49%
         height: 114px
         float: left
+        margin-right 2px
         img
           width: 100%
           height: 100%

@@ -7,9 +7,9 @@
         <div class="btn_false base" v-if="!card">查询</div>
       </div>
       <div class="info" v-if="info">
-        <div class="name">卡&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;主：xxx</div>
-        <div class="number">会员卡号：xxx</div>
-        <div class="balance">余&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;额：xxx</div>
+        <div class="name">卡&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;主：{{account.name}}</div>
+        <div class="number">会员卡号：{{account.number}}</div>
+        <div class="balance">余&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;额：{{account.balance}}</div>
       </div>
       <div class="more" v-if="info">查看更多</div>
     </div>
@@ -18,6 +18,7 @@
 <script>
 import Headers from 'base/header/header'
 import Card from 'base/card/card'
+import API from 'api/api'
 
 export default {
   components: {
@@ -28,18 +29,38 @@ export default {
     return {
       card: false,
       info: false,
-      title:'会员查询'
+      title: '会员查询',
+      account: {
+        name: '',
+        number: '',
+        balance: ''
+      }
     }
   },
   methods: {
     query() {
       this.info = true
+    },
+    infos() {
+      let vm = this
+      API.user_info().then(result => {
+        console.log(result.data)
+        if (result.data.userInfo.member === 2) {
+          vm.card = true
+          vm.account.name = result.data.userInfo.username
+          vm.account.number = result.data.userMemberId
+          vm.account.balance = result.data.balance
+        }
+      })
     }
   },
   created() {
     Headers.props.title.default = this.title
     Headers.props.rightText.default = ''
     Headers.props.rightPath.default = ''
+  },
+  mounted() {
+    this.infos()
   }
 }
 </script>

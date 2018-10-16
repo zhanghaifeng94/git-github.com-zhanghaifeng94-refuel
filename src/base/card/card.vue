@@ -2,7 +2,7 @@
     <div class="card">
       <div class="card_true" v-if="card">
         <div class="iconfont icon-huiyuan"></div>
-        <div class="serialNumber">编号：123 4565</div>
+        <div class="serialNumber">编号：{{number}}</div>
       </div>
       <div class="card_false" v-if="!card">
         <router-link to="/index/transactVIP">
@@ -13,6 +13,7 @@
 </template>
 
 <script>
+import API from 'api/api'
 export default {
   props: {
     title: {
@@ -22,8 +23,26 @@ export default {
   },
   data() {
     return {
-      card: false
+      card: false,
+      number: ''
     }
+  },
+  created() {
+  },
+  methods: {
+
+    users() {
+      let vm = this
+      API.user_info().then(result => {
+        if (result.data.userInfo.member === 2) {
+          vm.card = true
+          vm.number = result.data.userMemberId
+        }
+      })
+    }
+  },
+  mounted() {
+    this.users()
   }
 }
 </script>
