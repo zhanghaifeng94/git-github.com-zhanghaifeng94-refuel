@@ -142,7 +142,6 @@ export default {
     },
     onLink(){
       this.$router.push({
-        name:'change_pay',
         path:"/store/change_pay"
       })
     }

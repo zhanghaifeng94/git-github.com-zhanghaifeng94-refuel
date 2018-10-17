@@ -79,10 +79,10 @@
 			</div>
 		</div>
 
-
+	
 		<div class="con" v-if="!status">
 			<div class="tuijian">
-				<div v-for="(item,index) in tuijian" :key="index" class="tuijian_list" @click="onNav(index)">
+				<div v-for="(item,index) in tuijian" :key="index" class="tuijian_list" @click="onNav(item.id)">
 					<img :src="item.img" alt="">
 					<p>{{item.title}}</p>
 				</div>
@@ -247,14 +247,9 @@
 	  			this.nav_title="Catrol等品牌"
 	  		}
 	  	},
-	  	onNav(id){
-	  		//console.log(id)
+	  	onNav(type){
 	  		this.$router.push({
-				name:'nav_list',
-				path:"/store/nav_list",
-				params:{
-					id:id
-				}
+				path:`/store/nav_list/${type}`
     		})
 	  	},
 		handleScroll() {

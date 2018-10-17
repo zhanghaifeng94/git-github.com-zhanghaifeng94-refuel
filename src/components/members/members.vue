@@ -16,9 +16,9 @@
   
       <div class="con">
         <div class="love">
-          <h1 class="flex_between love_title">猜你喜欢 <router-link to="/store/like">更多</router-link></h1>
+          <h1 class="flex_between love_title">猜你喜欢 <router-link to="/store/like/0">更多</router-link></h1>
           <ul class="love_list flex_wrap list_box">
-            <li v-for="(item,index) in list" :key="index" @click="change_details(item.type,item.id,item.title)">
+            <li v-for="(item,index) in list" :key="index" @click="change_details(item.type,item.id)">
               <img :src="item.img" alt="">
               <p>{{item.title}}</p>
               <span>{{item.grade}}积分</span>
@@ -27,11 +27,11 @@
           </ul>
         </div>  
         <div class="love">
-          <h1 class="flex_between love_title">精品好货 <router-link to="/store/like">更多</router-link></h1>
+          <h1 class="flex_between love_title">精品好货 <router-link to="/store/like/1">更多</router-link></h1>
           <div class="love_list">
             <img :src="like" alt="" class="like_img">
             <ul class="flex_wrap list_box">
-              <li v-for="item in list" :key="index"  @click="change_details(item.type,item.id)">
+              <li v-for="(item,index) in list" :key="index"  @click="change_details(item.type,item.id)">
                 <router-link to=""><img :src="item.img" alt=""></router-link>
                 <p>{{item.title}}</p>
                 <span>{{item.grade}}积分</span>
@@ -57,8 +57,8 @@
         return {
           title: '会员优享',
           rightText: '记录',
-          rightIcon:'/user/bill',
-          rightPath:"",
+          rightIcon:'',
+          rightPath:"/user/bill",
           userName:"欧阳阳阳",
           grade:"100",
           like:require('common/image/like.png'),
@@ -75,24 +75,15 @@
         }
       },
       methods:{
-        change_details(type,id,name){
+        change_details(type,id){
           console.log(type)
           if(type=="1"){
             this.$router.push({
-              name:'voucher_details',
-              path:"/store/voucher_details",
-              params:{
-                id:id,
-                con:name,
-              }
+              path:`/store/voucher_details/${id}`
             })
           }else{
             this.$router.push({
-              name:'change_details',
-              path:"/store/change_details",
-              params:{
-                id:id
-              }
+              path: `/store/change_details/${id}`
             })
           }
         }

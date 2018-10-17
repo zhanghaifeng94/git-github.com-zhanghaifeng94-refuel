@@ -2,7 +2,7 @@
 	<div class="change_station">
  		<headers></headers>
 		<mt-search v-model="value" class="list_box">
-		  <div v-for="item in result" class="list" @click="adrress(item.title)">
+		  <div v-for="item in result" class="list" @click="adrress(item.id)">
 		  	<h1>{{item.title}}</h1>
 				<p>地址：{{item.value}}</p>
 		  </div>
@@ -32,14 +32,10 @@
       }
     },
     methods:{
-    	adrress(val){
+    	adrress(id){
     		//console.log(val)
     		this.$router.push({
-    			name:'refuel',
-    			path:"/refuel",
-    			params:{
-    				con:val
-    			}
+    			path: "/refuel"
 
     		})
     	}

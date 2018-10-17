@@ -1,6 +1,6 @@
 <template>
     <div class="nav_list">
-      <mt-header title="个人信息" class="title">
+      <mt-header title="维修保养" class="title">
           <mt-button @click="go_back()" slot="left">
             <i class="iconfont icon-back"></i>
           </mt-button>
@@ -77,7 +77,6 @@ export default {
     },
     onSearch(){
       this.$router.push({
-        name:'search',
         path:"/store/search"
       })
     },
@@ -100,19 +99,9 @@ export default {
           this.finished = true
         }
       }, 1000)
-    },
-    getParams () {
-    // 取到路由带过来的参数
-      this.Isindex = this.$route.params.id
-      //console.log(this.$route.params.id)
-    },
+    }
   },
   created() {
-    this.getParams()
-  },
-  watch:{
-    // 监测路由变化,只要变化了就调用获取路由参数方法将数据存储本组件即可
-    '$route': 'getParams'
   }
 }
 </script>

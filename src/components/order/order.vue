@@ -108,7 +108,7 @@ export default {
         price: '78',
         type: '3',
         id: '3',
-        type_text: '已发货',
+        type_text: '待收货',
         order_number: '12121212',
         img: require('common/image/12.png')
       }, {
@@ -168,6 +168,8 @@ export default {
   },
   mounted() {
     this.listeach()
+  },
+  created(){
   }
 
 }

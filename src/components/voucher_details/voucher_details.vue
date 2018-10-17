@@ -29,7 +29,7 @@
     data () {
 	    return {
 	      title: '优惠券',
-	      con:"0",
+	      con:"5商城优惠券",
 	      grade:"500",
 	      rightText: '',
 	      rightIcon:'',
@@ -38,25 +38,12 @@
 	    }
   	},
   	methods:{
-		getParams () {        
-		// 取到路由带过来的参数  
-			this.id = this.$route.params.id;       
-			this.con = this.$route.params.con;
-			this.grade= this.$route.params.grade;
-			this.title= this.$route.params.con;
-			//console.log(this.$route.params.id)
-			//console.log(this.$route.params.grade)
-		}
 	},
 	created() {
-		this.getParams()
 		Headers.props.title.default = this.title
 		Headers.props.rightText.default = this.rightText
 		Headers.props.rightIcon.default = this.rightIcon
-	},
-	watch:{
-		'$route': 'getParams'
-	}   
+	}
     
   }
 </script>
