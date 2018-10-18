@@ -7,19 +7,10 @@
           <mt-button class="right" slot="right" @click="baocun">保存</mt-button>
       </mt-header>
       <div class="picter">
-<<<<<<< HEAD
-        <van-uploader :after-read="onRead" accept="image/*">
-          <img class="avatar_img" src="../../common/image/user_head.png" ref="goodsImg"/>
-          <p>点击修改头像</p>
-        </van-uploader>        
-      </div>      
-=======
        <img :src="avatar" class="avatar_img">
        <input type="file" name="avatar" accept="image/gif,image/jpeg,image/jpg,image/png" @change="changeImage($event)" ref="avatarInput" class="uppic">
         <p>点击修改头像</p>
        </div>
-
->>>>>>> b8833b1ad8afbe9b0c5d4a8e7a56f9fb191fafa4
       <van-radio-group v-model="radio">
         <van-cell-group>
           <van-cell class="flex">
@@ -47,26 +38,20 @@ export default {
   data() {
     return {
       avatar: require('common/image/user_head.png'),
-<<<<<<< HEAD
-      radio:"1"  
-=======
-      radio: '1',
+      radio:"1",
       file: '',
       nike: ''
->>>>>>> b8833b1ad8afbe9b0c5d4a8e7a56f9fb191fafa4
     }
   },
   methods: {
     go_back() {
       this.$router.back(-1)
     },
-<<<<<<< HEAD
     onRead(file) {
          console.log(file);
          //将原图片显示为选择的图片
          this.$refs.goodsImg.src = file.content;
-     }
-=======
+     },
     changeImage(e) {
       console.log(e)
       this.file = e.target.files[0]
@@ -84,7 +69,6 @@ export default {
         console.log(result);
       })
     }
->>>>>>> b8833b1ad8afbe9b0c5d4a8e7a56f9fb191fafa4
   },
   created() {
 
@@ -110,6 +94,7 @@ export default {
     font-size:20px;
   }
   .picter{
+    position: relative;
     background: #fff;
     height: 106px;
     margin-top:-9px;
@@ -117,6 +102,14 @@ export default {
   }
   .picter >>> .van-uploader{
     display: block;
+  }
+  .uppic{
+    position: absolute;
+    top:0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0
   }
   .avatar_img{
     width:60px;

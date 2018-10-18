@@ -22,7 +22,7 @@
 		</div>
 
 		<div class="order_box">
-			<h1 class="flex_between" @click="order()">
+			<h1 class="flex_between" @click="order(0)">
 				我的订单
 				<i class="iconfont icon-right"></i>
 			</h1>
@@ -111,15 +111,9 @@ export default {
       name: ''
     }
   },
-<<<<<<< HEAD
-  methods:{
-    order(id){
-      //console.log(id)
-=======
   methods: {
     order(id) {
       console.log(id)
->>>>>>> b8833b1ad8afbe9b0c5d4a8e7a56f9fb191fafa4
       this.$router.push({
         path: `/user/order/${id}`
       })
