@@ -7,15 +7,10 @@
           <mt-button class="right" slot="right" @click="baocun">保存</mt-button>
       </mt-header>
       <div class="picter">
-        <!--<van-uploader :after-read="onRead" accept="image/*">-->
-          <!--<img class="avatar_img" src="../../common/image/user_head.png" ref="goodsImg"/>-->
-          <!--<p>点击修改头像</p>-->
-        <!--</van-uploader>        -->
-      <!--</div>-->
        <img :src="avatar" class="avatar_img">
-       <input type="file" name="avatar" accept="image/gif,image/jpeg,image/jpg,image/png" @change="changeImage($event)" ref="avatarInput" class="uppic">
+       <input type="file" name="avatar" accept="image/gif,image/jpeg,image/jpg,image/png" @change="changeImage($event)" class="uppic">
         <p>点击修改头像</p>
-       </div>
+      </div>
       <van-radio-group v-model="radio">
         <van-cell-group>
           <van-cell class="flex">
@@ -35,11 +30,10 @@
 
 <script>
 import API from 'api/api'
+import axios from 'axios'
 export default {
   name: 'personal_msg',
-  components: {
-
-  },
+  components: {},
   data() {
     return {
       avatar: require('common/image/user_head.png'),
@@ -58,29 +52,31 @@ export default {
     //      this.$refs.goodsImg.src = file.content;
     //  }
     changeImage(e) {
-      console.log(e)
       this.file = e.target.files[0]
       var reader = new FileReader()
       var that = this
       reader.readAsDataURL(this.file)
-      reader.onload = function(e) {
+      reader.onload = function (e) {
         that.avatar = this.result
-        console.log(this.result);
       }
     },
     baocun() {
-      let form = new FormData();
-      let data = new FormData();
-      data.append('multfile', this.$refs.avatarInput.files[0])
-      data.append('operaType', this.uploadType)
-      let params = 'file=' + data + '&nike=""'
-      API.modifyUserInfo(params).then(result => {
-        console.log(result);
+      // let form = new FormData()
+      let params = new FormData()
+      params.append('file', this.file)
+      params.append('nike', this.nike)
+      params.append('sex', this.radio)
+      let config = {
+        headers: {'Content-Type': 'multipart/form-data'}
+      }
+      API.modifyUserInfo(params, config).then(result => {
+        console.log(result)
       })
-    }
-  },
-  created() {
 
+    },
+    created() {
+
+    }
   }
 }
 </script>
@@ -150,6 +146,14 @@ export default {
   }
   .flex >>> .van-radio .van-icon-check{
     font-size: 18px
+  }
+  .uppic{
+    position: absolute;
+    top:0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0
   }
 
 </style>

@@ -37,8 +37,8 @@ axios.interceptors.response.use(function (response) {
 })
 
 // 通用方法
-export const POST = (url, params) => {
-  return axios.post(`${'/api'}${url}`, params).then((res) => res.data)
+export const POST = (url, params, headers) => {
+  return axios.post(`${'/api'}${url}`, params, headers).then((res) => res.data)
 }
 
 export const login = (url, params) => {
