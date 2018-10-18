@@ -139,7 +139,7 @@ export default {
             Toast('登录成功')
             if (vm.$route.query.redirect === undefined) {
               vm.$router.push({
-                path: '/index'
+                path: '/user'
               })
             } else {
               vm.$router.push({

@@ -46,7 +46,7 @@ export default {
     },
   },
   created() {
-    Headers.props.title.default = this.title,
+    Headers.props.title.default = this.title
     Headers.props.rightIcon.default = this.rightIcon
     Headers.props.rightText.default = this.rightText
   }

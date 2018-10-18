@@ -17,6 +17,9 @@
         <div class="password">
           <input type="password" v-model="account.password" placeholder="请设置密码" @input="all()">
         </div>
+        <div class="Invitation">
+          <input type="text" v-model="account.Invitation" placeholder="邀请码（选填）">
+        </div>
         <button class="button"  v-if="!button">注册</button>
         <button class="button1" v-if="button" @click="sign_up()">注册</button>
       </div>
@@ -40,7 +43,8 @@ export default {
       account: {
         phone: '',
         password: '',
-        code: ''
+        code: '',
+        Invitation: ''
       },
       countDownText: '获取验证码'
     }
@@ -100,7 +104,7 @@ export default {
     },
     sign_up() {
       let vm = this
-      let params = 'phone=' + this.account.phone + '&vcode=' + this.account.code + '&password=' + this.account.password
+      let params = 'phone=' + this.account.phone + '&vcode=' + this.account.code + '&password=' + this.account.password+'invitecode=' + this.account.Invitation
       if (this.account.password.length < 6) {
         Toast('密码不能少于6位')
       } else {
@@ -157,7 +161,7 @@ export default {
         font-size 12px
     .form
       width: 100%
-      .phone,.code,.password
+      .phone,.code,.password,.Invitation
         height: 40px
         background #e8e8e8
         margin-bottom 10px

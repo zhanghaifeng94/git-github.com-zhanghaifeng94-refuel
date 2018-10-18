@@ -4,19 +4,27 @@
           <mt-button @click="go_back()" slot="left">
             <i class="iconfont icon-back"></i>
           </mt-button>
-          <mt-button class="right" slot="right">保存</mt-button>
+          <mt-button class="right" slot="right" @click="baocun">保存</mt-button>
       </mt-header>
       <div class="picter">
+<<<<<<< HEAD
         <van-uploader :after-read="onRead" accept="image/*">
           <img class="avatar_img" src="../../common/image/user_head.png" ref="goodsImg"/>
           <p>点击修改头像</p>
         </van-uploader>        
       </div>      
+=======
+       <img :src="avatar" class="avatar_img">
+       <input type="file" name="avatar" accept="image/gif,image/jpeg,image/jpg,image/png" @change="changeImage($event)" ref="avatarInput" class="uppic">
+        <p>点击修改头像</p>
+       </div>
+
+>>>>>>> b8833b1ad8afbe9b0c5d4a8e7a56f9fb191fafa4
       <van-radio-group v-model="radio">
         <van-cell-group>
           <van-cell class="flex">
             <label>昵称</label>
-            <p>欧阳阳</p>
+            <p><input type="text" v-model="nike"></p>
           </van-cell>
           <van-cell class="flex">
             <label>性别</label>
@@ -30,29 +38,56 @@
 </template>
 
 <script>
+import API from 'api/api'
 export default {
-  name:'personal_msg',
+  name: 'personal_msg',
   components: {
-    
+
   },
   data() {
     return {
       avatar: require('common/image/user_head.png'),
+<<<<<<< HEAD
       radio:"1"  
+=======
+      radio: '1',
+      file: '',
+      nike: ''
+>>>>>>> b8833b1ad8afbe9b0c5d4a8e7a56f9fb191fafa4
     }
   },
-  methods:{
+  methods: {
     go_back() {
       this.$router.back(-1)
     },
+<<<<<<< HEAD
     onRead(file) {
          console.log(file);
          //将原图片显示为选择的图片
          this.$refs.goodsImg.src = file.content;
      }
+=======
+    changeImage(e) {
+      console.log(e)
+      this.file = e.target.files[0]
+      var reader = new FileReader()
+      var that = this
+      reader.readAsDataURL(this.file)
+      reader.onload = function(e) {
+        that.avatar = this.result
+        console.log(this.result);
+      }
+    },
+    baocun() {
+      let params = 'file=' + this.file + '&nike=""'
+      API.modifyUserInfo(params).then(result => {
+        console.log(result);
+      })
+    }
+>>>>>>> b8833b1ad8afbe9b0c5d4a8e7a56f9fb191fafa4
   },
   created() {
-    
+
   }
 }
 </script>

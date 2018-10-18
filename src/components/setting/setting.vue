@@ -1,20 +1,20 @@
 <template>
     <div class="setting">
       <headers></headers>
-        
       <div class="box">
         <router-link to="/user/advice" class="list flex_between">意见反馈 <i class="iconfont icon-right"></i></router-link>
          <router-link to="/user/about"  class="list flex_between">关于M50e <i class="iconfont icon-right"></i></router-link>
-         <p class="list flex_between">清楚缓存 <span>123kb</span></p>
       </div>
 
-      <button type="button" class="btn">退出登录</button>
+      <button type="button" class="btn" @click="logout">退出登录</button>
 
     </div>
 </template>
 
 <script>
 import Headers from 'base/header/header'
+import API from 'api/api'
+import { Toast } from 'vant'
 export default {
   name:'setting',
   components: {
@@ -24,12 +24,23 @@ export default {
     return {
       title: '设置',
       rightText: '',
-      rightIcon:'',      
-
+      rightIcon: ''
     }
   },
-  methods:{
-
+  methods: {
+    logout() {
+      let vm = this
+      API.logout().then(resule => {
+        console.log(resule)
+        if (resule.status === 1000) {
+          Toast('退出成功')
+          sessionStorage.removeItem('access-user')
+          vm.$router.push({
+            path: `/user`
+          })
+        }
+      })
+    }
   },
   created() {
     Headers.props.title.default = this.title,

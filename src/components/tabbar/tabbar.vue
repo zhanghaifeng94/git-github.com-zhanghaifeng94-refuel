@@ -64,6 +64,7 @@ export default {
       }
     },
     '$route' (to) {
+      this.change (to.name)
       if (to.path == '/index' || to.path == '/refuel' || to.path == '/store' || to.path == '/user') {
         this.tabbar = true
       } else {

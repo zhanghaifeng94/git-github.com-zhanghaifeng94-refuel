@@ -3,10 +3,10 @@
       <headers></headers>
 
     <div class="nav_box">
-      <!--<div class="search">-->
-        <!--<input type="text" placeholder="请输入优惠券码">-->
-        <!--<button type="button">兑换</button>-->
-      <!--</div>-->
+      <div class="search">
+        <input type="text" placeholder="请输入优惠券码" v-model="code">
+        <button type="button" @click="exchange">兑换</button>
+      </div>
       <mt-navbar v-model="selected" class="nav flex_between">
           <mt-tab-item id="0">未领取</mt-tab-item>
           <mt-tab-item id="1">已领取</mt-tab-item>
@@ -82,13 +82,10 @@ export default {
       title: '优惠券',
       rightText: '',
       rightIcon: '',
-      coupon_list: [
-        // {price: '20', 'type': '商场专用', 'description': '每满1000元减10元券', time: '2018.08.19-2018.09.25', path: '/index/shop', active: ''},
-        // {price: '30', 'type': '充值专用', 'description': '每满1000元减10元券', time: '2018.08.19-2018.09.25', path: '/index/recharge', active: 'blue'},
-        // {price: '50', 'type': '充值专用', 'description': '每满1000元减10元券', time: '2018.08.19-2018.09.25', path: '/index/recharge', active: 'blue'},
-        // {price: '10', 'type': '商场专用', 'description': '每满1000元减10元券', time: '2018.08.19-2018.09.25', path: '/index/shop', active: ''}
-      ],
-      nulls: true
+      coupon_list: [],
+      nulls: true,
+      code: '',
+      code_info: {}
     }
   },
   watch: {
@@ -102,6 +99,10 @@ export default {
     Headers.props.title.default = this.title
     Headers.props.rightText.default = this.rightText
     Headers.props.rightIcon.default = this.rightIcon
+    if (window.sessionStorage.getItem('codes')) {
+      this.code_info = JSON.parse(window.sessionStorage.getItem('codes'))
+      this.code = this.code_info.code
+    }
   },
   methods: {
     couponList(val) {
@@ -111,8 +112,8 @@ export default {
         if (result.status === 1000) {
           vm.coupon_list = []
           result.data.forEach(item => {
-            item.startAt = item.startAt.split(' ')[0]
-            item.endAt = item.endAt.split(' ')[0]
+            item.startAt = this.ConvertTimestampToDate(item.startAt)
+            item.endAt = this.ConvertTimestampToDate(item.endAt)
             if (item.type === 1) {
               item.types = '充值专用'
               item.active = 'blue'
@@ -129,11 +130,35 @@ export default {
       console.log(typeof String(params))
       API.pullCopon(String(params)).then(result => {
         console.log(result)
-        if(result.status === 1000){
+        if (result.status === 1000) {
           Toast('领取成功')
           this.couponList(0)
         }
       })
+    },
+    ConvertTimestampToDate(timestamp) {
+      var datetime = new Date()
+      datetime.setTime(timestamp)
+      var year = datetime.getFullYear()
+      var month = (Array(2).join(0) + (datetime.getMonth() + 1)).slice(-2)
+      var date = datetime.getDate()
+      var hour = (Array(2).join(0) + datetime.getHours()).slice(-2)
+      var minute = (Array(2).join(0) + datetime.getMinutes()).slice(-2)
+      return year + '.' + month + '.' + date
+    },
+    exchange() {
+      if (this.code !== '') {
+        let params = 'codeId=' + this.code_info.id
+        API.InvitationCouponCode(params).then(result => {
+          console.log(result)
+          if (result.status === 1000) {
+            Toast(result.msg)
+            sessionStorage.removeItem('codes')
+            this.code_info = {}
+            this.code = ''
+          }
+        })
+      }
     }
   },
   mounted() {
@@ -149,18 +174,18 @@ export default {
   }
   .search input{
     height:24px;
-    font-size:7px;
+    font-size:14px;
     color:#BEBEBE;
     border:1px solid #BEBEBE;
     border-radius:3px;
     padding-left:8px;
-    width:70%;
+    width:75%;
   }
   .search button{
     float:right;
     background:#c9c9c9;
-    font-size:7px;
-    padding:7px 13px;
+    font-size:14px;
+    padding:7px 16px;
     border:0;
     color:#fff;
     border-radius:3px;
@@ -271,7 +296,7 @@ export default {
     align-items:center;
     display:flex;
     i{
-      font-size 54px
+      font-size 51px
     }
   }
   .use{
