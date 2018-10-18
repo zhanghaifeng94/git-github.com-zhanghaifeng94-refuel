@@ -42,7 +42,7 @@ export default {
 		return{
 			Isindex:-55,
 			val:"",
-			address:"",
+			address:"光谷鲁巷",
 			list:[
 				{id:1,con:1},
 				{id:2,con:2},
@@ -74,24 +74,19 @@ export default {
 			this.Isindex=data-1;
 			this.val=data;
 		},
-		getParams () {
-		// 取到路由带过来的参数
-			this.address = this.$route.params.con
-		},
 		tijiao(){
 			if(this.val==""){
 				Toast('请选择油枪号')
 			}else{
 				console.log("成功")
 	    		this.$router.push({
-	    			name:'pay',
 	    			path:"/refuel/pay"
 	    		})
 			}
 		},
 	},
 	created() {
-		this.getParams()
+		
 	},
   	mounted () {
  	    let _this = this
@@ -118,10 +113,6 @@ export default {
 		  })
 		}
 		})
-	},
-	watch:{
-		// 监测路由变化,只要变化了就调用获取路由参数方法将数据存储本组件即可
-		'$route': 'getParams'
 	}
 }
 </script>

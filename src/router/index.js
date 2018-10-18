@@ -54,7 +54,7 @@ import quick_pay from 'components/quick_pay/quick_pay'
 import nav_list from 'components/nav_list/nav_list'
 import change_details from 'components/change_details/change_details'
 import change_pay from 'components/change_pay/change_pay'
-
+import recharge_detail from 'components/recharge_detail/recharge_detail'
 
 Vue.use(Router)
 
@@ -106,6 +106,11 @@ export default new Router({
       meta: {
         requireAuth: true
       }
+    },
+    {
+      path: '/index/recharge_detail/:id',
+      name: 'recharge_detail',
+      component: recharge_detail,
     },
     {
       path: '/index/queryVIP',
@@ -202,12 +207,12 @@ export default new Router({
       component: details
     },
     {
-      path: '/store/like',
+      path: '/store/like/:type',
       name: 'like',
       component: like
     },
     {
-      path: '/store/voucher_details',
+      path: '/store/voucher_details/:id',
       name: 'voucher_details',
       component: voucher_details
     },
@@ -322,12 +327,12 @@ export default new Router({
       component: quick_pay
     },
     {
-      path: '/store/nav_list',
+      path: '/store/nav_list/:type',
       name: 'nav_list',
       component: nav_list
     },
     {
-      path: '/store/change_details',
+      path: '/store/change_details/:id',
       name: 'change_details',
       component: change_details
     },

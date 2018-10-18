@@ -99,7 +99,9 @@
 			}).then(() => {
 			  // on confirm
 			  this.tip_status=false
-			  this.$router.push({name:'refuel'})
+			  this.$router.push({
+	    			path:"/refuel"
+	    		})
 			}).catch(() => {
 			  // on cancel
 			});

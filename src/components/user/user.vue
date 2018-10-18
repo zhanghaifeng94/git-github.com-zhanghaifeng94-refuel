@@ -22,28 +22,28 @@
 		</div>
 
 		<div class="order_box">
-			<h1 class="flex_between" @click="order()">
+			<h1 class="flex_between" @click="order('0')">
 				我的订单
 				<i class="iconfont icon-right"></i>
 			</h1>
-			<div class="order_status flex">
-				<router-link to="">
+			<ul class="order_status flex">
+				<li @click="order('1')">
 					<i class="iconfont icon-send"></i>
 					<P>待发货</P>
-				</router-link>
-				<router-link to="">
+				</li>
+				<li @click="order('2')">
 					<i class="iconfont icon-deliver"></i>
 					<P>待收货</P>
-				</router-link>
-				<router-link to="">
+				</li>
+				<li @click="order('3')">
 					<i class="iconfont icon-comment"></i>
 					<P>待评价</P>
-				</router-link>
-				<router-link to="/user/customer_service">
+				</li>
+				<li @click="onReturn()">
 					<i class="iconfont icon-refund"></i>
 					<P>退款/售后</P>
-				</router-link>
-			</div>
+				</li>
+			</ul>
 			<router-link to="" class="card">
 				<i class="iconfont icon-cart"></i>
 				<span v-if="card_state">您的购物车空空如也</span>
@@ -87,7 +87,7 @@
 				<router-link to="/user/setting">
 					<i class="iconfont icon-settings"></i>
 					<P>设置</P>
-				</router-link>
+				</router-link>				
 
 			</div>
 		</div>
@@ -107,11 +107,12 @@ export default {
       name: ''
     }
   },
-  methods: {
-    order() {
+  methods:{
+    order(id){
+      console.log(id)
       this.$router.push({
-        path: '/user/order/0'
-      })
+          path: `/user/order/${id}`,
+        })
     },
     integrate() {
       this.$router.push({
@@ -138,11 +139,15 @@ export default {
           }
         }
       })
+    },
+    onReturn(){
+      this.$router.push({
+        path:"/user/customer_service"
+      })
     }
   },
-  mounted() {
-    this.info()
-  }
+
+
 }
 </script>
 
@@ -252,8 +257,8 @@ export default {
   .order_status {
     padding: 10px;
   }
-
-  .order_status a {
+  .order_status a,
+  .order_status li {
     width: 25%;
   }
 
