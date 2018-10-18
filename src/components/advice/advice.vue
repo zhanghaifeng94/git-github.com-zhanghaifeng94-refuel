@@ -9,8 +9,8 @@
 			      <van-radio :name="item.val" />
 			    </van-cell>
 			  </van-cell-group>
-			</van-radio-group>	
-			<h2>请详细描述您的建议</h2>	
+			</van-radio-group>
+			<h2>请详细描述您的建议</h2>
 			<van-cell-group class="text">
 			  <van-field
 			    v-model="message"
@@ -20,7 +20,7 @@
 			    autosize
 			    maxlength="300"
 			  />
-			</van-cell-group>	
+			</van-cell-group>
 			<h3>上传照片 (最多4张)</h3>
 			<van-uploader :after-read="onRead" accept="image/*" multiple class="photo">
 			    <img class="head-img" src="../../common/image/phone.png" height="78" width="78" ref="goodsImg"/>
@@ -38,55 +38,55 @@
 
 </template>
 <script>
-	import Headers from "base/header/header"
-	import { Toast } from 'vant';
-	export default{
-		name:"advice",
-		components:{
-			Headers
-		},
-		data(){
-			return{
-			    title: '意见反馈',
-			    rightText: '',
-			    rightIcon:'',	
-		        rightPath:"",
-		        radio: '1',
-		        message:"",
-		        show:false,
-		        question:[
-		        	{title:"搜索，查找商品，商品发现",val:"1"},
-		        	{title:"支付问题",val:"2"},
-		        	{title:"客服服务",val:"3"},
-		        	{title:"会员相关",val:"4"},
-		        	{title:"售后，订单问题",val:"5"},
-		        	{title:"其他",val:"6"},
-		        ]
-			}
-		},
-		methods:{
-			//console.log(this.radio)
-			onSubmit(){
-				var vm=this
-				vm.show=true
-				setTimeout(function(){
-					vm.show=false
-				},1000)
-			},
-			onRead(file) {
-		       console.log(file);
-		       //将原图片显示为选择的图片
-		       this.$refs.goodsImg.src = file.content;
+import Headers from 'base/header/header'
+import { Toast } from 'vant'
+export default{
+  name: 'advice',
+  components: {
+    Headers
+  },
+  data() {
+    return {
+      title: '意见反馈',
+      rightText: '',
+      rightIcon: '',
+      rightPath: '',
+      radio: '1',
+      message: '',
+      show: false,
+      question: [
+        {title: '搜索，查找商品，商品发现', val: '1'},
+        {title: '支付问题', val: '2'},
+        {title: '客服服务', val: '3'},
+        {title: '会员相关', val: '4'},
+        {title: '售后，订单问题', val: '5'},
+        {title: '其他', val: '6'}
+      ]
+    }
+  },
+  methods: {
+    // console.log(this.radio)
+    onSubmit() {
+      var vm = this
+      vm.show = true
+      setTimeout(function() {
+        vm.show = false
+      }, 1000)
+    },
+    onRead(file) {
+		       console.log(file)
+		       // 将原图片显示为选择的图片
+		       this.$refs.goodsImg.src = file.content
 		   }
-			
-		},
-		created() {
-			Headers.props.title.default = this.title,
-			Headers.props.rightIcon.default = this.rightIcon
-			Headers.props.rightText.default = this.rightText
-			Headers.props.rightPath.default = this.rightPath
-		}
-	}
+
+  },
+  created() {
+    Headers.props.title.default = this.title,
+    Headers.props.rightIcon.default = this.rightIcon
+    Headers.props.rightText.default = this.rightText
+    Headers.props.rightPath.default = this.rightPath
+  }
+}
 </script>
 <style scoped>
 	.box{
@@ -147,7 +147,7 @@
 		width: 92%;
 		background:#EE722E;
 		font-size: 20px;
-		color: #fff; 
+		color: #fff;
 		margin:0 auto;
 		border:0;
 		border-radius: 5px;
@@ -172,6 +172,6 @@
 		padding-bottom: 10px;
 		display: block;
 		width: 70px;
-		margin:0 auto 20px auto;  
+		margin:0 auto 20px auto;
 	}
 </style>

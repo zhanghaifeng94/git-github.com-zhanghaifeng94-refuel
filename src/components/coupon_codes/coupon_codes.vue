@@ -11,31 +11,25 @@
 </template>
 
 <script>
-<<<<<<< HEAD
-  import Headers from 'base/header/header'
-  import { Toast } from 'vant';
-  export default {
-  	name:"coupon_codes",
-    components: {
-      Headers
-    },    
-    data () {
-        return {
-          title: '我的优惠码',
-          rightText: '活动规则',
-          rightIcon:'',
-          rightPath:'/user/rule',
-          list:[
-            {con:"JU3564",id:"1",state:1},
-            {con:"JU4574",id:"2",state:1},
-            {con:"JU3894",id:"3",state:2},
-            {con:"JU2356",id:"4",state:2},            
-          ]
-        }
-    },
-    methods: {
+import Headers from 'base/header/header'
+import { Toast } from 'vant'
+export default {
+  	name: 'coupon_codes',
+  components: {
+    Headers
+  },
+  data () {
+    return {
+      title: '我的优惠码',
+      rightText: '活动规则',
+      rightIcon: '',
+      rightPath: '/user/rule',
+      list: []
+    }
+  },
+  methods: {
     onChange(val) {
-      console.log(val);
+      console.log(val)
       if (val.status === 1) {
         sessionStorage.setItem('codes', JSON.stringify(val))
         this.$router.push({
@@ -50,9 +44,9 @@
         if (result.status === 1000) {
           vm.list = []
           result.data.forEach(item => {
-            if(item.status === 1){
+            if (item.status === 1) {
               item.text = '兑换'
-            }else if(item.status === 2){
+            } else if (item.status === 2) {
               item.text = '已兑换'
             }
             vm.list.push(item)

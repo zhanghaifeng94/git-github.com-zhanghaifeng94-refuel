@@ -7,19 +7,15 @@
           <mt-button class="right" slot="right" @click="baocun">保存</mt-button>
       </mt-header>
       <div class="picter">
-<<<<<<< HEAD
-        <van-uploader :after-read="onRead" accept="image/*">
-          <img class="avatar_img" src="../../common/image/user_head.png" ref="goodsImg"/>
-          <p>点击修改头像</p>
-        </van-uploader>        
-      </div>      
-=======
+        <!--<van-uploader :after-read="onRead" accept="image/*">-->
+          <!--<img class="avatar_img" src="../../common/image/user_head.png" ref="goodsImg"/>-->
+          <!--<p>点击修改头像</p>-->
+        <!--</van-uploader>        -->
+      <!--</div>-->
        <img :src="avatar" class="avatar_img">
        <input type="file" name="avatar" accept="image/gif,image/jpeg,image/jpg,image/png" @change="changeImage($event)" ref="avatarInput" class="uppic">
         <p>点击修改头像</p>
        </div>
-
->>>>>>> b8833b1ad8afbe9b0c5d4a8e7a56f9fb191fafa4
       <van-radio-group v-model="radio">
         <van-cell-group>
           <van-cell class="flex">
@@ -47,26 +43,20 @@ export default {
   data() {
     return {
       avatar: require('common/image/user_head.png'),
-<<<<<<< HEAD
-      radio:"1"  
-=======
       radio: '1',
       file: '',
       nike: ''
->>>>>>> b8833b1ad8afbe9b0c5d4a8e7a56f9fb191fafa4
     }
   },
   methods: {
     go_back() {
       this.$router.back(-1)
     },
-<<<<<<< HEAD
-    onRead(file) {
-         console.log(file);
-         //将原图片显示为选择的图片
-         this.$refs.goodsImg.src = file.content;
-     }
-=======
+    // onRead(file) {
+    //      console.log(file);
+    //      //将原图片显示为选择的图片
+    //      this.$refs.goodsImg.src = file.content;
+    //  }
     changeImage(e) {
       console.log(e)
       this.file = e.target.files[0]
@@ -79,12 +69,15 @@ export default {
       }
     },
     baocun() {
-      let params = 'file=' + this.file + '&nike=""'
+      let form = new FormData();
+      let data = new FormData();
+      data.append('multfile', this.$refs.avatarInput.files[0])
+      data.append('operaType', this.uploadType)
+      let params = 'file=' + data + '&nike=""'
       API.modifyUserInfo(params).then(result => {
         console.log(result);
       })
     }
->>>>>>> b8833b1ad8afbe9b0c5d4a8e7a56f9fb191fafa4
   },
   created() {
 

@@ -28,10 +28,6 @@
 			</h1>
 			<div class="order_status flex">
 				<router-link to="">
-					<i class="iconfont icon-pay"></i>
-					<P>待付款</P>
-				</router-link>
-				<router-link to="">
 					<i class="iconfont icon-send"></i>
 					<P>待发货</P>
 				</router-link>
@@ -111,15 +107,9 @@ export default {
       name: ''
     }
   },
-<<<<<<< HEAD
-  methods:{
-    order(id){
-      //console.log(id)
-=======
   methods: {
     order(id) {
       console.log(id)
->>>>>>> b8833b1ad8afbe9b0c5d4a8e7a56f9fb191fafa4
       this.$router.push({
         path: `/user/order/${id}`
       })
