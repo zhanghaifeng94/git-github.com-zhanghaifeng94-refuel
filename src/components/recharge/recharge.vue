@@ -14,7 +14,7 @@
     </div>
     <div class="amount">
       <span style="color: #666">支付金额：</span>
-      <span style="color: #EE722E">{{amount}}</span>
+      <span style="color: #EE722E">{{amount}}元</span>
     </div>
     <div class="help">
       <div>我同意<router-link style="color: #856EFF" to="##">《服务款项》</router-link>中的说明
@@ -24,7 +24,7 @@
         详询客服热线xxx-xxx-xxx。
       </div>
     </div>
-    <div class="btn_true base" v-if="card && amount" @click="unfold()">充值</div>
+    <div class="btn_true base" v-if="card && amount" @click="infos()">充值</div>
     <div class="btn_false base" v-if="!card|| !amount">充值</div>
     <van-popup class="popup" v-model="show" position="bottom" :close-on-click-overlay="false">
       <div class="popup-title">
@@ -32,9 +32,9 @@
         确认付款
       </div>
       <div class="popup-content">
-        <div class="popup-amount">¥{{amount}}</div>
-        <div class="popup-base">会&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;员：欧阳阳</div>
-        <div class="popup-base">会员卡号：1234565</div>
+        <div class="popup-amount">¥{{amount}}元</div>
+        <div class="popup-base">会&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;员：{{account.name}}</div>
+        <div class="popup-base">会员卡号：{{account.number}}</div>
           <van-coupon-cell
             :coupons="coupons"
             :chosen-coupon="chosenCoupon"
@@ -44,9 +44,11 @@
         <mt-radio
           align="right"
           v-model="radio"
-          :options="['微信', '支付宝']">
+          :options="options">
         </mt-radio>
-        <router-link to="/index/recharge_progress"><div class="btns">立即支付</div></router-link>
+        <!--<router-link to="/index/recharge_progress">-->
+          <div class="btns" @click="generateOrder">立即支付</div>
+        <!--</router-link>-->
       </div>
     </van-popup>
 
@@ -67,6 +69,7 @@
 import Headers from 'base/header/header'
 import Card from 'base/card/card'
 import API from 'api/api'
+import { Toast } from 'vant'
 
 // const coupon = {
 //   available: 1,
@@ -111,7 +114,23 @@ export default {
       amount: '',
       card: true,
       show: false,
-      radio: '',
+      radio: '支付宝',
+      options: [
+        {
+          label: '支付宝',
+          value: '支付宝'
+        },
+        {
+          label: '微信',
+          value: '微信'
+        }
+      ],
+      account: {
+        name: '',
+        number: '',
+        balance: ''
+      },
+      selectCoupon: []
       // coupon:[]
 
     }
@@ -123,34 +142,75 @@ export default {
     Headers.props.rightPath.default = this.rightPath
   },
   methods: {
-    onChange (index) {
+    onChange: function (index) {
       this.showList = false
       this.chosenCoupon = index
+      let params = 'type=1&money=' + this.amount * 100
+      let vm = this
+      API.getCouponStatus(params).then(result => {
+        if (result.status === 1000) {
+          this.selectCoupon = []
+          result.data.usable.forEach((item, index2) => {
+            if (index === index2) {
+              this.selectCoupon.push(item)
+            }
+          })
+        }
+      })
     },
     onExchange (code) {
       this.coupons.push(coupon)
     },
     active (val, index) {
       this.num = index
-      this.amount = val.price + '元'
-    },
-    unfold() {
-      this.show = true
+      this.amount = val.price
     },
     close() {
       this.show = false
     },
-    coupon() {
-      let params = 'status=1&type=1'
+    infos() {
+      this.show = true
+      let params = 'type=1&money=' + this.amount * 100
       let vm = this
-      API.coupon(params).then(result => {
-        console.log(result)
-        result.data.forEach(item => {
-          console.log(item.startAt)
-          item.startAt = item.startAt/1000
-          item.endAt = item.endAt/1000
-          vm.coupons.push(item)
-        })
+      API.user_info().then(result => {
+        if (result.status === 1000) {
+          if (result.data.userInfo.member === 2) {
+            vm.account.name = result.data.userInfo.username
+            vm.account.number = result.data.userMemberId
+          }
+        }
+      })
+      API.getCouponStatus(params).then(result => {
+        if (result.status === 1000) {
+          vm.coupons = []
+          vm.disabledCoupons = []
+          result.data.usable.forEach(item => {
+            item.startAt = item.startAt / 1000
+            item.endAt = item.endAt / 1000
+            vm.coupons.push(item)
+          })
+          result.data.notUsable.forEach(item => {
+            item.startAt = item.startAt / 1000
+            item.endAt = item.endAt / 1000
+            vm.disabledCoupons.push(item)
+          })
+        }
+      })
+    },
+    generateOrder() {
+      let params = 'money=' + this.amount + '&couponId=' + this.selectCoupon[0].id
+      let vm = this
+      API.generate_order(params).then(result => {
+        if(result.status === 1000){
+          Toast('已生成订单，正在充值，请稍等')
+          API.recharge('rechargOrderId=' + result.data).then(result1 => {
+            if(result1.status === 1000){
+              vm.$router.push({
+                path: `/index/recharge_progress`
+              })
+            }
+          })
+        }
       })
     }
   },
@@ -159,8 +219,8 @@ export default {
       return this.num
     }
   },
-  mounted(){
-    this.coupon()
+  mounted() {
+    // this.coupon()
   }
 }
 </script>

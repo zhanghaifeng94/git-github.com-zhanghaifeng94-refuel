@@ -13,7 +13,11 @@ export default {
   sign_in: params => {
     return API.login('/api/login/login', params)
   },
+  logout:  params => {
+    return API.POST('/api/login/logout', params)
+  },
   coupon: params => {
+
     return API.POST('/api/member/getCoupon', params)
   },
   user_info: params => {
@@ -22,8 +26,25 @@ export default {
   transactVIP: params => {
     return API.POST('/api/member/memberTransact', params)
   },
-  pullCopon:params => {
+  pullCopon: params => {
     return API.POST('/api/member/pullCopon', params)
-  }
-
+  },
+  getCouponStatus: params =>{
+    return API.POST('/api/member/getCouponStatus', params)
+  },
+  generate_order: params =>{
+    return API.POST('/api/recharge/createRechargOrder', params)
+  },
+  recharge: params =>{
+    return API.POST('/api/recharge/rechangeRechargOrder', params)
+  },
+  couponCode : params =>{
+    return API.POST('/api/member/getCouponCode', params)
+  },
+  InvitationCouponCode : params =>{
+    return API.POST('/api/member/InvitationCouponCode', params)
+  },
+  modifyUserInfo : params =>{
+    return API.POST('/api/setUp/modifyUserInfo', params)
+  },
 }

@@ -1,7 +1,7 @@
 <template>
     <div class="recharge_progress">
 		<headers></headers>
-		
+
 		<div class="box">
 			<div class="top">
 				<span class="icon_box"><i class="iconfont icon-zhifu money"></i></span>
@@ -25,35 +25,34 @@
 			</div>
 		</div>
 
-
 			<div class="activity">
 		        <img src="../../common/image/03.png" alt="">
-		    </div>	
+		    </div>
     </div>
 </template>
 
 <script>
-  import Headers from 'base/header/header'
+import Headers from 'base/header/header'
 export default {
-    name:"recharge_progress",
-    components: {
-      Headers
-    },    
-    data () {
-        return {
-          title: '会员充值',
-          rightText: '完成',
-          rightIcon:'',
-          rightPath:'/index/rechange'
-        }
-      },
-      created() {
-        Headers.props.title.default = this.title
-        Headers.props.rightText.default = this.rightText
-        Headers.props.rightIcon.default = this.rightIcon
-        Headers.props.rightPath.default = this.rightPath
-      }
+  name: 'recharge_progress',
+  components: {
+    Headers
+  },
+  data () {
+    return {
+      title: '会员充值',
+      rightText: '完成',
+      rightIcon: '',
+      rightPath: '/index/recharge'
     }
+  },
+  created() {
+    Headers.props.title.default = this.title
+    Headers.props.rightText.default = this.rightText
+    Headers.props.rightIcon.default = this.rightIcon
+    Headers.props.rightPath.default = this.rightPath
+  }
+}
 </script>
 
 <style scoped lang="stylus" rel="stylesheet/stylus">
@@ -136,7 +135,7 @@ export default {
       width: 20px;
       height:20px;
       background: #508FEE;
-      border-radius: 100%;			
+      border-radius: 100%;
 	}
 	.min_right{
 		margin-left: 30px;
@@ -157,7 +156,7 @@ export default {
 		float: left;
 		width: 20px;
 		height:20px;
-		border-radius: 100%;	
+		border-radius: 100%;
 	}
 	.bottom_right{
 		margin-left: 30px;

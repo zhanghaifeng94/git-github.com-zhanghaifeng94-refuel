@@ -56,10 +56,13 @@ import change_details from 'components/change_details/change_details'
 import change_pay from 'components/change_pay/change_pay'
 
 
-
 Vue.use(Router)
 
 export default new Router({
+  mode: 'history',
+  scrollBehavior: () => ({
+    y: 0
+  }),
   routes: [
     {
       path: '/',

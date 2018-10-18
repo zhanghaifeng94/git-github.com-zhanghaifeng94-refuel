@@ -8,8 +8,8 @@
         </van-collapse-item>
       </van-collapse>
       <h1>服务信息</h1>
-      <van-collapse v-model="activeName" accordion>
-        <van-collapse-item v-for="item in list" :key="item.id" :title="item.title" :name="item.id">
+      <van-collapse v-model="activeName1" accordion>
+        <van-collapse-item v-for="item in list1" :key="item.id" :title="item.title" :name="item.id">
           {{item.info}}
         </van-collapse-item>
       </van-collapse>
@@ -25,7 +25,7 @@ export default {
   data() {
     return {
       title: '帮助',
-      activeName: '1',
+      activeName: '',
       list: [{
         id: '1', 
         title: '问题1',
@@ -38,7 +38,21 @@ export default {
         id: '3',
         title: '问题1',
         info: '阿斯顿阿斯顿'
-      }]
+      }],
+      list1: [{
+        id: '1',
+        title: '问题1',
+        info: '阿斯顿阿斯顿'
+      }, {
+        id: '2',
+        title: '问题1',
+        info: '阿斯顿阿斯顿'
+      }, {
+        id: '3',
+        title: '问题1',
+        info: '阿斯顿阿斯顿'
+      }],
+      activeName1: ''
     }
   },
   created() {
