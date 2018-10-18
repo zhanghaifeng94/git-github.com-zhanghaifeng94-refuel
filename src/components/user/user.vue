@@ -22,28 +22,32 @@
 		</div>
 
 		<div class="order_box">
-			<h1 class="flex_between" @click="order('0')">
+			<h1 class="flex_between" @click="order()">
 				我的订单
 				<i class="iconfont icon-right"></i>
 			</h1>
-			<ul class="order_status flex">
-				<li @click="order('1')">
+			<div class="order_status flex">
+				<router-link to="">
+					<i class="iconfont icon-pay"></i>
+					<P>待付款</P>
+				</router-link>
+				<router-link to="">
 					<i class="iconfont icon-send"></i>
 					<P>待发货</P>
-				</li>
-				<li @click="order('2')">
+				</router-link>
+				<router-link to="">
 					<i class="iconfont icon-deliver"></i>
 					<P>待收货</P>
-				</li>
-				<li @click="order('3')">
+				</router-link>
+				<router-link to="">
 					<i class="iconfont icon-comment"></i>
 					<P>待评价</P>
-				</li>
-				<li @click="onReturn()">
+				</router-link>
+				<router-link to="/user/customer_service">
 					<i class="iconfont icon-refund"></i>
 					<P>退款/售后</P>
-				</li>
-			</ul>
+				</router-link>
+			</div>
 			<router-link to="" class="card">
 				<i class="iconfont icon-cart"></i>
 				<span v-if="card_state">您的购物车空空如也</span>
@@ -87,7 +91,7 @@
 				<router-link to="/user/setting">
 					<i class="iconfont icon-settings"></i>
 					<P>设置</P>
-				</router-link>				
+				</router-link>
 
 			</div>
 		</div>
@@ -107,12 +111,12 @@ export default {
       name: ''
     }
   },
-  methods:{
-    order(id){
+  methods: {
+    order(id) {
       console.log(id)
       this.$router.push({
-          path: `/user/order/${id}`,
-        })
+        path: `/user/order/${id}`
+      })
     },
     integrate() {
       this.$router.push({
@@ -124,7 +128,7 @@ export default {
         path: '/user/personal'
       })
     },
-    info: function () {
+    info() {
       let vm = this
       API.user_info().then(result => {
         console.log(result.data)
@@ -140,13 +144,15 @@ export default {
         }
       })
     },
-    onReturn(){
+    onReturn() {
       this.$router.push({
-        path:"/user/customer_service"
+        path: '/user/customer_service'
       })
     }
   },
-
+  mounted(){
+    this.info()
+  },
 
 }
 </script>
