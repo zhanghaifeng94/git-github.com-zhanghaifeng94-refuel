@@ -22,7 +22,7 @@
 		</div>
 
 		<div class="order_box">
-			<h1 class="flex_between" @click="order()">
+			<h1 class="flex_between" @click="order(0)">
 				我的订单
 				<i class="iconfont icon-right"></i>
 			</h1>

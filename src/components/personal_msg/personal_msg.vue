@@ -103,6 +103,7 @@ export default {
     font-size:20px;
   }
   .picter{
+    position: relative;
     background: #fff;
     height: 106px;
     margin-top:-9px;
