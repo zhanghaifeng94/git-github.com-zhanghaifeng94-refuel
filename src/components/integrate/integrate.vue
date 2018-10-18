@@ -33,8 +33,8 @@
 			</li>
 		</ul>
 
-		<router-link to="" class="banner">
-			<img src="../../common/image/489481.png" height="296" width="640" alt="">
+		<router-link to="/store/members" class="banner">
+			<img src="../../common/image/489481.png" alt="">
 		</router-link>
 
 	</div>

@@ -129,6 +129,9 @@ export default {
     Headers.props.rightPath.default = ''
   },
   methods: {
+    getParams () {        
+      this.active=this.$route.params.type
+    },
     tab (val, index) {
       this.active = index
     },
@@ -137,7 +140,7 @@ export default {
     },
     listeach() {
       this.list.forEach(item => {
-        console.log(item)
+        //console.log(item)
         if (item.type === '1') {
           item.type_text = '交易成功'
         } else if (item.type === '2') {
@@ -170,7 +173,10 @@ export default {
     this.listeach()
   },
   created(){
-  }
+  },
+  watch:{
+    '$route': 'getParams'
+  }  
 
 }
 </script>

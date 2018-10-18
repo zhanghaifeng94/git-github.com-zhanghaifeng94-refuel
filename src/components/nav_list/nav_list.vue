@@ -68,6 +68,10 @@ export default {
     }
   },
   methods:{
+    getParams () {        
+      // 取到路由带过来的参数  
+      this.Isindex=this.$route.params.type-1
+    },
     go_back() {
       this.$router.back(-1)
     },
@@ -102,7 +106,13 @@ export default {
     }
   },
   created() {
-  }
+  },
+  mounted(){
+    //console.log(this.$route.query.type)
+  },
+  watch:{
+    '$route': 'getParams'
+  }  
 }
 </script>
 

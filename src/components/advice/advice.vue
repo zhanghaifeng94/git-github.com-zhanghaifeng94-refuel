@@ -22,9 +22,9 @@
 			  />
 			</van-cell-group>	
 			<h3>上传照片 (最多4张)</h3>
-			<van-uploader accept="image/gif,image/jpeg,image/png" multiple class="photo">
-			  <van-icon name="photograph" />
-			</van-uploader>
+			<van-uploader :after-read="onRead" accept="image/*" multiple class="photo">
+			    <img class="head-img" src="../../common/image/phone.png" height="78" width="78" ref="goodsImg"/>
+		  	</van-uploader>
 
 			<button type="submit" class="btn" @click="onSubmit()">提交</button>
 		</div>
@@ -72,7 +72,12 @@
 				setTimeout(function(){
 					vm.show=false
 				},1000)
-			}
+			},
+			onRead(file) {
+		       console.log(file);
+		       //将原图片显示为选择的图片
+		       this.$refs.goodsImg.src = file.content;
+		   }
 			
 		},
 		created() {
@@ -124,8 +129,11 @@
 		margin:0 0 38px 16px;
 		width: 78px;
 		height: 78px;
-		border:1px solid rgba(188,188,188,1);
 		border-radius:2px;
+	}
+	.photo img{
+		width: 100%;
+		height:100%;
 	}
 	.van-icon{
 		font-size: 50px;

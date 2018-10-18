@@ -12,6 +12,7 @@
 
 <script>
   import Headers from 'base/header/header'
+  import { Toast } from 'vant';
   export default {
   	name:"coupon_codes",
     components: {
@@ -36,9 +37,12 @@
         //console.log(val)
         if(val=="1"){
           //可以跳转
+          this.$router.push({
+            path:"/index/coupon"
+          })
         }else{
           //已经失效
-          
+          Toast("该兑换码已失效")
         }
       }
     },

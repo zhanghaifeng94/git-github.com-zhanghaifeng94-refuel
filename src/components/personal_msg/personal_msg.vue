@@ -7,11 +7,11 @@
           <mt-button class="right" slot="right">保存</mt-button>
       </mt-header>
       <div class="picter">
-       <img :src="avatar" class="avatar_img">
-       <input type="file" name="avatar" accept="image/gif,image/jpeg,image/jpg,image/png" @change="changeImage($event)" ref="avatarInput" class="uppic">
-        <p>点击修改头像</p>
-       </div>
-        
+        <van-uploader :after-read="onRead" accept="image/*">
+          <img class="avatar_img" src="../../common/image/user_head.png" ref="goodsImg"/>
+          <p>点击修改头像</p>
+        </van-uploader>        
+      </div>      
       <van-radio-group v-model="radio">
         <van-cell-group>
           <van-cell class="flex">
@@ -37,23 +37,19 @@ export default {
   },
   data() {
     return {
-        avatar: require('common/image/user_head.png'),
-        radio:"1"  
+      avatar: require('common/image/user_head.png'),
+      radio:"1"  
     }
   },
   methods:{
     go_back() {
       this.$router.back(-1)
     },
-    changeImage(e) {
-       var file = e.target.files[0]
-       var reader = new FileReader()
-       var that = this
-       reader.readAsDataURL(file)
-       reader.onload = function(e) {
-            that.avatar = this.result
-       }
-    },
+    onRead(file) {
+         console.log(file);
+         //将原图片显示为选择的图片
+         this.$refs.goodsImg.src = file.content;
+     }
   },
   created() {
     
@@ -81,21 +77,11 @@ export default {
   .picter{
     background: #fff;
     height: 106px;
-    position: relative;
     margin-top:-9px;
+    padding-top: 15px;
   }
-  .uppic{
-    width: 60px;
-    height: 86px;
-    background: red;
-    margin:0 auto;
+  .picter >>> .van-uploader{
     display: block;
-    position: absolute;
-    left:50%;
-    margin-left: -30px;
-    top:15px;
-    opacity: 0;
-    z-index:100;
   }
   .avatar_img{
     width:60px;
@@ -104,18 +90,16 @@ export default {
     border:0.5px solid rgba(223,223,223,1);
     box-shadow:0px 1px 3px rgba(0,0,0,0.16);
     border-radius:100%;
-    position: absolute;
-    left:50%;
-    top:15px;
-    margin-left: -30px;
+    display: block;
+    margin:0 auto; 
   }
   .picter p{
-    position: absolute;
     font-size: 10px;
     color:#929292;
     width: 100%;
     text-align: center;
-    top:86px;
+    display: block;
+    margin-top: 5px;
   }
   .flex label{
     float: left;
