@@ -8,9 +8,9 @@
       </mt-header>
       <div class="picter">
        <img :src="avatar" class="avatar_img">
-       <input type="file" name="avatar" accept="image/gif,image/jpeg,image/jpg,image/png" @change="changeImage($event)" ref="avatarInput" class="uppic">
+       <input type="file" name="avatar" accept="image/gif,image/jpeg,image/jpg,image/png" @change="changeImage($event)" class="uppic">
         <p>点击修改头像</p>
-       </div>
+      </div>
       <van-radio-group v-model="radio">
         <van-cell-group>
           <van-cell class="flex">
@@ -30,15 +30,14 @@
 
 <script>
 import API from 'api/api'
+import axios from 'axios'
 export default {
   name: 'personal_msg',
-  components: {
-
-  },
+  components: {},
   data() {
     return {
       avatar: require('common/image/user_head.png'),
-      radio:"1",
+      radio: '1',
       file: '',
       nike: ''
     }
@@ -47,31 +46,37 @@ export default {
     go_back() {
       this.$router.back(-1)
     },
-    onRead(file) {
-         console.log(file);
-         //将原图片显示为选择的图片
-         this.$refs.goodsImg.src = file.content;
-     },
+    // onRead(file) {
+    //      console.log(file);
+    //      //将原图片显示为选择的图片
+    //      this.$refs.goodsImg.src = file.content;
+    //  }
     changeImage(e) {
-      console.log(e)
       this.file = e.target.files[0]
       var reader = new FileReader()
       var that = this
       reader.readAsDataURL(this.file)
-      reader.onload = function(e) {
+      reader.onload = function (e) {
         that.avatar = this.result
-        console.log(this.result);
       }
     },
     baocun() {
-      let params = 'file=' + this.file + '&nike=""'
-      API.modifyUserInfo(params).then(result => {
-        console.log(result);
+      // let form = new FormData()
+      let params = new FormData()
+      params.append('file', this.file)
+      params.append('nike', this.nike)
+      params.append('sex', this.radio)
+      let config = {
+        headers: {'Content-Type': 'multipart/form-data'}
+      }
+      API.modifyUserInfo(params, config).then(result => {
+        console.log(result)
       })
-    }
-  },
-  created() {
 
+    },
+    created() {
+
+    }
   }
 }
 </script>
@@ -102,14 +107,6 @@ export default {
   }
   .picter >>> .van-uploader{
     display: block;
-  }
-  .uppic{
-    position: absolute;
-    top:0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    opacity: 0
   }
   .avatar_img{
     width:60px;
@@ -149,6 +146,14 @@ export default {
   }
   .flex >>> .van-radio .van-icon-check{
     font-size: 18px
+  }
+  .uppic{
+    position: absolute;
+    top:0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0
   }
 
 </style>

@@ -9,8 +9,6 @@ import 'vant/lib/vant-css/index.css'
 import API from 'api/api'
 import VueClipboard from 'vue-clipboard2'
 
-
-
 import 'common/stylus/index.styl'
 
 Vue.use(MintUI)

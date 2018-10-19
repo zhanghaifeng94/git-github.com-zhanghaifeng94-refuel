@@ -43,7 +43,7 @@ export default {
   InvitationCouponCode : params =>{
     return API.POST('/api/member/InvitationCouponCode', params)
   },
-  modifyUserInfo : params =>{
-    return API.POST('/api/setUp/modifyUserInfo', params)
+  modifyUserInfo : (params, headers) =>{
+    return API.POST('/api/setUp/modifyUserInfo', params, headers)
   },
 }
