@@ -11,7 +11,6 @@
 </template>
 
 <script>
-<<<<<<< HEAD
   import Headers from 'base/header/header'
   import { Toast } from 'vant';
   export default {

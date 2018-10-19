@@ -55,6 +55,9 @@ import nav_list from 'components/nav_list/nav_list'
 import change_details from 'components/change_details/change_details'
 import change_pay from 'components/change_pay/change_pay'
 import recharge_detail from 'components/recharge_detail/recharge_detail'
+import ads_list from 'components/ads_list/ads_list'
+
+
 
 Vue.use(Router)
 
@@ -340,6 +343,11 @@ export default new Router({
       path: '/store/change_pay',
       name: 'change_pay',
       component: change_pay
+    },
+    {
+      path: '/user/ads_list',
+      name: 'ads_list',
+      component: ads_list
     }
   ]
 })

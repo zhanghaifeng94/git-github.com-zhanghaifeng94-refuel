@@ -129,7 +129,8 @@ export default {
     Headers.props.rightPath.default = ''
   },
   methods: {
-    getParams () {        
+    getParams () {    
+      console.log(this.$route.params.type)    
       this.active=this.$route.params.type
     },
     tab (val, index) {

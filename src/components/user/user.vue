@@ -4,10 +4,10 @@
 			<div class="flex">
 				<img :src="img" alt="" @click="onLink()">
 				<div class="status_none" v-if="!state">
-			      <router-link to="sign_in">登录</router-link>/
-			      <router-link to="sign_up">注册</router-link>
+			      <router-link to="sign_in">登录</router-link>/             
+			      <router-link to="sign_up">注册</router-link>					
 				</div>
-				<div class="status" v-if="state">{{name}}</div>
+				<div class="status" v-if="state">欧阳</div>
 			</div>
 			<div class="ad flex" @click="integrate()">
 				<div class="ad_left">
@@ -22,15 +22,11 @@
 		</div>
 
 		<div class="order_box">
-			<h1 class="flex_between" @click="order(0)">
+			<h1 class="flex_between" @click="order('0')">
 				我的订单
 				<i class="iconfont icon-right"></i>
 			</h1>
 			<div class="order_status flex">
-				<router-link to="">
-					<i class="iconfont icon-pay"></i>
-					<P>待付款</P>
-				</router-link>
 				<router-link to="">
 					<i class="iconfont icon-send"></i>
 					<P>待发货</P>
@@ -91,15 +87,13 @@
 				<router-link to="/user/setting">
 					<i class="iconfont icon-settings"></i>
 					<P>设置</P>
-				</router-link>
-
+				</router-link>				
 			</div>
-		</div>
-  </div>
+		</div>	
+  </div>	
 </template>
 
 <script>
-import API from 'api/api'
 export default {
   name: 'user',
   data() {
@@ -107,52 +101,33 @@ export default {
       state: false,
       integral: 10,
       card_state: true,
-      img: require('common/image/user_head.png'),
-      name: ''
+      img: require('common/image/user_head.png')
     }
   },
-  methods: {
-    order(id) {
-      console.log(id)
+  methods:{
+    order(id){
+      //console.log(id)
       this.$router.push({
-        path: `/user/order/${id}`
-      })
+          path: `/user/order/${id}`,
+        })
     },
-    integrate() {
+    integrate(){
       this.$router.push({
         path: '/user/integrate'
       })
     },
-    onLink() {
+    onLink(){
       this.$router.push({
         path: '/user/personal'
       })
     },
-    info() {
-      let vm = this
-      API.user_info().then(result => {
-        console.log(result.data)
-        if (result.status === 1000) {
-          if (result.data.userInfo.member === 2) {
-            vm.state = true
-            if (result.data.userInfo.username === null) {
-              vm.name = result.data.userInfo.phone
-            } else {
-              vm.name = result.data.userInfo.username
-            }
-          }
-        }
-      })
-    },
-    onReturn() {
+    onReturn(){
       this.$router.push({
-        path: '/user/customer_service'
+        path:"/user/customer_service"
       })
     }
   },
-  mounted(){
-    this.info()
-  },
+
 
 }
 </script>

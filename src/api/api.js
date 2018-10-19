@@ -17,7 +17,6 @@ export default {
     return API.POST('/api/login/logout', params)
   },
   coupon: params => {
-
     return API.POST('/api/member/getCoupon', params)
   },
   user_info: params => {

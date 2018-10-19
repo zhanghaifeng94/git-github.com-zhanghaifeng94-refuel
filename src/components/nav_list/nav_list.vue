@@ -69,14 +69,15 @@ export default {
   },
   methods:{
     getParams () {        
-      // 取到路由带过来的参数  
+      // 取到路由带过来的参数 
+      console.log(this.$route.params.type) 
       this.Isindex=this.$route.params.type-1
     },
     go_back() {
       this.$router.back(-1)
     },
     onTab(index,val){
-      //console.log(index)
+      console.log(index)
       this.Isindex=index
     },
     onSearch(){
@@ -108,7 +109,7 @@ export default {
   created() {
   },
   mounted(){
-    //console.log(this.$route.query.type)
+    console.log(this.$route.query.type)
   },
   watch:{
     '$route': 'getParams'
