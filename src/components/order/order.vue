@@ -76,7 +76,7 @@ export default {
         type: '2'
       },
       {
-        name: '已发货',
+        name: '待收货',
         type: '3'
       },
       {
@@ -130,8 +130,8 @@ export default {
   },
   methods: {
     getParams () {    
-      console.log(this.$route.params.type)    
-      this.active=this.$route.params.type
+      // console.log(this.$route.params.type)    
+      // this.active=this.$route.params.type
     },
     tab (val, index) {
       this.active = index
@@ -174,6 +174,8 @@ export default {
     this.listeach()
   },
   created(){
+    //console.log(this.$route.params.type)
+    this.active=this.$route.params.type
   },
   watch:{
     '$route': 'getParams'

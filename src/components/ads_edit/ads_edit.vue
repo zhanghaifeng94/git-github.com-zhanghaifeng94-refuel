@@ -1,26 +1,23 @@
 <template>
 	<div class="ads_edit">
       <mt-header :title="title" class="title">
-          <mt-button @click="go_back()" slot="left">
+          <mt-button @click="go_back()" slot="left" class="left">
             <i class="iconfont icon-back"></i>
           </mt-button>
-          <mt-button class="right">保存</mt-button>
       </mt-header>
 		
 		<van-address-edit
 		  :area-list="areaList"
-		  :show-delete="show_delete"
 		  show-set-default
 		  show-search-result
-		  :search-result="searchResult"
+		  :address-info="address_info"
 		  @save="onSave"
-		  @delete="onDelete"
-		  @change-detail="onChangeDetail"
 		/>
 	</div>
 </template>
 <script>
 import Headers from 'base/header/header'
+import areaList from "common/stylus/area"
 export default {
 	name:"ads_edit",
 	components: {
@@ -28,10 +25,18 @@ export default {
 	}, 
 	data(){
 		return{
-       		title:"编辑地址"
 			areaList,
-			searchResult: [],
-			show_delete:true
+       		title:"编辑地址",
+			address_info:{
+				id:"1",
+				name:"欧阳阳",
+				tel:"13026458965",
+				province:"湖北省",
+				city:"武汉市",
+				county:"洪山区",
+				addressDetail:"鲁巷",
+				isDefault:true
+			},
 		}
 	},
 	methods:{
@@ -40,27 +45,34 @@ export default {
 		},
 		onSave() {
 	      //Toast('save');
-	    },
-	    onDelete() {
-	      Toast('delete');
-	    },
-	    onChangeDetail(val) {
-	      if (val) {
-	        this.searchResult = [{
-	          name: '黄龙万科中心',
-	          address: '杭州市西湖区'
-	        }];
-	      } else {
-	        this.searchResult = [];
-	      }
 	    }
-	  }
+	  
 	},
 	created() {
-		
-	}
+		console.log(this.$route.params.id)
+		if(this.$route.params.id=="-1"){
+			this.address_info={}
+		}
+	},
+	watch:{
+		'$route': 'getParams'
+	}  
 }	
 </script>
 <style scoped>
-
+	.ads_edit >>> .mint-header{
+		background: #fff;
+	}
+	.ads_edit >>> .left{
+		color: #666;
+		font-size: 20px;
+	}
+	.ads_edit >>> .mint-header-title{
+		font-size: 20px;
+		color: #666
+	}
+	.ads_edit >>> .right{
+		color: #666;
+		font-size: 12px;
+	}
 </style>

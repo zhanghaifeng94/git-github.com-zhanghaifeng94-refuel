@@ -6,9 +6,8 @@
           </mt-button>
           <mt-button class="right" slot="right" @click="onShow(btn)">{{btn}}</mt-button>
       </mt-header>
-      <van-checkbox-group v-model="result">
-        <van-cell-group>
-          <van-cell v-for="(item,index) in lists" :key="index"  class="product">
+        <ul>
+          <li v-for="(item,index) in lists" :key="index"  class="product">
             <div class="flex">
               <van-checkbox v-model="item.danxuan" class="check" v-if="show" @change="singleChecked(item.danxuan,index)"/>
               <img :src="item.img" alt="">
@@ -18,9 +17,8 @@
                 <p class="price">￥{{item.price}}<u>￥{{item.discount}}</u></p>
               </div>            
             </div>
-          </van-cell>
-        </van-cell-group>
-      </van-checkbox-group>
+          </li>
+        </ul>
 
       <div class="tip flex_between" v-if="show">
         <p class="flex">
@@ -45,12 +43,10 @@ export default {
       length:"",
       checkAll:false,
       lists:[
-        {img:require('common/image/12.png'),title:"带帽式多动能颈枕",color:"藏青色","price":"78","discount":"89",name:"radio",danxuan:false},
-        {img:require('common/image/12.png'),title:"带帽式多动能颈枕",color:"藏青色","price":"78","discount":"89",name:"radio",danxuan:false},
-        {img:require('common/image/12.png'),title:"带帽式多动能颈枕",color:"藏青色","price":"90","discount":"60",name:"radio",danxuan:false}
+        {img:require('common/image/12.png'),title:"带帽式多动能颈枕",color:"藏青色","price":"78","discount":"89",name:"radio",danxuan:false,id:"1"},
+        {img:require('common/image/12.png'),title:"带帽式多动能颈枕",color:"藏青色","price":"78","discount":"89",name:"radio",danxuan:false,id:"2"},
+        {img:require('common/image/12.png'),title:"带帽式多动能颈枕",color:"藏青色","price":"90","discount":"60",name:"radio",danxuan:false,id:"3"}
       ],
-       list: ['a', 'b', 'c'],
-      result: ['a', 'b']
 
     }
   },
@@ -68,30 +64,16 @@ export default {
       this.$router.back(-1)
     },
     singleChecked:function(checked,index){
-          console.log(checked)
-          console.log("2222")
         if (!checked) {
           this.lists[index].danxuan = false;
         }
         else{
           this.lists[index].danxuan = true;
         }
-       //   console.log("this.checked = " + this.checked)
-       //  // 判断checked的值是否还等于商品种类数目，
-       // if (this.checked == this.cart.length) {
-       //    this.checkAll = true;
-       // }else{
-       //    this.checkAll = false;
-       // }
+
     },
     choiceAll(checkAll){
-      console.log(checkAll)
-      if(checkAll){
-        this.lists.danxuan = true;
-        console.log(this.lists.danxuan)
-      }else{
-        this.lists.danxuan = false;
-      }
+
     }
   },
   created() {
@@ -169,6 +151,7 @@ export default {
   font-size:10px;
   color:#929292;
   display:block;
+  margin:10px 0;
  }
  .price{
   font-size:12px;

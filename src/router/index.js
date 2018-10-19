@@ -56,8 +56,8 @@ import change_details from 'components/change_details/change_details'
 import change_pay from 'components/change_pay/change_pay'
 import recharge_detail from 'components/recharge_detail/recharge_detail'
 import ads_list from 'components/ads_list/ads_list'
-
-
+import ads_edit from 'components/ads_edit/ads_edit'
+import map from 'components/map/map'
 
 Vue.use(Router)
 
@@ -106,9 +106,9 @@ export default new Router({
       path: '/index/recharge',
       name: 'recharge',
       component: recharge,
-      meta: {
-        requireAuth: true
-      }
+      // meta: {
+      //   requireAuth: true
+      // }
     },
     {
       path: '/index/recharge_detail/:id',
@@ -348,6 +348,16 @@ export default new Router({
       path: '/user/ads_list',
       name: 'ads_list',
       component: ads_list
+    },
+    {
+      path: '/user/ads_edit/:id',
+      name: 'ads_edit',
+      component: ads_edit
+    },
+    {
+      path: '/index/map',
+      name: 'map',
+      component: map,
     }
   ]
 })

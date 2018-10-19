@@ -5,13 +5,15 @@
 		<van-address-list
 		  v-model="chosenAddressId"
 		  :list="list"
-		  @add="onAdd"
+		  @add="onAdd(-1)"
 		  @edit="onEdit"
 		/>
 	</div>
 </template>
 <script>
 import Headers from 'base/header/header'
+import { AddressList } from 'vant';
+
 export default {
 	name:"ads_list",
 	components: {
@@ -40,18 +42,18 @@ export default {
 		}
 	},
 	methods:{
-		onAdd() {
+		onAdd(id) {
 	      //Toast('新增地址');
-	      // this.$router.push({
-       //    	path: "/user/ads_edit",
-    	  //  })
+	      this.$router.push({
+          	path: `/user/ads_edit/${id}`,
+    	   })
 	    },
-
-	    onEdit(item, index) {
+	    onEdit(item,index) {
 	      //Toast('编辑地址:' + index);
-	      // this.$router.push({
-       //    	path: "/user/ads_edit",
-    	  //  })
+	     var id=item.id
+	      this.$router.push({
+          	path:  `/user/ads_edit/${id}`,
+    	   })
 	    }
 	},
 	created() {

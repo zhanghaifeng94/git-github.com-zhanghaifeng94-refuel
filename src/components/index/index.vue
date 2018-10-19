@@ -64,7 +64,7 @@ export default {
         img: require('common/image/dh.png'),
         name: '油站导航',
         id: '4',
-        path: '/index/recharge'
+        path: '/index/map'
       }],
       classify: [{
         img: require('common/image/01.png'),

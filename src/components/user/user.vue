@@ -27,15 +27,15 @@
 				<i class="iconfont icon-right"></i>
 			</h1>
 			<div class="order_status flex">
-				<router-link to="">
+				<router-link to="/user/order/1">
 					<i class="iconfont icon-send"></i>
 					<P>待发货</P>
 				</router-link>
-				<router-link to="">
+				<router-link to="/user/order/2">
 					<i class="iconfont icon-deliver"></i>
 					<P>待收货</P>
 				</router-link>
-				<router-link to="">
+				<router-link to="/user/order/3">
 					<i class="iconfont icon-comment"></i>
 					<P>待评价</P>
 				</router-link>
@@ -80,7 +80,7 @@
 					<i class="iconfont icon-copy"></i>
 					<P>帮助</P>
 				</router-link>
-				<router-link to="">
+				<router-link to="/user/ads_list">
 					<i class="iconfont icon-location"></i>
 					<P>地址</P>
 				</router-link>

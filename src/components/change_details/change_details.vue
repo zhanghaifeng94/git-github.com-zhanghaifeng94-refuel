@@ -47,7 +47,7 @@
           </div>
           <div class="size_min">
             <h1>颜色</h1>
-            <p v-for="(item,index) in product.colors" :key="index" :class="Isindex==index?'active':''" @click="onChice(item.none,index)">{{item.color}}</p>
+            <p v-for="(item,index) in product.colors" :key="index" :class="Isindex==index?'active':''" @click="onChice(item.color,index)">{{item.color}}</p>
           </div>
           <div class="size_bottom">
             <h1>数量</h1>
@@ -87,7 +87,7 @@ export default {
       }],
       sum: '',
       apiece: 1,
-      Isindex:0,
+      Isindex:-1,
       state:true,
       onTip:false,
       detail_img: require('common/image/222222.png'),
@@ -101,6 +101,7 @@ export default {
         price:"78",
         r_price:"69"
       },
+      size:"请选择规格属性"
     }
   },
   created() {
@@ -119,9 +120,11 @@ export default {
     onCancel(){
       this.onTip=false
     },
-    onChice(val,index){
-      //console.log(val)
+    onChice(con,index){
+      //console.log(con)
       this.Isindex=index
+      this.size="已选："+con
+
     },
     reduce(num){
       this.acount-=num
