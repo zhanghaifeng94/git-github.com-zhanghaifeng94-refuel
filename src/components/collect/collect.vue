@@ -64,16 +64,39 @@ export default {
       this.$router.back(-1)
     },
     singleChecked:function(checked,index){
-        if (!checked) {
-          this.lists[index].danxuan = false;
-        }
-        else{
-          this.lists[index].danxuan = true;
-        }
+        // if (!checked) {
+        //   console.log(index)
+        //   this.lists[index].danxuan = false;
+        // } else{
+        //   this.lists[index].danxuan = true;
+        // }
+        var isExitCheckedNo = this.lists.every(item=>{
+         return item.danxuan === true     
+       });
+       console.log(isExitCheckedNo);
+       
+       if(isExitCheckedNo){
+         this.checkAll = true   
+         console.log("1111111") 
+       }else{
+           this.checkAll = false
+           console.log("222") 
+       }
 
     },
     choiceAll(checkAll){
-
+      if(!checkAll){
+            this.lists.forEach((item)=>{
+              item.danxuan = false  
+               console.log("555")
+            })
+            // this.checkAll = false
+       }else{
+            this.lists.forEach((item)=>{
+              item.danxuan = true  
+            })
+            // this.checkAll = true
+       }
     }
   },
   created() {
