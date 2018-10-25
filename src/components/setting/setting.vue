@@ -59,7 +59,7 @@ export default {
     border-bottom:1px solid #ececec;
     padding:10px 16px 10px 0;
     font-size: 12px;
-    color:#666;  
+    color:#666;
   }
   .list span,
   .list i{
