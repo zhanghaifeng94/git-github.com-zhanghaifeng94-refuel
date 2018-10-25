@@ -24,23 +24,22 @@
         <p class="flex">
           <van-checkbox v-model="checkAll" class="check" @change="choiceAll(checkAll)"/>全选
         </p>
-        <button type="button">删除{{length}}</button>
+        <button type="button">删除({{length}})</button>
       </div>
     </div>
 </template>
 
 <script>
-import Headers from 'base/header/header'
 export default {
   name:'collect',
   components: {
-    Headers
+    
   },
   data() {
     return {
       btn:"管理",
       show:false,
-      length:"",
+      length:0,
       checkAll:false,
       lists:[
         {img:require('common/image/12.png'),title:"带帽式多动能颈枕",color:"藏青色","price":"78","discount":"89",name:"radio",danxuan:false,id:"1"},
@@ -64,38 +63,32 @@ export default {
       this.$router.back(-1)
     },
     singleChecked:function(checked,index){
-        // if (!checked) {
-        //   console.log(index)
-        //   this.lists[index].danxuan = false;
-        // } else{
-        //   this.lists[index].danxuan = true;
-        // }
-        var isExitCheckedNo = this.lists.every(item=>{
-         return item.danxuan === true     
-       });
-       console.log(isExitCheckedNo);
+        if (!checked) {
+          this.length-=1
+        } else{
+          this.length+=1
+        }
        
-       if(isExitCheckedNo){
+        if(this.length===this.lists.length){
          this.checkAll = true   
-         console.log("1111111") 
-       }else{
-           this.checkAll = false
-           console.log("222") 
-       }
+        }else{
+          this.checkAll = false
+        }
 
     },
     choiceAll(checkAll){
       if(!checkAll){
+          if(this.length===this.lists.length){
             this.lists.forEach((item)=>{
               item.danxuan = false  
-               console.log("555")
             })
-            // this.checkAll = false
+          }else{
+            return false
+          }
        }else{
-            this.lists.forEach((item)=>{
-              item.danxuan = true  
-            })
-            // this.checkAll = true
+          this.lists.forEach((item)=>{
+            item.danxuan = true  
+          })
        }
     }
   },

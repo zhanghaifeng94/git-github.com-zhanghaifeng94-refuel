@@ -46,20 +46,26 @@
       },
       methods:{
       	getMap(){
-			var map = new BMap.Map("container");          // 创建地图实例  
-			//map.centerAndZoom("武汉",15);      // 初始化地图,用城市名设置地图中心点
-			var point = new BMap.Point(114.400724,30.5143);  // 创建点坐标  
-			map.centerAndZoom(point, 15);                 // 初始化地图，设置中心
+			var map = new BMap.Map("container");          
+			// 创建地图实例  
+			//map.centerAndZoom("武汉",15);      
+			// 初始化地图,用城市名设置地图中心点
+			var point = new BMap.Point(114.400724,30.5143);  
+			// 创建点坐标  
+			map.centerAndZoom(point, 15);                 
+			// 初始化地图，设置中心
 			map.enableScrollWheelZoom(true);     //开启鼠标滚轮缩放  
-			map.enableContinuousZoom(true);    //启用地图惯性拖拽，默认禁用
+			map.enableContinuousZoom(true);    
+			//启用地图惯性拖拽，默认禁用
 			var marker = new BMap.Marker(point);  // 创建标ghj注
-			map.addOverlay(marker);               // 将标注添加到地图中
+			map.addOverlay(marker);               
+			// 将标注添加到地图中
 			//marker.setAnimation(BMAP_ANIMATION_BOUNCE); //跳动的动画
 			//    var local = new BMap.LocalSearcs   h(map, {      
 			//     renderOptions:{map: map}      
 			// });      
 			// local.search("鲁巷");
-
+ 
         }
       },
       created() {
@@ -79,7 +85,7 @@
 		top: -10px;
 	    left: 0;
 	    width: 100%;
-	    min-height: 645px;
+	    min-height: 620px;
 	}  
 	.map_box{
 		width: 100%;

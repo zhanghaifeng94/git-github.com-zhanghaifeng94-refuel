@@ -5,12 +5,15 @@
 	        <div class="comment" v-for="(comment,index) in comments" :key="index">
 	          <div class="top flex">
 	            <img :src="comment.src" alt="">
-	            <p>{{comment.name}}</p>
-	            <i class="iconfont icon-favorfill star"></i>
-	            <i class="iconfont icon-favorfill star"></i>
-	            <i class="iconfont icon-favorfill star"></i>
-	            <i class="iconfont icon-favorfill star"></i>
-	            <i class="iconfont icon-favorfill star"></i>
+	            <p>{{comment.name}}{{comment.value}}</p>
+            <van-rate
+              v-model="value"
+              :size="15"
+              :count="comment.value"
+              color="#FFC400"
+              void-color="#ccc"
+              readonly
+            />
 	          </div>
 	          <div class="min">
 	            <span>{{comment.time}}</span>
@@ -40,55 +43,59 @@
           title: '评价',
           rightText: '',
           rightIcon:'',
-	      comments:
-	      [
-			{
-				src:require('common/image/user_img.png'),
-				total:235,
-				name:"1265489",
-				time:"2018.09.23 09:23",
-				color:"藏青色",
-				con:"手感很好，帽子也很管用，颜色正式我想要的。刚拿到有点皱，放一会就好了",
-				replay:"感谢您对M50e产品的信任和支持，有您的支持我们会更加努力做好每件产品，期待您的再次光临",
-				imgs:[
-				   {img:require('common/image/store3.png')},
-				   {img:require('common/image/member1.png')},          
-				   {img:require('common/image/store3.png')},
-				   {img:require('common/image/member1.png')},
-				]
-			},
-			{
-				src:require('common/image/user_img.png'),
-				total:235,
-				name:"1265489",
-				time:"2018.09.23 09:23",
-				color:"藏青色",
-				con:"手感很好，帽子也很管用，颜色正式我想要的。刚拿到有点皱，放一会就好了",
-				replay:"感谢您对M50e产品的信任和支持，有您的支持我们会更加努力做好每件产品，期待您的再次光临",
-				imgs:[
-				   {img:require('common/image/store3.png')},
-				   {img:require('common/image/member1.png')},          
-				   {img:require('common/image/store3.png')},
-				   {img:require('common/image/member1.png')},
-				]
-			},
-			{
-				src:require('common/image/user_img.png'),
-				total:235,
-				name:"1265489",
-				time:"2018.09.23 09:23",
-				color:"藏青色",
-				con:"手感很好，帽子也很管用，颜色正式我想要的。刚拿到有点皱，放一会就好了",
-				replay:"感谢您对M50e产品的信任和支持，有您的支持我们会更加努力做好每件产品，期待您的再次光临",
-				imgs:[
-				   {img:require('common/image/store3.png')},
-				   {img:require('common/image/member1.png')},          
-				   {img:require('common/image/store3.png')},
-				   {img:require('common/image/member1.png')},
-				]
-			},			
+          value:5,
+  	      comments:
+  	      [
+      			{
+      				src:require('common/image/user_img.png'),
+      				total:235,
+      				name:"1265489",
+      				time:"2018.09.23 09:23",
+      				color:"藏青色",
+      				con:"手感很好，帽子也很管用，颜色正式我想要的。刚拿到有点皱，放一会就好了",
+      				replay:"感谢您对M50e产品的信任和支持，有您的支持我们会更加努力做好每件产品，期待您的再次光临",
+      				imgs:[
+      				   {img:require('common/image/store3.png')},
+      				   {img:require('common/image/member1.png')},          
+      				   {img:require('common/image/store3.png')},
+      				   {img:require('common/image/member1.png')},
+      				],
+              value:5
+      			},
+      			{
+      				src:require('common/image/user_img.png'),
+      				total:235,
+      				name:"1265489",
+      				time:"2018.09.23 09:23",
+      				color:"藏青色",
+      				con:"手感很好，帽子也很管用，颜色正式我想要的。刚拿到有点皱，放一会就好了",
+      				replay:"感谢您对M50e产品的信任和支持，有您的支持我们会更加努力做好每件产品，期待您的再次光临",
+      				imgs:[
+      				   {img:require('common/image/store3.png')},
+      				   {img:require('common/image/member1.png')},          
+      				   {img:require('common/image/store3.png')},
+      				   {img:require('common/image/member1.png')},
+      				],
+              value:4
+      			},
+      			{
+      				src:require('common/image/user_img.png'),
+      				total:235,
+      				name:"1265489",
+      				time:"2018.09.23 09:23",
+      				color:"藏青色",
+      				con:"手感很好，帽子也很管用，颜色正式我想要的。刚拿到有点皱，放一会就好了",
+      				replay:"感谢您对M50e产品的信任和支持，有您的支持我们会更加努力做好每件产品，期待您的再次光临",
+      				imgs:[
+      				   {img:require('common/image/store3.png')},
+      				   {img:require('common/image/member1.png')},          
+      				   {img:require('common/image/store3.png')},
+      				   {img:require('common/image/member1.png')},
+      				],
+              value:5
+      			},			
 
-	      ]
+  	      ]
 
         }
       },

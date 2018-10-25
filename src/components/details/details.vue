@@ -47,11 +47,14 @@
           <div class="top flex">
             <img :src="comment.src" alt="">
             <p>{{comment.name}}</p>
-            <i class="iconfont icon-favorfill star"></i>
-            <i class="iconfont icon-favorfill star"></i>
-            <i class="iconfont icon-favorfill star"></i>
-            <i class="iconfont icon-favorfill star"></i>
-            <i class="iconfont icon-favorfill star"></i>
+            <van-rate
+              v-model="value"
+              :size="15"
+              :count="5"
+              color="#FFC400"
+              void-color="#ccc"
+              readonly
+            />
           </div>
           <div class="min">
             <span>{{comment.time}}</span>
@@ -119,11 +122,13 @@
           </div>
           <div class="size_bottom">
             <h1>数量</h1>
-            <div class="size_num">
-              <p @click="reduce(1)">-</p>
-              <input type="number" name="" v-model="acount" @input="onInput(acount)">
-              <p @click="add(1)">+</p>
-            </div>
+            <van-stepper
+                v-model="val"
+                integer
+                :min="1"
+                :max="40"
+                :step="1"
+              />
           </div>
         </div>
       </div>
@@ -146,6 +151,8 @@ export default {
         id: '3'
       }],
       sum: '',
+      value: 5,
+      val:1,
       apiece: 1,
       loading: false,
       finished: false,
@@ -176,7 +183,6 @@ export default {
          ]
       },
       size:"请选择规格属性",
-      acount:"1",
       product:{
         img:require('common/image/store3.png'),
         colors:[
@@ -222,23 +228,6 @@ export default {
       }else{
         this.show=true
       }
-    },
-    reduce(num){
-      this.acount-=num
-      console.log(this.acount)
-      if(this.acount<=1){
-        this.acount=1;
-        Toast('数量最少为1');
-      }
-    },
-    onInput(val){
-      console.log(val)
-      this.acount=val
-    },
-    add(num){
-      var really=Number(this.acount)
-      this.acount=really
-      this.acount+=num
     },
     onLove(state){
       console.log(state)
@@ -384,26 +373,6 @@ export default {
   }
   .btn p.buy{
     background: #FF4444
-  }
-  .size_num{
-    display: inline-block;
-    border:1px solid #707070;
-    border-radius: 2px;
-    height: 18px;
-    width: 50%;
-  }
-  .size_num p{
-    float: left;
-    text-align: center;
-    width: 20%;
-  }
-  .size_num input{
-    float: left;
-    width: 60%;
-    border-left: 1px solid #707070;
-    text-align: center;
-    box-sizing: border-box;
-    border-right: 1px solid #707070;
   }
   .h48{
     width: 100%;

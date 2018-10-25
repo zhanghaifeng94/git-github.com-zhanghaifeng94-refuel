@@ -44,7 +44,7 @@
 					<P>退款/售后</P>
 				</router-link>
 			</div>
-			<router-link to="" class="card">
+			<router-link to="/user/cart" class="card">
 				<i class="iconfont icon-cart"></i>
 				<span v-if="card_state">您的购物车空空如也</span>
 				<span v-if="!card_state">您的购物车的商品还没结算</span>

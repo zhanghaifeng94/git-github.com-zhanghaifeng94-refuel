@@ -58,6 +58,10 @@ import recharge_detail from 'components/recharge_detail/recharge_detail'
 import ads_list from 'components/ads_list/ads_list'
 import ads_edit from 'components/ads_edit/ads_edit'
 import map from 'components/map/map'
+import cart from 'components/cart/cart'
+import order_pay from 'components/order_pay/order_pay'
+
+
 
 Vue.use(Router)
 
@@ -290,7 +294,7 @@ export default new Router({
       component: personal_msg
     },
     {
-      path: '/user/change_password',
+      path: '/user/change_password/:id',
       name: 'change_password',
       component: change_password
     },
@@ -358,6 +362,16 @@ export default new Router({
       path: '/index/map',
       name: 'map',
       component: map,
+    },
+    {
+      path: '/user/cart',
+      name: 'cart',
+      component: cart,
+    },
+    {
+      path: '/user/order_pay',
+      name: 'order_pay',
+      component: order_pay,
     }
   ]
 })

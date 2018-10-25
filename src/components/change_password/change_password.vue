@@ -78,10 +78,13 @@ export default {
       if(this.new_password!==this.agin_password){
           Toast('两次密码不一样')
       }
-    },
-    getParams () {        
-      // 取到路由带过来的参数  
-      //this.id = this.$route.params.id;  
+    }
+  },
+  created() {
+    Headers.props.title.default = this.title,
+    Headers.props.rightIcon.default = this.rightIcon
+    Headers.props.rightText.default = this.rightText
+     //console.log(this.$route.params.id)
       if(this.$route.params.id=="1"){
         this.placeholder1="请重新设置密码"
         this.placeholder2="请确认密码"
@@ -90,22 +93,13 @@ export default {
         this.placeholder1="请重新设置支付密码"
         this.placeholder2="请确认支付密码"
         this.tltle="修改支付密码"
-      } 
-    }
-  },
-  created() {
-    Headers.props.title.default = this.title,
-    Headers.props.rightIcon.default = this.rightIcon
-    Headers.props.rightText.default = this.rightText
-  },
-  mounted(){
-    this.all()
-    id = this.$route.query.id
-    console.log(this.$route.query.id)
+      }
 
   },
+  mountesd(){
+    this.all()
+  },
   watch:{
-    '$route': 'getParams'
   }  
 }
 </script>

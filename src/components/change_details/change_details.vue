@@ -51,11 +51,13 @@
           </div>
           <div class="size_bottom">
             <h1>数量</h1>
-            <div class="size_num">
-              <p @click="reduce(1)">-</p>
-              <input type="number" name="" v-model="acount" @input="onInput(acount)">
-              <p @click="add(1)">+</p>
-            </div>
+              <van-stepper
+                v-model="value"
+                integer
+                :min="1"
+                :max="40"
+                :step="1"
+              />
           </div>
         </div>
       </div>
@@ -90,6 +92,7 @@ export default {
       Isindex:-1,
       state:true,
       onTip:false,
+      value: 1,
       detail_img: require('common/image/222222.png'),
       acount:"1",
       product:{
@@ -125,23 +128,6 @@ export default {
       this.Isindex=index
       this.size="已选："+con
 
-    },
-    reduce(num){
-      this.acount-=num
-      console.log(this.acount)
-      if(this.acount<=1){
-        this.acount=1;
-        Toast('数量最少为1');
-      }
-    },
-    onInput(val){
-      console.log(val)
-      this.acount=val
-    },
-    add(num){
-      var really=Number(this.acount)
-      this.acount=really
-      this.acount+=num
     },
     onLink(){
       this.$router.push({
@@ -234,26 +220,6 @@ export default {
     font-size:20px;
     color: #fff;
     text-align: center;
-  }
-  .size_num{
-    display: inline-block;
-    border:1px solid #707070;
-    border-radius: 2px;
-    height: 18px;
-    width: 50%;
-  }
-  .size_num p{
-    float: left;
-    text-align: center;
-    width: 20%;
-  }
-  .size_num input{
-    float: left;
-    width: 60%;
-    border-left: 1px solid #707070;
-    text-align: center;
-    box-sizing: border-box;
-    border-right: 1px solid #707070;
   }
   .h48{
     width: 100%;

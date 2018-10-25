@@ -1,5 +1,5 @@
 <template>
-	<div class="change_pay">
+	<div class="order_pay">
 		<Headers></Headers>
 		<router-link to="/user/ads_list" class="ads flex_between">
 			<div class="flex">
@@ -16,14 +16,14 @@
 		</router-link>
 		<img src="../../common/image/12-1.png" class="bg">
 
-		<div class="con">
+		<div class="con" v-for="(shop,index) in shops" :key="index">
 			<div class="flex_between">
 				<div class="flex">
 					<img :src="shop.img" alt="">
 					<div>
 						<h1>{{shop.name}}</h1>
 						<p class="color">{{shop.color}}</p>
-						<span>￥{{shop.price}}+{{shop.grade}}积分</span>
+						<p class="price">￥{{shop.price}}<u>￥{{shop.r_price}}</u></p>
 					</div>
 				</div>
 				<p class="num">×{{shop.num}}</p>
@@ -32,15 +32,38 @@
 		</div>	
 		<ul class="box">
 			<li class="flex_between">
-				运费
-				<p>{{w_price}}</p>
+				优惠券
+				<p>商场专用 满150减10<i class="iconfont icon-right"></i></p>
 			</li>
-			<li>需要积分{{need}},当前用户积分{{my_scour}}</li>
+			<li class="flex_between">
+				会员积分
+				<p>可用105积分抵用1.05元<i class="iconfont icon-right"></i></p>
+			</li>
 		</ul>
-		<div class="bottom flex_between">
-			<p>积分：{{need}}积分</p>
-			<button type="button" @click="onCheck()">去兑换</button>
+
+		<ul class="discount">
+			<li class="flex_between">
+				商品金额<span>{{need}}</span>
+			</li>
+			<li class="flex_between">
+				会员积分<span>-1.05</span> 
+			</li>
+			<li class="flex_between">
+				运费<span>0.00</span> 
+			</li>
+			<li class="flex_between">
+				优惠券<span>-10.00</span> 
+			</li>
+		</ul>
+		<div class="agreement">
+			<i class="iconfont "></i>
+			我已同意<router-link to="">《M50e服务协议》</router-link>
 		</div>
+		<div class="bottom flex_between">
+			<p>应付：{{need}}</p>
+			<button type="button" @click="onCheck()">付款</button>
+		</div>
+
 
 		<div class="tip_box" v-if="pay">
 			<i class="iconfont icon-roundclose" @click="onCancel()"></i>
@@ -67,7 +90,7 @@
 import Headers from 'base/header/header'
 import { Dialog } from 'vant';
 	export default{
-		name:"change_pay",
+		name:"order_pay",
 		components:{
 			Headers
 		},
@@ -76,8 +99,11 @@ import { Dialog } from 'vant';
 				title: '确认订单',
 				rightText: '',
 				rightIcon:'',
-				leftIcon:"iconfont icon-close",
-				shop:{img:require('common/image/store3.png'),name:"带帽式多功能颈枕",color:"藏青色",price:"0.00",grade:"500",num:"3"},
+				shops:[
+					{img:require('common/image/store3.png'),name:"带帽式多功能颈枕",color:"藏青色",price:"78",r_price:"69",num:"3"},
+					{img:require('common/image/store3.png'),name:"带帽式多功能颈枕",color:"藏青色",price:"87",r_price:"59",num:"5"},
+					{img:require('common/image/store3.png'),name:"带帽式多功能颈枕",color:"藏青色",price:"56",r_price:"50",num:"1"},					
+				],
 				w_price:"0.00",
 				need:"500",
 				my_scour:"0",
@@ -124,7 +150,6 @@ import { Dialog } from 'vant';
 
 		},
 		created() {
-			Headers.props.leftIcon.default = this.leftIcon
 			Headers.props.title.default = this.title
 			Headers.props.rightText.default = this.rightText
 			Headers.props.rightIcon.default = this.rightIcon
@@ -132,6 +157,9 @@ import { Dialog } from 'vant';
 	}
 </script>
 <style scoped>
+	.order_pay{
+		padding-bottom: 90px;
+	}
 	.flex_between{
 		display: flex;
 		justify-content: space-between;
@@ -192,9 +220,14 @@ import { Dialog } from 'vant';
 		color: #929292;
 		margin-bottom: 21px;
 	}
-	.con span{
-		color:#EE722E;
+	.con .price{
+		color:#929292;
 		font-size: 12px; 
+	}
+	.con .price u{
+		text-decoration: line-through;
+		font-size: 10px;
+		color: #bebebe;
 	}
 	.con .num{
 		color: #707070;
@@ -214,13 +247,22 @@ import { Dialog } from 'vant';
 	}
 	.box li:first-child{
 		border-top:0;
-	}
+	}	
 	.box li{
 		border-top: 1px solid #DFDFDF;
 		padding:11px 0;
 		font-size: 12px;
-		color: #666;
+		color: #FF4848;
 		padding-right: 16px;
+	}
+	.box li p{
+		font-size: 12px;
+		color: #666;
+	}
+	.box li p i{
+		font-size: 14px;
+		color: #bebebe;
+		margin-left: 15px;
 	}
 	.bottom{
 		position: fixed;
@@ -240,7 +282,7 @@ import { Dialog } from 'vant';
 		color: #fff;
 		font-size: 14px;
 		background: #EE722E;
-		padding: 11px 18px;
+		padding: 11px 25px;
 		border-radius: 30px;
 		border:0;
 	}
@@ -280,5 +322,23 @@ import { Dialog } from 'vant';
 		display: block;
 		margin:0 auto;
 		margin-top: 10px;
+	}
+	.discount{
+		background: #fff;
+		margin:10px 0 20px 0;
+		padding:0 16px;
+	}
+	.discount li{
+		font-size: 12px;
+		color: #666;
+		padding: 12px 0;
+	}
+	.agreement{
+		padding-left: 16px;
+		font-size: 12px;
+		color: #666
+	}
+	.agreement a{
+		color: blue
 	}
 </style>
